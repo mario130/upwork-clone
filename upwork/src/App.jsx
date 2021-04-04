@@ -1,9 +1,10 @@
 import './App.css';
+import Navbar from './components/navbar-guest';
 
 function App() {
   return (
-    <div>
-      
+    <div className="font-nuni">
+      <Navbar />
     </div>
   );
 }
