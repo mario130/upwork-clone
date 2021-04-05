@@ -6,12 +6,16 @@ module.exports = {
       colors: {
         "primary": '#37a000',
         "dark": '#008329',
+        "light": '#6fda44',
         "complementary": '#1d4354'
       },
       fontFamily: {
         nuni: ["Nunito Sans"],
         play: ["Playfair Display"]
       }
+    },
+    boxShadow: {
+      categ: '0 0 20px hsl(0deg 0% 40% / 12%)'
     },
   },
   variants: {

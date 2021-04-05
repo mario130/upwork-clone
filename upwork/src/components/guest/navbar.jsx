@@ -4,7 +4,7 @@ const Navbar = () => {
   const [isMobileNavOpen, setMobileNav] = useState(false);
 
   return (
-    <div className=" border-b border-gray-200 mb-3">
+    <div className=" border-b border-gray-200 mb-3 sticky top-0 bg-white z-50">
       <div className="container mx-auto">
         <div className="nav-wrapper px-3 mr-1 flex items-center justify-between h-14">
           {/* Left part of mobile nav */}
