@@ -117,7 +117,7 @@ const Navbar = () => {
 
         {/* MOBILE NAV OPEN FULL SCREEN */}
         {isMobileNavOpen ? (
-          <div className="fixed w-full h-full lg:hidden bg-white">
+          <div className="fixed w-full h-full lg:hidden bg-white z-50">
             <div className="flex flex-col justify-between">
               <div className="p-3 relative mb-4 mt-2">
                 <svg
