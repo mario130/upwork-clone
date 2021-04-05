@@ -9,7 +9,8 @@ module.exports = {
         "complementary": '#1d4354'
       },
       fontFamily: {
-        nuni: ["Nunito Sans"]
+        nuni: ["Nunito Sans"],
+        play: ["Playfair Display"]
       }
     },
   },
