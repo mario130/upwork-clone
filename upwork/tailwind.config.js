@@ -7,7 +7,8 @@ module.exports = {
         "primary": '#37a000',
         "dark": '#008329',
         "light": '#6fda44',
-        "complementary": '#1d4354'
+        "complementary": '#1d4354',
+        "twilight": '#2b5468'
       },
       fontFamily: {
         nuni: ["Nunito Sans"],
