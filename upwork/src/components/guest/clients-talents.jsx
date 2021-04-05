@@ -14,8 +14,8 @@ const ClientsAndTalents = () => {
   ])
 
   return (
-    <div className="mt-12 text-center container mx-auto">
-      <div className=" max-w-sm  mx-auto md:max-w-full">
+    <div className="mt-12 text-center container mx-auto px-3">
+      <div className="max-w-sm  mx-auto md:max-w-full">
         <h5 className="text-gray-500 font-extrabold uppercase tracking-widest text-xs">
           For clients
         </h5>
@@ -67,7 +67,7 @@ const ClientsAndTalents = () => {
         </div>
 
         {/* client tags */}
-        <div className="text-3xl text-gray-800 space-y-5 mb-12">
+        <div className="text-3xl text-gray-800 space-y-5 mb-20">
         {clientTags.map(tag => (
           <h3 className="hover:text-light cursor-pointer">{tag}</h3>
         ))}
@@ -88,7 +88,7 @@ const ClientsAndTalents = () => {
         <div className="md:flex md:space-x-6 md:justify-center">
           {talentCategs.map((categ) => (
             <div className="mb-4 shadow-categ text-left relative group">
-              <div className="p-5 group-hover:bg-light cursor-pointer transition-all ease-out">
+              <div className="p-5 group-hover:bg-light cursor-pointer transition-all ease-out ">
                 <h5 className="text-complementary text-xl md:text-2xl font-play group-hover:text-white">
                   {categ.title}
                 </h5>
