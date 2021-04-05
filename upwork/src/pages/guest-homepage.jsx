@@ -9,7 +9,7 @@ function App() {
       <div className="container mx-auto mt-6">
         <div className="md:grid grid-cols-12">
           {/* HERO AREA */}
-          <div className="px-5 max-w-md md:max-w-full mx-auto col-start-1 col-end-8 row-start-1 row-end-4 z-10 relative">
+          <div className="px-5 max-w-md md:max-w-full mx-auto md:mx-0 col-start-1 col-end-8 row-start-1 row-end-4 z-10 relative">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-play font-bold text-complementary">
               The world’s work
               <br />
@@ -34,7 +34,7 @@ function App() {
             </div>
 
             {/* brands */}
-            <div className="hidden md:flex justify-between items-center absolute -bottom-16 lg:-bottom-32 xl:-bottom-44 w-full">
+            <div className="hidden md:flex space-x-5 items-center absolute -bottom-16 lg:-bottom-32 xl:-bottom-44 w-full">
               <img
                 className="w-14 h-10"
                 src="https://www.upwork.com/static/assets/Brontes/5205c4c/img/microsoft.94fec27.svg"
