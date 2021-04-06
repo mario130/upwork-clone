@@ -6,7 +6,6 @@ import WhatTheySay from '../components/guest/what-say';
 function App() {
   return (
     <div>
-      <Navbar />
       <Hero />
       <Clients />
       <WhatTheySay />
