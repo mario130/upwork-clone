@@ -1,19 +1,20 @@
-import { Route, Switch } from 'react-router';
-import './App.css';
-import Navbar from './components/guest/navbar';
-import Signup from './pages/Auth/Signup/SignUp';
-import GuestHomepage from './pages/guest-homepage';
+import "./App.css";
+import GuestHomepage from "./pages/guest-homepage";
+import FreelancerHomepage from "./pages/freelancer-homepage";
+import Nav from "./components/shared/dev-navbar";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div className="font-nuni">
-      <Navbar/>
-      <Switch>
-      <Route exact path="/" component={GuestHomepage}/>
-      <Route exact path="/signup" component={Signup}/>
-
-      </Switch>
-    </div>
+    <BrowserRouter>
+      <div className="font-nuni">
+        <Nav />
+        <Switch>
+          <Route path="/" exact component={GuestHomepage} />
+          <Route path="/freelancer" component={FreelancerHomepage} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
