@@ -138,7 +138,7 @@ const Nav = () => {
   ]);
 
   return (
-    <div className="border-b border-gray-200 mb-3 bg-complementary z-50 text-white">
+    <div className="border-b border-gray-200 bg-complementary z-50 text-white">
       <div className="container mx-auto max-w-5xl">
         <div className="nav-wrapper px-3 mr-1 flex items-center justify-between h-14">
           {/* hamburger */}

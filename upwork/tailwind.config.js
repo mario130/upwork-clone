@@ -9,7 +9,8 @@ module.exports = {
         "light": '#6fda44',
         "complementary": '#1d4354',
         "twilight": '#2b5468',
-        "navBorder": '#336278'
+        "navBorder": '#336278',
+        "bodyGray": '#f1f2f4'
       },
       fontFamily: {
         nuni: ["Nunito Sans"],
