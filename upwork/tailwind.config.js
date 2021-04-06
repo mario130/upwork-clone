@@ -8,7 +8,8 @@ module.exports = {
         "dark": '#008329',
         "light": '#6fda44',
         "complementary": '#1d4354',
-        "twilight": '#2b5468'
+        "twilight": '#2b5468',
+        "navBorder": '#336278'
       },
       fontFamily: {
         nuni: ["Nunito Sans"],
