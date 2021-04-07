@@ -4,14 +4,11 @@ import Btn from "../../../components/UI/Btn/Btn";
 import Input from "../../../components/UI/Input/Input";
 import Separator from "../../../components/UI/Seperator/Seperator";
 
-const Signup = () => {
+const Login = () => {
   return (
-    <div id="signup" className="py-5 bg-bodyGray">
+    <div id="login" className="py-5 bg-bodyGray">
       <div className="form-wrapper py-6 bg-white text-center md:w-2/5 w-full mx-auto px-5 ">
-        <h2 className="h1 text-3xl font-bold my-6">Get your free account</h2>
-        <GoogleBtn/>
-        <AppleBtn/>
-        <Separator>or</Separator>
+        <h2 className="h1 text-3xl font-bold my-6">Log in to Upwork</h2>
       <Input type="text" name="email" placeholder="Your email" errorMsg="" svg={ <svg
               width="20"
               height="20"
@@ -24,11 +21,14 @@ const Signup = () => {
 
       
           <Btn className="w-full  bg-green-400 hover:bg-green-500 focus:ring-green-500  text-white ">
-    Continue with Email
+              Continue 
           </Btn>
+        <Separator>or</Separator>
+        <GoogleBtn/>
+        <AppleBtn/>
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default Login;
