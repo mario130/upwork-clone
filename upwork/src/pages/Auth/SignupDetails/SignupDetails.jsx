@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import Btn from "../../../components/UI/Btn/Btn";
-import CheckBox from "../../../components/UI/CheckBox/CheckBox";
-import Input from "../../../components/UI/Input/Input";
-import Select from "../../../components/UI/Select/Select";
+import Btn from "../../../components/UI/Form/Btn/Btn";
+import CheckBox from "../../../components/UI/Form/CheckBox/CheckBox";
+import Input from "../../../components/UI/Form/Input/Input";
+import Radio from "../../../components/UI/Form/Radio/Radio";
+import Select from "../../../components/UI/Form/Select/Select";
 
 const SignupDetails = () => {
   return (
@@ -78,6 +79,16 @@ const SignupDetails = () => {
         <div className="my-4">
           <Select options={["egypt", "cairo", "alex"]} />
         </div>
+        <p className="font-bold text-xl mt-4 mb-2">I want to</p>
+        <div className="flex justify-center">
+        <Radio id="guest">
+          Hire
+        </Radio>
+        <Radio id="guffest">
+          Work
+        </Radio>
+
+        </div>
         <div className="flex flex-col my-4">
           <CheckBox >
           Yes! Send me genuinely useful emails every now and then to help me
@@ -85,10 +96,10 @@ const SignupDetails = () => {
           </CheckBox>
       
           <CheckBox >
-          Yes, I understand and agree to the Upwork <Link to="/" className="text-green-500">Terms of Service</Link>, including the User Agreement and <Link to="/" className="text-green-500">Privacy Policy</Link>.
+          Yes, I understand and agree to the Upwork <Link to="/" className="text-primary">Terms of Service</Link>, including the User Agreement and <Link to="/" className="text-primary">Privacy Policy</Link>.
           </CheckBox>
         </div>
-        <Btn className="w-full  bg-green-400 hover:bg-green-500 focus:ring-green-500  text-white ">
+        <Btn className="w-full  bg-primary hover:bg-green-700 focus:ring-green-500  text-white ">
           Create My Account
         </Btn>
       </div>
