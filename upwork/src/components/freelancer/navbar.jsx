@@ -138,7 +138,7 @@ const Nav = () => {
   ]);
 
   return (
-    <div className="border-b border-gray-200 bg-complementary z-50 text-white">
+    <div className="lg:p-2 border-b border-gray-200 bg-complementary z-50 text-white">
       <div className="container mx-auto max-w-5xl">
         <div className="nav-wrapper px-3 mr-1 flex items-center justify-between h-14">
           {/* hamburger */}
@@ -230,7 +230,7 @@ const Nav = () => {
           {/* desktop links */}
           <div className="hidden lg:block">
             <ul className="flex space-x-5">
-              <li>Find Work</li>
+              <li className="text-light font-medium">Find Work</li>
               <li>My Jobs</li>
               <li>Reports</li>
               <li>Messages</li>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../components/freelancer/footer';
-import MainMobile from '../components/freelancer/main-mobile';
+import Main from '../components/freelancer/main';
 import Nav from '../components/freelancer/navbar';
 
 const FreelancerHomepage = () => {
@@ -9,7 +9,7 @@ const FreelancerHomepage = () => {
   return (
     <div className="bg-bodyGray">
       <Nav />
-      <MainMobile />
+      <Main />
       <Footer />
     </div>
   )
