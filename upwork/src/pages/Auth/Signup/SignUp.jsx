@@ -12,7 +12,7 @@ const Signup = () => {
         <GoogleBtn/>
         <AppleBtn/>
         <Separator>or</Separator>
-      <Input type="text" name="email" placeholder="Your email" errorMsg="" svg={ <svg
+      <Input type="email" name="email" placeholder="Your email" errorMsg="" svg={ <svg
               width="20"
               height="20"
               fill="currentColor"

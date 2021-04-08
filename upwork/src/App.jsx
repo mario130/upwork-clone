@@ -5,6 +5,7 @@ import Nav from "./components/shared/dev-navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Signup from "./pages/Auth/Signup/SignUp";
 import Login from "./pages/Auth/Login/Login";
+import SignupDetails from "./pages/Auth/SignupDetails/SignupDetails";
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
         <Switch>
           <Route path="/" exact component={GuestHomepage} />
           <Route path="/freelancer" component={FreelancerHomepage} />
-          <Route path="/signup" component={Signup} />
+          <Route path="/signup/details" exact component={SignupDetails} />
+          <Route path="/signup" exact component={Signup} />
           <Route path="/login" component={Login} />
+          
 
 
         </Switch>
