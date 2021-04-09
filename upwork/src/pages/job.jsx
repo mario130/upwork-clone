@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../components/shared/footer';
-import Main from '../components/job/main';
+import Job from '../components/freelancer/job';
 import Nav from '../components/shared/navbar';
 
 const JobPage = () => {
@@ -9,7 +9,7 @@ const JobPage = () => {
   return (
     <div className="bg-bodyGray">
       <Nav />
-      <Main />
+      <Job />
       <Footer />
     </div>
   )

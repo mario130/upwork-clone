@@ -1,18 +1,18 @@
 import React from 'react';
 import Footer from '../components/shared/footer';
-import Feed from '../components/freelancer/feed';
+import Main from '../components/freelancer/profile';
 import Nav from '../components/shared/navbar';
 
-const FreelancerHomepage = () => {
+const FreelancerProfile = () => {
 
 
   return (
     <div className="bg-bodyGray">
       <Nav />
-      <Feed />
+      <Main />
       <Footer />
     </div>
   )
 }
 
-export default FreelancerHomepage;
+export default FreelancerProfile;

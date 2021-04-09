@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ListItem from "../freelancer/listItem";
+import ListItem from "./listItem";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);

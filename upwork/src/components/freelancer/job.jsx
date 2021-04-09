@@ -226,7 +226,7 @@ const Job = () => {
       </div>
 
       <div className="text-sm border-b border-gray-200 lg:col-start-6 col-span-2">
-        <div className="p-6 hidden lg:block border-b border-gray-200">
+        <div className="p-4 hidden lg:block border-b border-gray-200">
           <div className="space-y-2 p-3">
             <button className="w-full p-2 rounded-lg font-bold text-sm bg-primary text-white">
               Submit a proposal
@@ -314,7 +314,7 @@ const Job = () => {
         </div>
       </div>
 
-      <div className="bg-gray-100 pt-6 pb-2 flex text-primary items-center lg:hidden">
+      <div className="bg-gray-100 p-6 pt-6 pb-2 flex text-primary items-center lg:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 mr-2"
