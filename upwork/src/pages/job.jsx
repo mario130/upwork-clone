@@ -1,9 +1,9 @@
 import React from 'react';
 import Footer from '../components/shared/footer';
-import Main from '../components/freelancer/main';
+import Main from '../components/job/main';
 import Nav from '../components/shared/navbar';
 
-const FreelancerHomepage = () => {
+const JobPage = () => {
 
 
   return (
@@ -15,4 +15,4 @@ const FreelancerHomepage = () => {
   )
 }
 
-export default FreelancerHomepage;
+export default JobPage;

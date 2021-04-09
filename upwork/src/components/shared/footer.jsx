@@ -9,7 +9,7 @@ const Footer = () => {
   ]);
 
   return (
-    <footer className="bg-complementary mt-6">
+    <footer className="bg-complementary lg:mt-6">
       <div className="container mx-auto p-4 lg:flex justify-between max-w-5xl border-b border-navBorder">
         {footerLists.map((list) => (
           <ul className="my-4 text-white text-sm">
