@@ -53,7 +53,7 @@ const Job = () => {
   });
 
   return (
-    <div className="mt-6 bg-white mb-6">
+    <div className="mt-6 bg-white mb-6 md:mx-12">
       <h2 className="p-4 font-bold text-xl border-b border-gray-200">
         {job.title}
       </h2>
@@ -62,7 +62,8 @@ const Job = () => {
         <br />
         <span className="text-gray-500">Posted 14 minutes ago</span>
 
-        <div className="mt-3 flex">
+        {/* implement if possible: redirect to add a specialized profile */}
+        {/* <div className="mt-3 flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 mr-3 mt-1 flex-2 text-gray-500"
@@ -78,7 +79,7 @@ const Job = () => {
               Create a specialized profile.
             </a>
           </p>
-        </div>
+        </div> */}
         <div className="mt-3 flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -230,9 +231,16 @@ const Job = () => {
         </div>
       </div>
 
-      <div className="sticky bottom-0 p-2 flex bg-white border-t border-gray-200 space-x-2">
-        <button className="w-1/2 p-2 rounded-lg font-bold bg-primary text-white">Submit a proposal</button>
-        <button className="w-1/2 p-2 rounded-lg font-bold text-primary border flex justify-center">
+        <div className="bg-gray-100 pt-6 pb-2 flex text-primary items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clipRule="evenodd" />
+          </svg>
+          Flag as inappropriate
+        </div>
+
+      <div className="sticky bottom-0 p-2 flex bg-white border-t border-gray-200 space-x-2 md:p-4 border-b">
+        <button className="w-1/2 p-2 rounded-lg font-bold text-sm bg-primary text-white">Submit a proposal</button>
+        <button className="w-1/2 p-2 rounded-lg font-bold text-sm text-primary border flex justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
