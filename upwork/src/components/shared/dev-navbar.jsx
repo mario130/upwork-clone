@@ -3,17 +3,17 @@ import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   const [links] = useState([
-    { title: "Guest homepage", link: "/" },
-    { title: "Frealancer homepage", link: "/freelancer" },
+    { title: "Guest home", link: "/" },
+    { title: "Frealancer home", link: "/freelancer" },
     { title: "Job", link: "/job" },
-    { title: "F-Profile", link: "/freelancer-profile" }
+    { title: "F-profile", link: "/freelancer-profile" }
   ]);
 
   return (
-    <div className="">
-      <ul className="text-center">
+    <div className="my-1">
+      <ul className="text-center flex flex-wrap">
         {links.map((link, i) => (
-          <li className="my-2">
+          <li className="my-1 mx-1">
             <NavLink to={link.link} exact key={i}>
               <span className="bg-complementary text-white px-3 py-1 rounded-full">{link.title}</span>
             </NavLink>

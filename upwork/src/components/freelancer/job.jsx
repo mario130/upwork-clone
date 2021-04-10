@@ -59,14 +59,14 @@ const Job = () => {
   });
 
   return (
-    <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-7 lg:rounded-lg">
+    <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-7 lg:rounded-lg border border-gray-200">
       {/* <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl "> */}
       {/* lg left part */}
       <div className="lg:col-start-1 col-span-5 lg:border-r lg:border-gray-200">
-        <h2 className="p-6 font-bold text-xl border-b border-gray-200">
+        <h2 className="p-6 font-bold text-xl grayBottomBorder">
           {job.title}
         </h2>
-        <div className="p-6 text-sm border-b border-gray-200">
+        <div className="p-6 text-sm grayBottomBorder">
           <button className="text-primary font-bold">{job.category}</button>
           <br />
           <span className="text-gray-500">Posted 14 minutes ago</span>
@@ -108,11 +108,11 @@ const Job = () => {
             {job.requiredConnects} required connects
           </p>
         </div>
-        <p className="p-6 text-sm border-b border-gray-200">
+        <p className="p-6 text-sm grayBottomBorder">
           {job.description}
         </p>
 
-        <div className="p-6 text-sm border-b border-gray-200">
+        <div className="p-6 text-sm grayBottomBorder">
           {/* job info flex */}
           <div className="flex my-4">
             {job.hours ? (
@@ -147,12 +147,12 @@ const Job = () => {
           </div>
         </div>
 
-        <div className="flex justify-between p-6 text-sm border-b border-gray-200 lg:justify-start">
+        <div className="flex justify-between p-6 text-sm grayBottomBorder lg:justify-start">
           <h3 className="font-bold lg:mr-2">Project type:</h3>
           <p>{job.projectType}</p>
         </div>
 
-        <div className="p-6 border-b border-gray-200 text-sm">
+        <div className="p-6 grayBottomBorder text-sm">
           <h4 className="font-bold">
             You will be asked to answer the following questions when submitting
             a proposal:
@@ -166,8 +166,8 @@ const Job = () => {
           </ol>
         </div>
 
-        <div className="p-6 border-b border-gray-200 text-sm">
-          <h4 className="mb-6">Skills and Expertise</h4>
+        <div className="p-6 grayBottomBorder text-sm">
+          <h4 className="mb-6 font-bold text-lg">Skills and Expertise</h4>
           <div className="flex flex-wrap justify-between space-y-2">
             {job.skills.map((skill) => (
               <div className="w-1/2">
@@ -183,41 +183,41 @@ const Job = () => {
         </div>
 
         <div className="lg:flex">
-          <div className="p-6 text-sm border-b border-gray-200 lg:w-1/2">
+          <div className="p-6 text-sm grayBottomBorder lg:w-1/2">
             <h2 className="font-bold mb-2">Preferred qualifications</h2>
-            <div className="flex justify-between mb-2 lg:justify-start">
+            <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Talent type:</h4>
               <p>{job.qualifications.talentType}</p>
             </div>
-            <div className="flex justify-between mb-2 lg:justify-start">
+            <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Rising Talent:</h4>
               <p>{job.qualifications.risingTalent ? "Yes" : "No"}</p>
             </div>
-            <div className="flex justify-between mb-2 lg:justify-start">
+            <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">English level:</h4>
               <p>{job.qualifications.english}</p>
             </div>
-            <div className="flex justify-between mb-2 lg:justify-start">
+            <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Amount earned:</h4>
               <p>{job.qualifications.amountEarned}</p>
             </div>
           </div>
 
-          <div className="p-6 text-sm border-b border-gray-200 lg:w-1/2">
+          <div className="p-6 text-sm grayBottomBorder lg:w-1/2">
             <h2 className="font-bold mb-2">Activity on this job</h2>
-            <div className="flex justify-between lg:justify-start mb-2">
+            <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Proposals:</h4>
               <p>{job.activity.proposals}</p>
             </div>
-            <div className="flex justify-between lg:justify-start mb-2">
+            <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Interviewing:</h4>
               <p>{job.activity.interviewing}</p>
             </div>
-            <div className="flex justify-between lg:justify-start mb-2">
+            <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Invites sent:</h4>
               <p>{job.activity.invites}</p>
             </div>
-            <div className="flex justify-between lg:justify-start">
+            <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Unanswered invites:</h4>
               <p>{job.activity.unanswered}</p>
             </div>
@@ -225,8 +225,8 @@ const Job = () => {
         </div>
       </div>
 
-      <div className="text-sm border-b border-gray-200 lg:col-start-6 col-span-2">
-        <div className="p-4 hidden lg:block border-b border-gray-200">
+      <div className="text-sm grayBottomBorder lg:col-start-6 col-span-2">
+        <div className="p-4 hidden lg:block grayBottomBorder">
           <div className="space-y-2 p-3">
             <button className="w-full p-2 rounded-lg font-bold text-sm bg-primary text-white">
               Submit a proposal
@@ -269,7 +269,7 @@ const Job = () => {
             <p className="mt-3">Available connects: 42</p>
           </div>
         </div>
-        <h4 className="px-6 pt-4  font-bold mb-2 text-base">
+        <h4 className="px-6 pt-4  font-bold mb-2 text-lg">
           About the client
         </h4>
         {job.client.paymentVerified ? (
@@ -330,7 +330,7 @@ const Job = () => {
         Flag as inappropriate
       </div>
 
-      <div className="sticky bottom-0 p-6 flex bg-white border-t border-gray-200 space-x-2 border-b lg:hidden">
+      <div className="sticky bottom-0 p-6 flex bg-white border-t grayBottomBorder space-x-2 lg:hidden">
         <button className="w-1/2 p-2 rounded-lg font-bold text-sm bg-primary text-white">
           Submit a proposal
         </button>

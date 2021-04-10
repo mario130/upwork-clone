@@ -11,7 +11,8 @@ module.exports = {
         "twilight": '#2b5468',
         "navBorder": '#336278',
         "bodyGray": '#f1f2f4',
-        "hair":"#e0e0e0"
+        "hair":"#e0e0e0",
+        "darkText": "#222"
       },
       fontFamily: {
         nuni: ["Nunito Sans"],
@@ -20,7 +21,7 @@ module.exports = {
       lineHeight: {
         '0': '0rem',
       
-       }
+      }
     },
     boxShadow: {
       categ: '0 0 20px hsl(0deg 0% 40% / 12%)'
