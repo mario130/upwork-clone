@@ -4,8 +4,8 @@ const Navbar = () => {
   const [isMobileNavOpen, setMobileNav] = useState(false);
 
   return (
-    <div className=" border-b border-gray-200">
-      <div className="container m-auto">
+    <div className=" border-b border-gray-200 mb-3 sticky top-0 bg-white z-50">
+      <div className="container mx-auto">
         <div className="nav-wrapper px-3 mr-1 flex items-center justify-between h-14">
           {/* Left part of mobile nav */}
           <div className="flex items-center">
@@ -115,9 +115,9 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* NAV OPEN FULL SCREEN */}
+        {/* MOBILE NAV OPEN FULL SCREEN */}
         {isMobileNavOpen ? (
-          <div className="fixed w-full h-full">
+          <div className="fixed w-full h-full lg:hidden bg-white z-50">
             <div className="flex flex-col justify-between">
               <div className="p-3 relative mb-4 mt-2">
                 <svg

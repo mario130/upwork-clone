@@ -1,0 +1,4 @@
+input[type="radio"]:checked + label span {
+    background-color: #37a000; 
+    color: white;
+  }
