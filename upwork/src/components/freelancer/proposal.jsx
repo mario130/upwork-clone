@@ -113,7 +113,7 @@ const Proposal = () => {
   }]);
 
   return (
-    <div className="bg-gray-100 md:mx-10">
+    <div className="bg-gray-100 md:mx-10 lg:max-w-5xl lg:mx-auto">
       <h3 className="px-4 mt-6 mb-2 font-bold text-2xl">Submit a proposal</h3>
 
       {/* Proposal settings */}
@@ -136,7 +136,7 @@ const Proposal = () => {
             <p className="mb-3">{job[0].description}</p>
             <a className="text-primary font-semibold">View job posting</a>
           </div>
-          <div className="px-4 md:px-6 hidden md:block">
+          <div className="px-4 md:pl-5 md:pr-16 hidden md:block">
             <div className="flex mb-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -218,9 +218,9 @@ const Proposal = () => {
         </div>
 
         <div className="mt-4 px-3 md:px-5 pt-6 pb-3 border-t border-gray-200">
-          <div className="flex md:w-72">
+          <div className="flex md:w-96">
             <button className="flex-1 md:order-2 mx-1 py-2 rounded-lg font-bold text-primary">Cancel</button>
-            <button className="flex-1 md:order-1 mx-1 py-2 rounded-lg font-bold bg-primary text-white">Submit</button>
+            <button className="flex-1 md:order-1 mx-1 py-2 rounded-lg font-bold bg-primary text-white">Submit a proposal</button>
           </div>
         </div>
       </div>
