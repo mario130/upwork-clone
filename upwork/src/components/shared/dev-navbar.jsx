@@ -9,7 +9,8 @@ const Nav = () => {
     { title: "F-profile", link: "/freelancer-profile" },
     { title: "profile-step1", link: "/ProfileStep1" },
     { title: "profile-step2", link: "/ProfileStep2" },
-    { title: "profile-step3", link: "/ProfileStep3" }
+    { title: "profile-step3", link: "/ProfileStep3" },
+    { title: "profile-step4", link: "/ProfileStep4" },
   ]);
 
   return (
