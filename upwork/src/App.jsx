@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Signup from "./pages/Auth/Signup/SignUp";
 import Login from "./pages/Auth/Login/Login";
 import SignupDetails from "./pages/Auth/SignupDetails/SignupDetails";
+import ProfileStep1 from "./pages/complete-profile/profile-step1";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <Route path="/signup/details" exact component={SignupDetails} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" component={Login} />
-          
+          <Route path="/ProfileStep1" component={ProfileStep1} />
+
 
 
         </Switch>

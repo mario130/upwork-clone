@@ -6,7 +6,8 @@ const Nav = () => {
     { title: "Guest home", link: "/" },
     { title: "Frealancer home", link: "/freelancer" },
     { title: "Job", link: "/job" },
-    { title: "F-profile", link: "/freelancer-profile" }
+    { title: "F-profile", link: "/freelancer-profile" },
+    { title: "profile-step1", link: "/ProfileStep1" }
   ]);
 
   return (
