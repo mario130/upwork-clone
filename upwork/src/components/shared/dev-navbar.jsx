@@ -13,6 +13,12 @@ const Nav = () => {
     { title: "profile-step3", link: "/ProfileStep3" },
     { title: "profile-step4", link: "/ProfileStep4" },
     { title: "profile-step5", link: "/ProfileStep5" },
+    { title: "SignupDetails", link: "/client/home" },
+    { title: "Signup", link: "/signup/details" },
+    { title: "login", link: "/login" },
+
+
+    
   ]);
 
   return (
