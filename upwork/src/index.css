@@ -15,6 +15,15 @@
     @apply border-b border-gray-200;
   }
   .infoList{
-    @apply flex justify-between mb-2 lg:justify-start
+    @apply flex justify-between mb-2 lg:justify-start;
+  }
+  .list-group{
+    @apply flex flex-col;
+  }
+  .list-item-header{
+    @apply rounded-t border p-6 flex items-center justify-between;
+  }
+  .list-items{
+    @apply flex  border-l border-r divide-y border p-6  hover:bg-gray-100;
   }
 }

@@ -1,0 +1,23 @@
+.slick-next, .slick-prev{
+  
+    z-index: 1000000;
+    visibility: hidden;
+}
+@media (min-width:768px){
+    .slick-next, .slick-prev{
+        top: 80px  !important;  
+   
+    }
+}
+.slick-slider:hover .slick-next,.slick-slider:hover  .slick-prev{
+    visibility:visible;
+}
+.slick-next::before, .slick-prev::before{
+    color: #37a000 !important;
+}
+.slick-next{
+    right: -10px !important;
+}
+.slick-prev{
+    left: -10px !important;
+}
