@@ -9,6 +9,7 @@ import Signup from "./pages/Auth/Signup/SignUp";
 import Login from "./pages/Auth/Login/Login";
 import SignupDetails from "./pages/Auth/SignupDetails/SignupDetails";
 import ProfileStep1 from "./pages/complete-profile/profile-step1";
+import ProfileStep2 from "./pages/complete-profile/profile-step2";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/ProfileStep1" component={ProfileStep1} />
+          <Route path="/ProfileStep2" component={ProfileStep2} />
 
 
 

@@ -7,7 +7,8 @@ const Nav = () => {
     { title: "Frealancer home", link: "/freelancer" },
     { title: "Job", link: "/job" },
     { title: "F-profile", link: "/freelancer-profile" },
-    { title: "profile-step1", link: "/ProfileStep1" }
+    { title: "profile-step1", link: "/ProfileStep1" },
+    { title: "profile-step2", link: "/ProfileStep2" }
   ]);
 
   return (
