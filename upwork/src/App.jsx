@@ -10,6 +10,7 @@ import Login from "./pages/Auth/Login/Login";
 import SignupDetails from "./pages/Auth/SignupDetails/SignupDetails";
 import ProfileStep1 from "./pages/complete-profile/profile-step1";
 import ProfileStep2 from "./pages/complete-profile/profile-step2";
+import ProfileStep3 from "./pages/complete-profile/profile-step3";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/ProfileStep1" component={ProfileStep1} />
           <Route path="/ProfileStep2" component={ProfileStep2} />
+          <Route path="/ProfileStep3" component={ProfileStep3} />
 
 
 
