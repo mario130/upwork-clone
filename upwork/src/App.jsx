@@ -23,6 +23,8 @@ import ProfileStep7 from "./pages/complete-profile/profile-step7";
 import ProfileStep8 from "./pages/complete-profile/profile-step8";
 import ProfileStep9 from "./pages/complete-profile/profile-step9";
 import ProfileStep10 from "./pages/complete-profile/profile-step10";
+import ProfileStep11 from "./pages/complete-profile/profile-step11";
+import ProfileStep12 from "./pages/complete-profile/profile-step12";
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
           <Route path="/ProfileStep8" component={ProfileStep8} />
           <Route path="/ProfileStep9" component={ProfileStep9} />
           <Route path="/ProfileStep10" component={ProfileStep10} />
+          <Route path="/ProfileStep11" component={ProfileStep11} />
+          <Route path="/ProfileStep12" component={ProfileStep12} />
 
         </Switch>
       </div>

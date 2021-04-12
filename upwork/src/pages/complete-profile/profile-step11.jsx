@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ProfileStep10 = () => {
+const ProfileStep11 = () => {
     const [tags] = useState(['Get Started', 'Category', 'Expertise', 'Expertise Level', 'Education']);
     const [expertiseLevel] = useState([
         { level: 'Entery Level', describeLevel: 'I am relatively new to this field' },
@@ -20,16 +20,29 @@ const ProfileStep10 = () => {
                 </div>
                 <div className='md:col-span-6 bg-white  shadow-lg'>
                     <div className='bg-white px-5 md:py-4'>
-                        <span className='text-lg font-bold'>Title & Overview <br /> <span className='text-xs py-0'>7 of 12</span></span>
+                        <span className='text-lg font-bold'>Profile Photo & Phone No. <br /> <span className='text-xs py-0'>8 of 12</span></span>
                     </div>
                     <hr />
                     <div className='bg-white px-5 py-5 md:py-4'>
+                        <div className='w-full'>
+                            <h1 className='text-xs mb-10 mt-2'>Please upload a professional portrait that clearly shows your face.</h1>
+                            <img className='rounded-full w-1/3 mx-auto' src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="" />
+                            <br /><br />
+                            <div className='w-1/3 mx-auto'>
+                                <input type="file" name="profileImg" className='py-5' accept="image/jpeg, image/png" />
+                            </div>
+                        </div>
 
-                        <label htmlFor="title" className='text-xs my-2'>Title</label>
-                        <input type="text" className='border-gray-300 border w-full m-2 mb-10 py-2 pl-10 bg-white text-gray-700 text-sm placeholder-gray-500 shadow-sm  focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent' name="title" placeholder="Ex:Web, Mobile and software Dev." />
+                        <hr />
 
-                        <label htmlFor="areaOfStudy" className='text-xs my-2'>Professional Overview</label>
-                        <textarea className='border-gray-300 resize border w-full m-2 mb-10 py-2 pl-10 bg-white text-gray-700 text-sm placeholder-gray-500 shadow-sm  focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent' name="areaOfStudy" placeholder="Ex:Highlight your top skills, experience and iterests" />
+                        <div className='w-full'>
+                            <h1 className='text-sm font-bold my-4 '>Add your phone number.</h1>
+                            <label htmlFor="phone" className='text-xs mb-1 font-bold block mt-6'>Phone</label>
+                            <input type="text" className='border-gray-300 border w-full mx-1 my-2 py-2 pl-10 bg-white text-gray-700 text-sm placeholder-gray-500 shadow-sm  focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent' name="phone" placeholder="Mobile Number" />
+                            <h1 className='text-sm my-4'>Your phone number will not be shared with clients.</h1>
+
+                        </div>
+
 
                         <hr />
 
@@ -43,4 +56,4 @@ const ProfileStep10 = () => {
     )
 }
 
-export default ProfileStep10;
+export default ProfileStep11;
