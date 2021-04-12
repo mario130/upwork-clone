@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
+import Sidbar from '../../components/complete-profile/sidbar'
 
 const ProfileStep4 = () => {
-    const [tags] = useState(['Get Started', 'Category', 'Expertise', 'Expertise Level', 'Education']);
     return (
 
         <div className='w-full bg-bodyGray md:py-6'>
             <div className="md:gap-4 md:grid md:grid-cols-12">
-                <div className='md:col-start-3 md:col-span-2 md:block hidden'>
-                    <ul>
-                        {tags.map(tag => (<li className='py-2 text-gray-500'>{tag}</li>))}
-                    </ul>
-                </div>
+                <Sidbar />
                 <div className='md:col-span-6 bg-white shadow-lg px-5'>
                     <h1 className='text-sm font-bold my-4'>Fill out your profile to apply</h1>
                     <hr />

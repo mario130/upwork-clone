@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
+import Sidbar from '../../components/complete-profile/sidbar'
 
 const ProfileStep10 = () => {
-    const [tags] = useState(['Get Started', 'Category', 'Expertise', 'Expertise Level', 'Education']);
-    const [expertiseLevel] = useState([
-        { level: 'Entery Level', describeLevel: 'I am relatively new to this field' },
-        { level: 'Intermediate', describeLevel: 'I have substantial experience in this field' },
-        { level: 'Expert', describeLevel: 'I have comprehensive and deep expertise in this field' },
-    ]);
+
 
 
     return (
 
         <div className='w-full bg-bodyGray md:py-6'>
             <div className="md:gap-4 md:grid md:grid-cols-12">
-                <div className='md:col-start-3 md:col-span-2 md:block hidden'>
-                    <ul>
-                        {tags.map(tag => (<li className='py-2 text-gray-500'>{tag}</li>))}
-                    </ul>
-                </div>
+                <Sidbar />
                 <div className='md:col-span-6 bg-white  shadow-lg'>
                     <div className='bg-white px-5 md:py-4'>
                         <span className='text-lg font-bold'>Title & Overview <br /> <span className='text-xs py-0'>7 of 12</span></span>

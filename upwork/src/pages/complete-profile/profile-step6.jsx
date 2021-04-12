@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import Sidbar from '../../components/complete-profile/sidbar'
 
 const ProfileStep6 = () => {
-    const [tags] = useState(['Get Started', 'Category', 'Expertise', 'Expertise Level', 'Education']);
     const [skills] = useState(['MySql', 'NodeJS', 'Bootstrap', 'CSS3', 'HTML5', 'Tailwindcss', 'Express', 'React', 'Angular', 'MongoDB']);
     const [otherSkills] = useState(['MySql', 'NodeJS', 'Bootstrap', 'CSS3', 'HTML5', 'Tailwindcss', 'Express', 'React', 'Angular']);
 
@@ -9,11 +9,7 @@ const ProfileStep6 = () => {
 
         <div className='w-full bg-bodyGray md:py-6'>
             <div className="md:gap-4 md:grid md:grid-cols-12">
-                <div className='md:col-start-3 md:col-span-2 md:block hidden'>
-                    <ul>
-                        {tags.map(tag => (<li className='py-2 text-gray-500'>{tag}</li>))}
-                    </ul>
-                </div>
+                <Sidbar />
                 <div className='md:col-span-6 bg-white  shadow-lg'>
                     <div className='bg-white px-5 md:py-4'>
                         <span className='text-lg font-bold'>Expertise <br /> <span className='text-xs py-0'>3 of 12</span></span>

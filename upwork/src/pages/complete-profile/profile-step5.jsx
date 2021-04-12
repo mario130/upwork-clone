@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import Sidbar from '../../components/complete-profile/sidbar'
 
 const ProfileStep5 = () => {
-    const [tags] = useState(['Get Started', 'Category', 'Expertise', 'Expertise Level', 'Education']);
     const [category] = useState([
         { value: 1, name: 'Accounting' },
         { value: 2, name: 'Admin Support' },
@@ -21,11 +21,7 @@ const ProfileStep5 = () => {
 
         <div className='w-full bg-bodyGray md:py-6'>
             <div className="md:gap-4 md:grid md:grid-cols-12">
-                <div className='md:col-start-3 md:col-span-2 md:block hidden'>
-                    <ul>
-                        {tags.map(tag => (<li className='py-2 text-gray-500'>{tag}</li>))}
-                    </ul>
-                </div>
+                <Sidbar />
                 <div className='md:col-span-6 bg-white  shadow-lg'>
                     <div className='bg-white px-5 md:py-4'>
                         <span className='text-lg font-bold'>Category <br /> <span className='text-xs py-0'>2 of 12</span></span>
