@@ -14,6 +14,7 @@ const Nav = () => {
     { title: "profile-step4", link: "/ProfileStep4" },
     { title: "profile-step5", link: "/ProfileStep5" },
     { title: "profile-step6", link: "/ProfileStep6" },
+    { title: "profile-step7", link: "/ProfileStep7" },
     { title: "clientHome", link: "/client/home" },
     { title: "sign up", link: "/signup" },
 

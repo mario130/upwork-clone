@@ -18,6 +18,7 @@ import ProfileStep3 from "./pages/complete-profile/profile-step3";
 import ProfileStep4 from "./pages/complete-profile/profile-step4";
 import ProfileStep5 from "./pages/complete-profile/profile-step5";
 import ProfileStep6 from "./pages/complete-profile/profile-step6";
+import ProfileStep7 from "./pages/complete-profile/profile-step7";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/ProfileStep4" component={ProfileStep4} />
           <Route path="/ProfileStep5" component={ProfileStep5} />
           <Route path="/ProfileStep6" component={ProfileStep6} />
+          <Route path="/ProfileStep7" component={ProfileStep7} />
 
 
 
