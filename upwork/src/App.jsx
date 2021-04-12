@@ -22,6 +22,7 @@ import ProfileStep6 from "./pages/complete-profile/profile-step6";
 import ProfileStep7 from "./pages/complete-profile/profile-step7";
 import ProfileStep8 from "./pages/complete-profile/profile-step8";
 import ProfileStep9 from "./pages/complete-profile/profile-step9";
+import ProfileStep10 from "./pages/complete-profile/profile-step10";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
           <Route path="/freelancer-profile" component={FreelancerProfile} />
           <Route path="/client/home" component={ClientHomePage} />
           <Route path="/client/job-post" component={PostJob} />
-          
+
           <Route path="/proposal" component={Proposal} />
           <Route path="/signup/details" exact component={SignupDetails} />
           <Route path="/signup" exact component={Signup} />
@@ -49,6 +50,7 @@ function App() {
           <Route path="/ProfileStep7" component={ProfileStep7} />
           <Route path="/ProfileStep8" component={ProfileStep8} />
           <Route path="/ProfileStep9" component={ProfileStep9} />
+          <Route path="/ProfileStep10" component={ProfileStep10} />
 
         </Switch>
       </div>
