@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Sidbar from '../../components/complete-profile/sidbar'
+import TagHeader from '../../components/complete-profile/tagHeader'
 
 const ProfileStep7 = () => {
 
@@ -9,9 +10,8 @@ const ProfileStep7 = () => {
             <div className="md:gap-4 md:grid md:grid-cols-12">
                 <Sidbar />
                 <div className='md:col-span-6 bg-white  shadow-lg'>
-                    <div className='bg-white px-5 md:py-4'>
-                        <span className='text-lg font-bold'>Education <br /> <span className='text-xs py-0'>5 of 12</span></span>
-                    </div>
+                    <TagHeader tag='Education' value='5' />
+
                     <hr />
                     <div className='bg-white px-5 md:py-4'>
                         <h1 className='text-xs font-bold my-4'>Add the schools you attended, areas of study, and degrees earned.</h1>

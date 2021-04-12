@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Sidbar from '../../components/complete-profile/sidbar'
+import TagHeader from '../../components/complete-profile/tagHeader'
+
 
 const ProfileStep6 = () => {
     const [skills] = useState(['MySql', 'NodeJS', 'Bootstrap', 'CSS3', 'HTML5', 'Tailwindcss', 'Express', 'React', 'Angular', 'MongoDB']);
@@ -11,9 +13,8 @@ const ProfileStep6 = () => {
             <div className="md:gap-4 md:grid md:grid-cols-12">
                 <Sidbar />
                 <div className='md:col-span-6 bg-white  shadow-lg'>
-                    <div className='bg-white px-5 md:py-4'>
-                        <span className='text-lg font-bold'>Expertise <br /> <span className='text-xs py-0'>3 of 12</span></span>
-                    </div>
+                    <TagHeader tag='Expertise' value='3' />
+
                     <hr />
                     <div className='bg-white px-5 md:py-4'>
                         <h1 className='text-sm font-bold my-4'>Select your skills</h1>

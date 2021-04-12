@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Sidbar from '../../components/complete-profile/sidbar'
+import TagHeader from '../../components/complete-profile/tagHeader'
 
 const ProfileStep9 = () => {
 
@@ -9,9 +10,8 @@ const ProfileStep9 = () => {
             <div className="md:gap-4 md:grid md:grid-cols-12">
                 <Sidbar />
                 <div className='md:col-span-6 bg-white  shadow-lg'>
-                    <div className='bg-white px-5 md:py-4'>
-                        <span className='text-lg font-bold'>Hourly rate <br /> <span className='text-xs py-0'>6 of 12</span></span>
-                    </div>
+                    <TagHeader tag='Hourly rate' value='6' />
+
                     <hr />
                     <div className='bg-white px-5 md:py-4'>
                         <h1 className='text-xs font-bold my-4'>Clients will see this rate on your profile and in search results once you publish your profile. You can adjust your rate every time you submit a proposal.</h1>
