@@ -6,6 +6,7 @@ import FreelancerHomepage from "./pages/freelancer-homepage";
 import Job from './pages/job';
 import FreelancerProfile from './pages/freelancer-profile';
 import Proposal from './pages/proposal';
+import Jobs from './pages/Client/Jobs';
 import Nav from "./components/shared/dev-navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Signup from "./pages/Auth/Signup/SignUp";
@@ -38,8 +39,9 @@ function App() {
           <Route path="/freelancer-profile" component={FreelancerProfile} />
           <Route path="/client/home" component={ClientHomePage} />
           <Route path="/client/job-post" component={PostJob} />
-
           <Route path="/proposal" component={Proposal} />
+          <Route path="/jobs" component={Jobs} />
+
           <Route path="/signup/details" exact component={SignupDetails} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" component={Login} />

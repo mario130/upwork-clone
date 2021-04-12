@@ -7,6 +7,7 @@ import Footer from '../components/guest/footer'
 function App() {
   return (
     <div>
+      <Navbar />
       <Hero />
       <Clients />
       <WhatTheySay />
