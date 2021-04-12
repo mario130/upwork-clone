@@ -13,6 +13,7 @@ const Nav = () => {
     { title: "profile-step3", link: "/ProfileStep3" },
     { title: "profile-step4", link: "/ProfileStep4" },
     { title: "profile-step5", link: "/ProfileStep5" },
+    { title: "profile-step6", link: "/ProfileStep6" },
     { title: "clientHome", link: "/client/home" },
     { title: "sign up", link: "/signup" },
 
@@ -20,7 +21,7 @@ const Nav = () => {
     { title: "login", link: "/login" },
 
 
-    
+
   ]);
 
   return (
