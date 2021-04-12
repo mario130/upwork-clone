@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Sidbar from '../../components/complete-profile/sidbar'
 import TagHeader from '../../components/complete-profile/tagHeader'
+import BackNextBtns from '../../components/complete-profile/back-nextBtns'
+
 
 const ProfileStep9 = () => {
 
@@ -23,8 +25,7 @@ const ProfileStep9 = () => {
                         <hr className='my-10' />
 
 
-                        <button className='border border-gray-300 md:w-1/6 md:float-left w-1/12 justify-center bg-white ml-2 text-primary font-bold md:px-1 py-1 mt-4 mb-10 rounded-md'>Back</button>
-                        <button className='border border-gray-300 md:w-1/6 md:float-right w-10/12 justify-center bg-primary mr-2 text-white font-bold md:px-1 py-1 mt-4 mb-10 rounded-md hover:bg-dark'>Next</button>
+                        <BackNextBtns />
                     </div>
                 </div>
             </div>
