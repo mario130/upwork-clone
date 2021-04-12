@@ -26,4 +26,7 @@
   .list-items{
     @apply flex  border-l border-r divide-y border p-6  hover:bg-gray-100;
   }
+  .item-border{
+    @apply rounded-t border p-6;
+  }
 }

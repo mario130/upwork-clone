@@ -17,6 +17,7 @@ import ProfileStep2 from "./pages/complete-profile/profile-step2";
 import ProfileStep3 from "./pages/complete-profile/profile-step3";
 import ProfileStep4 from "./pages/complete-profile/profile-step4";
 import ProfileStep5 from "./pages/complete-profile/profile-step5";
+import PostJob from "./pages/Client/PostJob/PostJob";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="/job" component={Job} />
           <Route path="/freelancer-profile" component={FreelancerProfile} />
           <Route path="/client/home" component={ClientHomePage} />
+          <Route path="/client/job-post" component={PostJob} />
+          
           <Route path="/proposal" component={Proposal} />
           <Route path="/signup/details" exact component={SignupDetails} />
           <Route path="/signup" exact component={Signup} />
