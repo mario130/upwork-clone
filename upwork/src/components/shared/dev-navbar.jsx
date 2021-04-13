@@ -38,7 +38,7 @@ const Nav = () => {
         {links.map((link, i) => (
           <li className="my-1 mx-1">
             <NavLink to={link.link} exact key={i}>
-              <span className="bg-complementary text-white px-3 py-1 rounded-full">{link.title}</span>
+              <span className="bg-complementary opacity-90 hover:opacity-100 transition-all text-white px-3 py-1 rounded-full">{link.title}</span>
             </NavLink>
           </li>
         ))}
