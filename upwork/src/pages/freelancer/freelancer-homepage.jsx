@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from '../components/shared/footer';
-import Feed from '../components/freelancer/feed';
-import Nav from '../components/shared/navbar';
+import Footer from '../../components/shared/footer';
+import Feed from '../../components/freelancer/feed';
+import Nav from '../../components/shared/navbar';
 
 const FreelancerHomepage = () => {
 
