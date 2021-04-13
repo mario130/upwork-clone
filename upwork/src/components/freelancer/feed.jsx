@@ -25,7 +25,7 @@ const Main = () => {
   ]);
 
   return (
-    <main className="bg-bodyGray h-full container mx-auto  max-w-5xl lg:grid lg:grid-cols-10 lg:mt-5">
+    <main className="bg-bodyGray h-full container mx-auto  max-w-5xl sm:px-10 lg:grid lg:grid-cols-10 lg:mt-5">
       <div className="lg:hidden mb-4 sm:mb-8">
         <ul className="bg-white rounded-lg sm:mt-4">
           <li className="p-4 border-b border-gray-200 flex justify-between">

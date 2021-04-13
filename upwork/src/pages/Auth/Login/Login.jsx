@@ -9,7 +9,7 @@ const Login = () => {
     <div id="login" className="py-5 bg-bodyGray">
       <div className="form-wrapper py-6 bg-white text-center md:w-2/5 w-full mx-auto px-5 ">
         <h2 className="h1 text-3xl font-bold my-6">Log in to Upwork</h2>
-      <Input type="email" name="email" placeholder="Your email" errorMsg="" svg={ <svg
+      <Input type="email" name="email" placeholder="Your email" errorMsg="" className="pl-10" svg={ <svg
               width="20"
               height="20"
               fill="currentColor"

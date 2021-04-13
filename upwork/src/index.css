@@ -1,13 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&family=Playfair+Display:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&family=Playfair+Display:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer components  {
-.btn {
-    @apply  font-bold rounded mb-4;}
-.btn-blue{
+@layer components {
+  .btn {
+    @apply font-bold rounded mb-4;
+  }
+  .btn-blue {
     @apply bg-blue-500 hover:bg-blue-700  border-blue-500 border;
-}
+  }
+  .grayBottomBorder {
+    @apply border-b border-gray-200;
+  }
+  .infoList{
+    @apply flex justify-between mb-2 lg:justify-start;
+  }
+  .list-group{
+    @apply flex flex-col;
+  }
+  .list-item-header{
+    @apply rounded-t border p-6 flex items-center justify-between;
+  }
+  .list-items{
+    @apply flex  border-l border-r divide-y border p-6  hover:bg-gray-100;
+  }
+  .item-border{
+    @apply rounded-t border p-6;
+  }
 }

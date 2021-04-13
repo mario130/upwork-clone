@@ -16,6 +16,7 @@ const SignupDetails = () => {
         <div className="grid md:grid-cols-2 md:gap-x-1">
           <div className="w-full ">
             <Input
+             className="pl-10"
               type="text"
               name="firstName"
               placeholder="First Name"
@@ -37,6 +38,7 @@ const SignupDetails = () => {
           </div>
           <div className="w-full ">
             <Input
+             className="pl-10"
               type="text"
               name="lastName"
               placeholder="Last Name"
@@ -58,10 +60,12 @@ const SignupDetails = () => {
           </div>
         </div>
         <Input
+        
           type="password"
           name="password"
           placeholder="Password"
           errorMsg=""
+          className="pl-10"
           svg={
             <svg
               width="18"
