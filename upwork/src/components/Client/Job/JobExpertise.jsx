@@ -2,37 +2,25 @@ import { Link } from "react-router-dom";
 import Btn from "../../UI/Form/Btn/Btn";
 import Input from "../../UI/Form/Input/Input";
 
-const JobTitle = (props) => {
+const JobExpertise = (props) => {
 
   return (
     <div className="col-span-4">
       <div className="bg-white mb-5">
         <ul className="list-group">
           <li className="item-border ">
-            <p className="text-2xl font-extrabold	">Title </p>
-            <span>step 1 of 6</span>
+            <p className="text-2xl font-extrabold	">Expertise </p>
+            <span>step 4 of 6</span>
           </li>
           <li className="item-border">
+              <p>What skills and expertise are most important to you in Graphic Design?</p>
             <Input
-              label="Enter the name of your job post"
               className="pl-4"
               type="text"
-              name="jobTitle"
-              placeholder="Job Title"
+              name="skills"
+              placeholder="skills"
               errorMsg=""
             />
-            <p className="font-bold text-sm">Here are some good examples:</p>
-            <div className="ml-4">
-              <ul className="list-disc ml-4">
-                <li className="">
-                  Developer needed for creating a responsive WordPress Theme
-                </li>
-                <li className="">
-                  CAD designer to create a 3D model of a residential building
-                </li>
-                <li className="">Need a design for a new company logo</li>
-              </ul>
-            </div>
           </li>
         </ul>
       </div>
@@ -70,4 +58,4 @@ const JobTitle = (props) => {
   );
 };
 
-export default JobTitle;
+export default JobExpertise;

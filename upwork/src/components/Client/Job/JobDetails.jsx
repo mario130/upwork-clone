@@ -37,7 +37,9 @@ const JobDetails = (props) => {
             </div>
           </li>
           <li className="item-border">
-            <Btn className="text-primary mr-3 border-hair border px-10 py-2 ">
+            <Btn className="text-primary mr-3 border-hair border px-10 py-2 "
+            handleClick={() => props.backStep("Details")}
+            >
               Back
             </Btn>
             <Btn
