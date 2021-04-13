@@ -85,10 +85,10 @@ const SignupDetails = () => {
         </div>
         <p className="font-bold text-xl mt-4 mb-2">I want to</p>
         <div className="flex justify-center">
-        <Radio id="guest">
+        <Radio id="client">
           Hire
         </Radio>
-        <Radio id="guffest">
+        <Radio id="freelancer">
           Work
         </Radio>
 

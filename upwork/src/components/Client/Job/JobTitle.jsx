@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Btn from "../UI/Form/Btn/Btn";
-import Input from "../UI/Form/Input/Input";
+import Btn from "../../UI/Form/Btn/Btn";
+import Input from "../../UI/Form/Input/Input";
 
 const JobTitle = (props) => {
 
@@ -57,7 +57,7 @@ const JobTitle = (props) => {
             <Btn
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
               // disabled={true}
-              handleClick={props.ToNextStep}
+              handleClick={()=>props.ToNextStep("Description")}
             >
               Next
             </Btn>

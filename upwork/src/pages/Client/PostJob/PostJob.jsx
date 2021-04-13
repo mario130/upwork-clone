@@ -1,9 +1,10 @@
 import { useState } from "react";
-import JobDescription from "../../../components/Client/JobDescription";
+import JobDescription from "../../../components/Client/Job/JobDescription";
+import JobDetails from "../../../components/Client/Job/JobDetails";
 // import { Link } from "react-router-dom";
 // import Btn from "../../../components/UI/Form/Btn/Btn";
 // import Input from "../../../components/UI/Form/Input/Input";
-import JobTitle from "./../../../components/Client/JobTitle"
+import JobTitle from "../../../components/Client/Job/JobTitle";
 const PostJob = () => {
   const initialState = [
     { tabName: "Title", isChecked: true },
@@ -13,17 +14,21 @@ const PostJob = () => {
     { tabName: "Visibilty", isChecked: false },
     { tabName: "Budget", isChecked: false },
   ];
-  
+
   const [tabs, setTabs] = useState(initialState);
-  const [disabled, setDiabled] = useState(true)
-  const nextToDescription = () =>{
-      setTabs(tabs.map(tab=> tab.tabName === "Description" ? {...tab,isChecked :true}: tab))
-  }
+  // const [disabled, setDiabled] = useState(true);
+  const ToNextStep = (tabName) => {
+    setTabs(
+      tabs.map((tab) =>
+        tab.tabName === tabName ? { ...tab, isChecked: true } : tab
+      )
+    );
+  };
   return (
     <div id="jobPost" className="bg-bodyGray">
       <div className="container  mx-auto px-16 py-12 ">
-        <div className="grid grid-cols-5 gap-4">
-          <div className="col-span-1">
+        <div className="grid md:grid-cols-5 md:gap-4">
+          <div className="md:col-span-1">
             <ul className="flex flex-col">
               {tabs.map((tab, i) => (
                 <li
@@ -39,8 +44,11 @@ const PostJob = () => {
               ))}
             </ul>
           </div>
-          {tabs[0].isChecked && tabs[1].isChecked === false ? <JobTitle ToNextStep={nextToDescription}/> :null }
-          {tabs[0].isChecked && tabs[1].isChecked  ? <JobDescription/> :null }
+          {tabs[0].isChecked && tabs[1].isChecked === false ? (
+            <JobTitle ToNextStep={ToNextStep} />
+          ) : null}
+          {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked===false ? <JobDescription ToNextStep={ToNextStep} /> : null}
+          {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked ? <JobDetails ToNextStep={ToNextStep} /> : null}
 
         </div>
       </div>
