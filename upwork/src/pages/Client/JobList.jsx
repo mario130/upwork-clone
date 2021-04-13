@@ -1,18 +1,18 @@
 import React from 'react';
 import Footer from '../../components/shared/footer';
-import JobList from '../../components/Client/Jobs';
+import Jobs from '../../components/Client/ClientJobs';
 import Nav from '../../components/shared/navbar';
 
-const Jobs = () => {
+const JobList = () => {
 
 
   return (
     <div className="bg-bodyGray">
       <Nav />
-      <JobList />
+      <Jobs />
       <Footer />
     </div>
   )
 }
 
-export default Jobs;
+export default JobList;
