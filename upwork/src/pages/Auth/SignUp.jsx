@@ -1,8 +1,8 @@
-import AppleBtn from "../../../components/Auth/AppleBtn";
-import GoogleBtn from "../../../components/Auth/GoogleBtn";
-import Btn from "../../../components/UI/Form/Btn/Btn";
-import Input from "../../../components/UI/Form/Input/Input";
-import Separator from "../../../components/UI/Seperator/Seperator";
+import AppleBtn from "../../components/Auth/AppleBtn";
+import GoogleBtn from "../../components/Auth/GoogleBtn";
+import Btn from "../../components/UI/Form/Btn/Btn";
+import Input from "../../components/UI/Form/Input/Input";
+import Separator from "../../components/UI/Seperator/Seperator";
 
 const Signup = () => {
   return (

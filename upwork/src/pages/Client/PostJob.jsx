@@ -1,10 +1,10 @@
 import { useState } from "react";
-import JobDescription from "../../../components/Client/Job/JobDescription";
-import JobDetails from "../../../components/Client/Job/JobDetails";
+import JobDescription from "../../components/Client/Job/JobDescription";
+import JobDetails from "../../components/Client/Job/JobDetails";
 // import { Link } from "react-router-dom";
 // import Btn from "../../../components/UI/Form/Btn/Btn";
 // import Input from "../../../components/UI/Form/Input/Input";
-import JobTitle from "../../../components/Client/Job/JobTitle";
+import JobTitle from "../../components/Client/Job/JobTitle";
 const PostJob = () => {
   const initialState = [
     { tabName: "Title", isChecked: true },

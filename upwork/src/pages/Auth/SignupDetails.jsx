@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import Btn from "../../../components/UI/Form/Btn/Btn";
-import CheckBox from "../../../components/UI/Form/CheckBox/CheckBox";
-import Input from "../../../components/UI/Form/Input/Input";
-import Radio from "../../../components/UI/Form/Radio/Radio";
-import Select from "../../../components/UI/Form/Select/Select";
+import Btn from "../../components/UI/Form/Btn/Btn";
+import CheckBox from "../../components/UI/Form/CheckBox/CheckBox";
+import Input from "../../components/UI/Form/Input/Input";
+import Radio from "../../components/UI/Form/Radio/Radio";
+import Select from "../../components/UI/Form/Select/Select";
 
 const SignupDetails = () => {
   return (
