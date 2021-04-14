@@ -5,7 +5,7 @@ import { jobPostReducer } from "./reducers/jobPostReducer";
 const initialState = {
 jobPost:{
     jobTitle:"",
-    category:""
+    category:"Graphic Design"
 }
 }
 const rootReducer = combineReducers({

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Btn from "../../UI/Form/Btn/Btn";
 import Input from "../../UI/Form/Input/Input";
 import {  useFormik } from "formik";
@@ -5,7 +6,7 @@ import { useEffect, useState } from "react";
 import RadioInput from "../../UI/Form/RadioInput/RadioInput";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { addJobTitle } from "../../../store/actions/jobPostAction";
+import { addJob } from "../../../store/actions/jobPostAction";
 
 const initialState = [
   {
@@ -52,7 +53,7 @@ const JobTitle = (props) => {
       .required("Required"),
     }),
     onSubmit: (values) => {
-      dispatch(addJobTitle(values))
+      dispatch(addJob(values))
 
       props.ToNextStep("Description");
     },

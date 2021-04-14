@@ -1,1 +1,1 @@
-export const addJobTitle = "ADD_JOB_TITLE"
+export const addJob = "ADD_JOB"
