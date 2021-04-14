@@ -1,14 +1,14 @@
 const Select = (props) => {
   return (
-    <div class="relative w-full border border-gray-300 rounded-lg ">
-      <select class=" text-gray-600 appearance-none  inline-block py-3 pl-3 pr-8 rounded leading-tight w-full border border-gray-300 focus:outline-none">
+    <div className="relative w-full border border-gray-300 rounded-lg ">
+      <select className=" text-gray-600 appearance-none  inline-block py-3 pl-3 pr-8 rounded leading-tight w-full border border-gray-300 focus:outline-none">
           {props.options.map((option,index) => (
               <option key={index} >{option}</option>
 
           ))}
     
       </select>
-      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
         <svg
           width="18"
           height="18"

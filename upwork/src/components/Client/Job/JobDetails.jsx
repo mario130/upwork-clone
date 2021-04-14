@@ -38,14 +38,14 @@ const JobDetails = (props) => {
           </li>
           <li className="item-border">
             <Btn className="text-primary mr-3 border-hair border px-10 py-2 "
-            handleClick={() => props.backStep("Details")}
+            handleClicking={() => props.backStep("Details")}
             >
               Back
             </Btn>
             <Btn
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
               // disabled={true}
-              handleClick={() => props.ToNextStep("Expertise")}
+              handleClicking={() => props.ToNextStep("Expertise")}
             >
               Next
             </Btn>

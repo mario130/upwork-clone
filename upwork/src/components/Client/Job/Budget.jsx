@@ -1,6 +1,5 @@
 import { faClock, faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Btn from "../../UI/Form/Btn/Btn";
 import Input from "../../UI/Form/Input/Input";
 import RadioBox from "../../UI/Form/RadioBox/RadioBox";
 

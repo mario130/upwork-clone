@@ -12,7 +12,8 @@ module.exports = {
         "navBorder": '#336278',
         "bodyGray": '#f1f2f4',
         "hair":"#e0e0e0",
-        "darkText": "#222"
+        "darkText": "#222",
+        "danger":"#e74c3c"
       },
       fontFamily: {
         nuni: ["Nunito Sans"],

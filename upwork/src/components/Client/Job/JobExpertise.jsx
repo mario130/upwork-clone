@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Btn from "../../UI/Form/Btn/Btn";
 import Input from "../../UI/Form/Input/Input";
 import RadioBox from "../../UI/Form/RadioBox/RadioBox";
@@ -51,14 +50,14 @@ const JobExpertise = (props) => {
           </li>
           <li className="item-border">
           <Btn className="text-primary mr-3 border-hair border px-10 py-2 "
-            handleClick={() => props.backStep("Expertise")}
+            handleClicking={() => props.backStep("Expertise")}
             >
               Back
             </Btn>
             <Btn
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
               // disabled={true}
-              handleClick={() => props.ToNextStep("Budget")}
+              handleClicking={() => props.ToNextStep("Budget")}
             >
               Next
             </Btn>
