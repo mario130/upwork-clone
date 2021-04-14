@@ -20,7 +20,6 @@ const PostJob = () => {
   ];
 
   const [tabs, setTabs] = useState(initialState);
-  // const [disabled, setDiabled] = useState(true);
   const ToNextStep = (tabName) => {
   
     setTabs(

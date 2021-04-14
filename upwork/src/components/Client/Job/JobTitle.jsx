@@ -1,9 +1,11 @@
 import Btn from "../../UI/Form/Btn/Btn";
 import Input from "../../UI/Form/Input/Input";
-import { useFormik } from "formik";
-import { useState } from "react";
+import {  useFormik } from "formik";
+import { useEffect, useState } from "react";
 import RadioInput from "../../UI/Form/RadioInput/RadioInput";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { addJobTitle } from "../../../store/actions/jobPostAction";
 
 const initialState = [
   {
@@ -42,7 +44,7 @@ const JobTitle = (props) => {
   const formik = useFormik({
     initialValues: {
       jobTitle: "",
-      categoery: "Graphic Design",
+      category: "Graphic Design",
     },
     validationSchema: Yup.object({
       jobTitle: Yup.string()
@@ -50,11 +52,19 @@ const JobTitle = (props) => {
       .required("Required"),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
+      dispatch(addJobTitle(values))
+
       props.ToNextStep("Description");
     },
   });
-  console.log("formik", )
+  const { jobTitle,category } = useSelector((state) => state.jobPost)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+  console.log(jobTitle)
+  formik.setValues({jobTitle,category})
+},[jobTitle,category])
+
+   
 
   return (
     <div className="col-span-4">
@@ -77,8 +87,8 @@ const JobTitle = (props) => {
                 name="jobTitle"
                 placeholder="Job Title"
                 onChange={formik.handleChange}
-                onBlue={formik.handleBlur}
-                value={formik.values.email}
+                onBlur={formik.handleBlur}
+                value={formik.values.jobTitle}
                 errorMsg={
                   formik.touched.jobTitle && formik.errors.jobTitle
                     ? formik.errors.jobTitle
@@ -118,8 +128,10 @@ const JobTitle = (props) => {
                   id={cat.HtmlId}
                   label={cat.name}
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+
                   value={cat.name}
-                  checked={formik.values.categoery ===cat.name} 
+                  checked={formik.values.category ===cat.name} 
 
                 />
               ))}
@@ -134,7 +146,7 @@ const JobTitle = (props) => {
               <Btn
                 type="submit"
                 className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
-                disabled={formik.touched && (formik.errors.jobTitle||formik.errors.categoery)}
+                disabled={(formik.touched.jobTitle||formik.touched.category) && (formik.errors.jobTitle||formik.errors.category)}
               >
                 Next
               </Btn>
@@ -143,6 +155,7 @@ const JobTitle = (props) => {
         </div>
       </form>
     </div>
+    
   );
 };
 
