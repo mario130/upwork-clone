@@ -1,6 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const userRouter = require('./routes/userRouter')
+const passport = require('passport')
 require('dotenv').config();
+require('./middleware/passportConfig')
 
 const app = express()
 
@@ -16,8 +20,27 @@ app.use((req, res, next)=>{
   next()
 })
 
+// MIDDLEWARE
+app.use(passport.initialize());
+app.use(bodyParser.json());
 
 // ADD ROUTES
+app.use('/users',userRouter)
+
+// ERROR HANDLER
+app.use((err,req,resp,next) =>{
+  if(err.name == 'ValidationError'){
+    var valErrors =[];
+    Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
+    resp.status(422).send(valErrors);
+  }
+  else if(err.path == "_id"){
+    resp.status(422).send('User ID is incorrect!!')
+  }
+  else{
+    resp.status(400).send(err);
+  }
+})
 
 const PORT = process.env.PORT || 4001
 app.listen(PORT, ()=>console.log(`Now listening on port ${PORT}`))
