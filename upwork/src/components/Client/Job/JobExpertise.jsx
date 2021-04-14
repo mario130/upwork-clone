@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Btn from "../../UI/Form/Btn/Btn";
 import Input from "../../UI/Form/Input/Input";
+import RadioBox from "../../UI/Form/RadioBox/RadioBox";
 
 const JobExpertise = (props) => {
 
@@ -13,7 +14,7 @@ const JobExpertise = (props) => {
             <span>step 4 of 6</span>
           </li>
           <li className="item-border">
-              <p>What skills and expertise are most important to you in Graphic Design?</p>
+              <p>What skills and expertise are most important to you ?</p>
             <Input
               className="pl-4"
               type="text"
@@ -26,31 +27,41 @@ const JobExpertise = (props) => {
       </div>
       <div className="bg-white mb-5">
         <ul className="list-group">
-          <li className="item-border ">
-            <p className=" font-bold	">Job Category </p>
+          <li className="item-border">
+          <p className="font-bold text-sm mb-5">
+          What level of experience should your freelancer have?</p>
+            <div className="grid sm:grid-cols-3 gap-2">
+              <RadioBox
+                id="enrtyLevel"
+                title="Enrty Level"
+                text="Looking for someone relatively new to this field"
+              ></RadioBox>
+              <RadioBox
+                id="intermediate"
+                title="Intermediate"
+                text="Looking for substantial experience in this field"
+              ></RadioBox>
+              <RadioBox id="expert"
+              title="Expert"
+              text="Looking for comprehensive and deep expertise in this field"
+              ></RadioBox>
+            </div>
+
+    
           </li>
           <li className="item-border">
-            <p className="">
-              Let's categorize your job, which helps us personalize your job
-              details and match your job to relevant freelancers and agencies.
-            </p>
-            <Link to="/" className="text-primary hover:underline">
-              See all Categories
-            </Link>
-          </li>
-          <li className="item-border">
-            <Btn 
-            className="text-primary mr-3 border-hair border px-10 py-2 "
+          <Btn className="text-primary mr-3 border-hair border px-10 py-2 "
+            handleClick={() => props.backStep("Expertise")}
             >
-              cancel
-            </Btn >
+              Back
+            </Btn>
             <Btn
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
               // disabled={true}
-              handleClick={()=>props.ToNextStep("Description")}
+              handleClick={() => props.ToNextStep("Budget")}
             >
               Next
-            </Btn  >
+            </Btn>
           </li>
         </ul>
       </div>

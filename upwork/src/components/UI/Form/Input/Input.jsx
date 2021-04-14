@@ -1,3 +1,4 @@
+import "./Input.css"
 const Input = (props) => {
     return ( 
         <div className=" relative ">
@@ -9,7 +10,7 @@ const Input = (props) => {
           <div className="form-group my-3">
           <input
             type={props.type}
-            className={" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2  bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent " + props.className }
+            className={" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2  bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent " + props.className }
             name={props.name}
             placeholder={props.placeholder}
           />
