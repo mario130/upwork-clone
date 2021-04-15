@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRouter')
+const jobRoutes = require('./routes/jobRoutes')
 const passport = require('passport')
 require('dotenv').config();
 require('./middleware/passportConfig')
@@ -10,7 +11,7 @@ const app = express()
 
 mongoose.connect(process.env.MONGO_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>console.log('Connected to mongodb!'))
-.catch(()=> console.log('Could\'nt connect to mongodb!'));
+.catch(()=> console.log('Couldn\'t connect to mongodb!'));
 
 // HEADERS FOR HEROKU
 app.use((req, res, next)=>{
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 
 // ADD ROUTES
 app.use('/users',userRouter)
+app.use('/jobs',jobRoutes)
 
 // ERROR HANDLER
 app.use((err,req,resp,next) =>{
