@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const Main = () => {
   const [jobs, setJobs] = useState([])
@@ -12,28 +13,6 @@ const Main = () => {
         setJobs(data.data);
       });
   }, []);
-  // const [jobs] = useState([
-  //   {
-  //     title: "Full stack developer needed for urgent project",
-  //     description: "Contact for more info",
-  //     type: "Hourly",
-  //     hours: "30+ hrs/week",
-  //     duration: "More than 6 months",
-  //     experience: "Expert",
-  //     paymentVerified: true,
-  //     spent: "90k",
-  //   },
-  //   {
-  //     title:
-  //       "Front end developer needed to convert landing page design to Netlify",
-  //     description: "Contact for more info",
-  //     type: "Fixed-price",
-  //     budget: "1k",
-  //     experience: "Intermediate",
-  //     paymentVerified: false,
-  //     spent: "0",
-  //   },
-  // ]);
 
   return (
     <main className="bg-bodyGray h-full container mx-auto  max-w-5xl sm:px-10 lg:grid lg:grid-cols-10 lg:mt-5">
@@ -174,7 +153,11 @@ const Main = () => {
               {/* title */}
               <div className="flex justify-between space-x-4">
                 <div>
-                  <h2 className="font-bold">{job.title}</h2>
+                  <h2 className="font-bold">
+                    <Link to={"job/"+job._id}>
+                      <a>{job.title}</a>
+                    </Link>
+                  </h2>
                   <p className="text-sm font-bold text-gray-500">{job.type}</p>
                 </div>
                 {/* icons */}
