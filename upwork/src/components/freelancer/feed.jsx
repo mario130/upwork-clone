@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import Spinner from '../shared/spinner';
 
 const Main = () => {
   const [jobs, setJobs] = useState([])
@@ -148,6 +149,9 @@ const Main = () => {
             </svg>
           </div>
 
+          {jobs.length === 0 ? <div className="text-center my-14">
+            <Spinner />
+          </div> : null}
           {jobs.map((job) => (
             <div className="p-5 border-b border-gray-200">
               {/* title */}
