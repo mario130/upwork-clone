@@ -1,0 +1,10 @@
+input[type="checkbox"]:checked + label span {
+    background-color: #2b5468; 
+    color:#fff
+}
+/* input[type="checkbox"]:checked +label .plus{
+  display: hidden !important;
+}
+  input[type="checkbox"]:checked label span i.check {
+    display: block  !important;
+}  */

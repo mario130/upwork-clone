@@ -1,5 +1,6 @@
 import { faClock, faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Btn from "../../UI/Form/Btn/Btn";
 import Input from "../../UI/Form/Input/Input";
 import RadioBox from "../../UI/Form/RadioBox/RadioBox";
 
@@ -88,6 +89,22 @@ const Budget = (props) => {
                 errorMsg=""
               />
             </div>
+          </li>
+          <li className="item-border">
+          <Btn
+              className="text-primary mr-3 border-hair border px-10 py-2 "
+              handleClicking={() => props.backStep("Budget")}
+            >
+              Back
+            </Btn>
+            {/* <Btn
+            type="submit"
+              className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
+              disabled={(formik.touched.skills||formik.touched.experience) && (formik.errors.skills||formik.errors.experience)}
+         
+            >
+              Next
+            </Btn> */}
           </li>
         </ul>
       </div>
