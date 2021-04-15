@@ -7,13 +7,14 @@ const Job = () => {
     //todo: add relative date
     description:
       "We have an API sending product data from Woocommerce on Wordpress to another website (not Wordpress). It's a simple product data feed that just displays products. We don't have control over the other end, we just supply the API feed - it apparently intermittently throws errors on the receiving side but works fine in testing. Links, API instructions and further information can be provided to the successful candidate. We either need this one fixing or another API setting up to make it function without errors. Zoom to talk through the issues would be beneficial to both parties Thanks!",
-    type: "Hourly",
     projectType: "One-time project",
-    hours: "30+ hrs/week",
-    duration: "More than 6 months",
+    budget: 200,
+    duration: "3 - 6 months",
     experience: "Expert",
-    payRange: "$15.00-$30.00",
-    requiredConnects: 4,
+    // type: "Hourly", // ALL FIXED PRICES
+    // hours: "30+ hrs/week",
+    // payRange: "$15.00-$30.00",
+    // requiredConnects: 4, // NO CONNECTS
     questions: ["Do you have experience with Wordpress API's?"],
     skills: [
       {
@@ -52,7 +53,7 @@ const Job = () => {
       coutry: "United Kingdom",
       pastJobsCounter: 4,
       spent: "90k",
-      average: "28 /hr",
+      // average: "28 /hr", // NO HOURLIES
       //todo: add client join date
       pastJobs: [],
     },
@@ -141,10 +142,10 @@ const Job = () => {
           </div>
 
           {/* extra line */}
-          <div className="mt-2">
+          {job.payRange && <div className="mt-2">
             <p className="font-bold">{job.payRange}</p>
             <p className="font-light text-gray-700">Hourly</p>
-          </div>
+          </div>}
         </div>
 
         <div className="flex justify-between p-6 text-sm grayBottomBorder lg:justify-start">
@@ -263,10 +264,10 @@ const Job = () => {
               </svg>
               Flag as inappropriate
             </div>
-            <p className="mt-3">
+            {/* <p className="mt-3">
               Required Connects to submit a proposal: {job.requiredConnects}
             </p>
-            <p className="mt-3">Available connects: 42</p>
+            <p className="mt-3">Available connects: 42</p> */}
           </div>
         </div>
         <h4 className="px-6 pt-4  font-bold mb-2 text-lg">
