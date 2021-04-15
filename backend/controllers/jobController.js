@@ -7,3 +7,11 @@ module.exports.getAll = (req, resp, next) => {
     } else return next(err);
   });
 };
+
+module.exports.getById = (req, resp, next) => {
+  Job.find({_id: req.params.jobId}, (err, data) => {
+    if (!err) {
+      resp.status(200).send(data);
+    } else return next(err);
+  })
+}
