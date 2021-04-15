@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
 const Job = () => {
   const [job] = useState({
@@ -58,6 +59,8 @@ const Job = () => {
       pastJobs: [],
     },
   });
+  // const [job] = useState(null)
+  // useEffect()
 
   return (
     <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-7 lg:rounded-lg border border-gray-200">

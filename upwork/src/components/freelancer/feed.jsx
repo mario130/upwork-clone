@@ -1,28 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 const Main = () => {
-  const [jobs] = useState([
-    {
-      title: "Full stack developer needed for urgent project",
-      description: "Contact for more info",
-      type: "Hourly",
-      hours: "30+ hrs/week",
-      duration: "More than 6 months",
-      experience: "Expert",
-      paymentVerified: true,
-      spent: "90k",
-    },
-    {
-      title:
-        "Front end developer needed to convert landing page design to Netlify",
-      description: "Contact for more info",
-      type: "Fixed-price",
-      budget: "1k",
-      experience: "Intermediate",
-      paymentVerified: false,
-      spent: "0",
-    },
-  ]);
+  const [jobs, setJobs] = useState([])
+  useEffect(() => {
+    axios
+      .get(
+        `https://upwork-4.herokuapp.com/jobs/getAll`
+      )
+      .then((data) => {
+        setJobs(data.data);
+      });
+  }, []);
+  // const [jobs] = useState([
+  //   {
+  //     title: "Full stack developer needed for urgent project",
+  //     description: "Contact for more info",
+  //     type: "Hourly",
+  //     hours: "30+ hrs/week",
+  //     duration: "More than 6 months",
+  //     experience: "Expert",
+  //     paymentVerified: true,
+  //     spent: "90k",
+  //   },
+  //   {
+  //     title:
+  //       "Front end developer needed to convert landing page design to Netlify",
+  //     description: "Contact for more info",
+  //     type: "Fixed-price",
+  //     budget: "1k",
+  //     experience: "Intermediate",
+  //     paymentVerified: false,
+  //     spent: "0",
+  //   },
+  // ]);
 
   return (
     <main className="bg-bodyGray h-full container mx-auto  max-w-5xl sm:px-10 lg:grid lg:grid-cols-10 lg:mt-5">
@@ -230,7 +241,7 @@ const Main = () => {
 
               {/* past payments */}
               <div className="flex space-x-7 items-center">
-                {job.paymentVerified ? (
+                {job.client.verified ? (
                   <div className="flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +262,7 @@ const Main = () => {
                 ) : null}
 
                 <div className="font-light text-gray-500 text-sm">
-                  <span className="font-bold text-black">${job.spent}+</span>{" "}
+                  <span className="font-bold text-black">${job.client.spent}+</span>{" "}
                   spent
                 </div>
               </div>
