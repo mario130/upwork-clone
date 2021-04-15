@@ -3,10 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { jobPostReducer } from "./reducers/jobPostReducer";
 const initialState = {
-jobPost:{
-    jobTitle:"",
-    category:"Graphic Design"
-}
+jobPost:{}
 }
 const rootReducer = combineReducers({
     jobPost:jobPostReducer

@@ -7,6 +7,8 @@ import RadioInput from "../../UI/Form/RadioInput/RadioInput";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { addJob } from "../../../store/actions/jobPostAction";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
 const initialState = [
   {
@@ -45,12 +47,13 @@ const JobTitle = (props) => {
   const formik = useFormik({
     initialValues: {
       jobTitle: "",
-      category: "Graphic Design",
+      category: "",
     },
     validationSchema: Yup.object({
       jobTitle: Yup.string()
       .min(15, "Must be 15 characters or more")
       .required("Required"),
+      category:Yup.string().required("Required")
     }),
     onSubmit: (values) => {
       dispatch(addJob(values))
@@ -125,6 +128,7 @@ const JobTitle = (props) => {
               </p>
               {categoeries.map((cat) => (
                 <RadioInput
+                name="category"
                   key={cat.HtmlId}
                   id={cat.HtmlId}
                   label={cat.name}
@@ -136,6 +140,17 @@ const JobTitle = (props) => {
 
                 />
               ))}
+              <div className="error mt-4 ml-4 text-danger text-sm font-bold">
+                {formik.touched.category && formik.errors.category ? (
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faExclamationCircle}
+                      className="mr-5 text-danger"
+                    />{" "}
+                    <span>{formik.errors.category} </span>
+                  </span>
+                ) : null}
+              </div>
             </li>
             <li className="item-border">
               <Btn

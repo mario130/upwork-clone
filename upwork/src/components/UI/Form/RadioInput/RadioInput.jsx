@@ -3,7 +3,7 @@ import './RadioInput.module.css'
 const RadioInput = (props) => {
     return ( 
         <div className="flex items-center mr-4 mb-4">
-    <input id={props.id} type="radio" name="category" className="hidden" 
+    <input id={props.id} type="radio" name={props.name} className="hidden" 
     {...props}
     />
     <label htmlFor={props.id} className="flex items-center cursor-pointer">
