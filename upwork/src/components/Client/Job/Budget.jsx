@@ -1,12 +1,39 @@
-import { faClock, faDollarSign } from "@fortawesome/free-solid-svg-icons";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { faClock, faDollarSign, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import Btn from "../../UI/Form/Btn/Btn";
 import Input from "../../UI/Form/Input/Input";
 import RadioBox from "../../UI/Form/RadioBox/RadioBox";
-
+import * as Yup from 'yup'
+import { addJob } from "../../../store/actions/jobPostAction";
+import { useEffect } from "react";
 const Budget = (props) => {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      paymentChioce: "Pay By the hour",
+      estimatedBudget: 0,
+    },
+    validationSchema: Yup.object({
+      paymentChioce: Yup.string().required("Required"),
+      estimatedBudget:Yup.number().min(4,"Minimum budget is 5 US Dollars").required("Required")
+    }),
+    onSubmit: (values) => {
+      dispatch(addJob(values))
+
+      props.ToNextStep("Review");
+    },
+  });
+  const { paymentChioce,estimatedBudget } = useSelector((state) => state.jobPost)
+  useEffect(()=>{
+
+  formik.setValues({paymentChioce,estimatedBudget})
+},[paymentChioce,estimatedBudget])
   return (
     <div className="col-span-4">
+      <form onSubmit={formik.handleSubmit}>
       <div className="bg-white mb-5">
         <ul className="list-group">
           <li className="item-border ">
@@ -17,26 +44,50 @@ const Budget = (props) => {
             <p className="font-bold text-sm mb-5">
               How would you like to pay your freelancer or agency?{" "}
             </p>
-            <div className="grid sm:grid-cols-2 	auto-rows-fr		 gap-2">
+            <div className="grid sm:grid-cols-2 gap-2">
               <RadioBox
                 svg={<FontAwesomeIcon icon={faClock} />}
                 id="payByHour"
-                title="Pay By the hour"
+                name="paymentChioce"
+                value="Pay By the hour"
                 text="Pay hourly to easily scale up and down."
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                checked={formik.values.paymentChioce === "Pay By the hour"}
               ></RadioBox>
               <RadioBox
                 id="payFixedPrice"
+                name="paymentChioce"
+
                 svg={<FontAwesomeIcon icon={faDollarSign} />}
-                title="Pay a Fixed Price"
+                value="Pay a Fixed Price"
                 text="Define payment before work begins and pay only when work is delivered."
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                checked={formik.values.paymentChioce === "Pay a Fixed Price"}
               ></RadioBox>
+              <div className="error mt-4 ml-4 text-danger text-sm font-bold">
+                {formik.touched.paymentChioce && formik.errors.paymentChioce ? (
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faExclamationCircle}
+                      className="mr-5 text-danger"
+                    />
+                    <span>{formik.errors.paymentChioce} </span>
+                  </span>
+                ) : null}
+              </div>
             </div>
           </li>
           <li className="item-border">
-            <div>
+            {formik.values.paymentChioce === "Pay By the hour" && <div>
               <p className="font-bold text-sm mb-2">Enter your hourly range</p>
               <Input
-                className="pl-10 appearance-none	"
+                className={
+                  formik.touched.estimatedBudget && formik.errors.estimatedBudget
+                    ? "border-danger focus:ring-danger pl-10"
+                    : "pl-10"
+                }
                 svg={
                   <svg
                     width="20"
@@ -56,15 +107,28 @@ const Budget = (props) => {
                   </svg>
                 }
                 type="number"
-                name="hourlyRange"
+                minNum="0"
+                name="estimatedBudget"
                 placeholder="0"
-                errorMsg=""
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.estimatedBudget}
+                errorMsg={
+                  formik.touched.estimatedBudget && formik.errors.estimatedBudget
+                    ? formik.errors.estimatedBudget
+                    : null
+                }
               />
-            </div>
-            <div>
+            </div>}
+            {formik.values.paymentChioce === "Pay a Fixed Price" && <div>
               <p className="font-bold text-sm mb-2">Enter your fixed price</p>
               <Input
-                className="pl-10"
+              className={
+                formik.touched.estimatedBudget && formik.errors.estimatedBudget
+                  ? "border-danger focus:ring-danger pl-10"
+                  : "pl-10"
+              }
+            
                 svg={
                   <svg
                     width="20"
@@ -84,11 +148,20 @@ const Budget = (props) => {
                   </svg>
                 }
                 type="number"
-                name="fixedPrice"
+                minNum="0"
+                name="estimatedBudget"
                 placeholder="0"
-                errorMsg=""
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.estimatedBudget}
+                errorMsg={
+                  formik.touched.estimatedBudget && formik.errors.estimatedBudget
+                    ? formik.errors.estimatedBudget
+                    : null
+                }                
               />
-            </div>
+             
+            </div>}
           </li>
           <li className="item-border">
           <Btn
@@ -97,17 +170,17 @@ const Budget = (props) => {
             >
               Back
             </Btn>
-            {/* <Btn
+            <Btn
             type="submit"
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
               disabled={(formik.touched.skills||formik.touched.experience) && (formik.errors.skills||formik.errors.experience)}
-         
             >
               Next
-            </Btn> */}
+            </Btn>
           </li>
         </ul>
       </div>
+      </form>
     </div>
   );
 };

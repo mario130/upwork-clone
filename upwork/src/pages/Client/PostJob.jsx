@@ -3,6 +3,7 @@ import Budget from "../../components/Client/Job/Budget";
 import JobDescription from "../../components/Client/Job/JobDescription";
 import JobDetails from "../../components/Client/Job/JobDetails";
 import JobExpertise from "../../components/Client/Job/JobExpertise";
+import JobReview from "../../components/Client/Job/JobReview";
 // import { Link } from "react-router-dom";
 // import Btn from "../../../components/UI/Form/Btn/Btn";
 // import Input from "../../../components/UI/Form/Input/Input";
@@ -62,6 +63,8 @@ const PostJob = () => {
           {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked && tabs[3].isChecked===false  ? <JobDetails ToNextStep={ToNextStep} backStep={backStep}/> : null}
           {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked && tabs[3].isChecked && tabs[4].isChecked===false ? <JobExpertise ToNextStep={ToNextStep} backStep={backStep}/> : null}
           {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked && tabs[3].isChecked && tabs[4].isChecked && tabs[5].isChecked ===false ? <Budget ToNextStep={ToNextStep} backStep={backStep}/> : null}
+          {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked && tabs[3].isChecked && tabs[4].isChecked && tabs[5].isChecked  ? <JobReview ToNextStep={ToNextStep} backStep={backStep}/> : null}
+
 
         </div>
       </div>

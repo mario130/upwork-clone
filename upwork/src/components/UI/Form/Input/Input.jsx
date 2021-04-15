@@ -20,6 +20,7 @@ const Input = (props) => {
             value={props.value}
             onChange={props.onChange}
             onBlur={props.onBlur}
+            min={props.minNum}
           />
           <div className="error mt-4 ml-4 text-danger text-sm font-bold">
             {props.errorMsg && <FontAwesomeIcon icon={faExclamationCircle} className="mr-5 text-danger"/>}
