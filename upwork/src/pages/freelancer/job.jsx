@@ -3,13 +3,12 @@ import Footer from '../../components/shared/footer';
 import Job from '../../components/freelancer/job';
 import Nav from '../../components/shared/navbar';
 
-const JobPage = () => {
-
+const JobPage = (props) => {
 
   return (
     <div className="bg-bodyGray">
       <Nav />
-      <Job />
+      <Job id={props.match.params.id} />
       <Footer />
     </div>
   )

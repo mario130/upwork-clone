@@ -1,63 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
-const Job = () => {
-  const [job] = useState({
-    title: "API Developer Needed To Fix/Rebuild API",
-    category: "Full Stack Development",
-    //todo: add relative date
-    description:
-      "We have an API sending product data from Woocommerce on Wordpress to another website (not Wordpress). It's a simple product data feed that just displays products. We don't have control over the other end, we just supply the API feed - it apparently intermittently throws errors on the receiving side but works fine in testing. Links, API instructions and further information can be provided to the successful candidate. We either need this one fixing or another API setting up to make it function without errors. Zoom to talk through the issues would be beneficial to both parties Thanks!",
-    projectType: "One-time project",
-    budget: 200,
-    duration: "3 - 6 months",
-    experience: "Expert",
-    // type: "Hourly", // ALL FIXED PRICES
-    // hours: "30+ hrs/week",
-    // payRange: "$15.00-$30.00",
-    // requiredConnects: 4, // NO CONNECTS
-    questions: ["Do you have experience with Wordpress API's?"],
-    skills: [
-      {
-        title: "Back-End Development Deliverables",
-        tags: ["API"],
-      },
-      {
-        title: "Back-End Programming Languages",
-        tags: ["PHP", "NodeJS"],
-      },
-      {
-        title: "Back-End Development Skills",
-        tags: ["eCommerce"],
-      },
-      {
-        title: "Other",
-        tags: ["Backend Rest API"],
-      },
-    ],
-    qualifications: {
-      talentType: "Independent",
-      risingTalent: true,
-      english: "Conversational",
-      amountEarned: "$200+",
-    },
-    activity: {
-      proposals: "5 to 10",
-      //todo: add time again
-      interviewing: 1,
-      invites: 4,
-      unanswered: 3,
-    },
-    client: {
-      paymentVerified: true,
-      rating: 4.86,
-      coutry: "United Kingdom",
-      pastJobsCounter: 4,
-      spent: "90k",
-      // average: "28 /hr", // NO HOURLIES
-      //todo: add client join date
-      pastJobs: [],
-    },
-  });
+const Job = (props) => {
+  const [job, setJob] = useState(null)
+  useEffect(() => {
+    axios
+      .get(
+        `https://upwork-4.herokuapp.com/jobs/${props.id}`
+      )
+      .then((data) => {
+        console.log(data);
+        setJob(data.data);
+      });
+  }, []);
 
   return (
     <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-7 lg:rounded-lg border border-gray-200">
@@ -65,10 +20,10 @@ const Job = () => {
       {/* lg left part */}
       <div className="lg:col-start-1 col-span-5 lg:border-r lg:border-gray-200">
         <h2 className="p-6 font-bold text-xl grayBottomBorder">
-          {job.title}
+          {job?.title}
         </h2>
         <div className="p-6 text-sm grayBottomBorder">
-          <button className="text-primary font-bold">{job.category}</button>
+          <button className="text-primary font-bold">{job?.category}</button>
           <br />
           <span className="text-gray-500">Posted 14 minutes ago</span>
 
@@ -106,51 +61,51 @@ const Job = () => {
             <span>Worldwide</span>
           </div>
           <p className="mt-3 text-gray-500 lg:hidden">
-            {job.requiredConnects} required connects
+            {job?.requiredConnects} required connects
           </p>
         </div>
         <p className="p-6 text-sm grayBottomBorder">
-          {job.description}
+          {job?.description}
         </p>
 
         <div className="p-6 text-sm grayBottomBorder">
           {/* job info flex */}
           <div className="flex my-4">
-            {job.hours ? (
+            {job?.hours ? (
               <div className="w-1/3">
-                <p className="font-bold">{job.hours}</p>
+                <p className="font-bold">{job?.hours}</p>
                 <p className="font-light text-gray-700">Hours Needed</p>
               </div>
             ) : (
               <div className="w-1/3">
-                <p className="font-bold">${job.budget}</p>
+                <p className="font-bold">${job?.budget}</p>
                 <p className="font-light text-gray-700">Budget</p>
               </div>
             )}
 
-            {job.duration ? (
+            {job?.duration ? (
               <div className="w-1/3">
-                <p className="font-bold">{job.duration}</p>
+                <p className="font-bold">{job?.duration}</p>
                 <p className="font-light text-gray-700">Duration</p>
               </div>
             ) : null}
 
             <div className="w-1/3">
-              <p className="font-bold">{job.experience}</p>
+              <p className="font-bold">{job?.experience}</p>
               <p className="font-light text-gray-700">Experience</p>
             </div>
           </div>
 
           {/* extra line */}
-          {job.payRange && <div className="mt-2">
-            <p className="font-bold">{job.payRange}</p>
+          {job?.payRange && <div className="mt-2">
+            <p className="font-bold">{job?.payRange}</p>
             <p className="font-light text-gray-700">Hourly</p>
           </div>}
         </div>
 
         <div className="flex justify-between p-6 text-sm grayBottomBorder lg:justify-start">
           <h3 className="font-bold lg:mr-2">Project type:</h3>
-          <p>{job.projectType}</p>
+          <p>{job?.projectType}</p>
         </div>
 
         <div className="p-6 grayBottomBorder text-sm">
@@ -159,7 +114,7 @@ const Job = () => {
             a proposal:
           </h4>
           <ol className="ml-3 mt-2">
-            {job.questions.map((question, i) => (
+            {job?.questions.map((question, i) => (
               <li>
                 {i + 1}. {question}
               </li>
@@ -170,7 +125,7 @@ const Job = () => {
         <div className="p-6 grayBottomBorder text-sm">
           <h4 className="mb-6 font-bold text-lg">Skills and Expertise</h4>
           <div className="flex flex-wrap justify-between space-y-2">
-            {job.skills.map((skill) => (
+            {job?.skills.map((skill) => (
               <div className="w-1/2">
                 <h5 className="font-bold my-2">{skill.title}</h5>
                 {skill.tags.map((tag) => (
@@ -188,19 +143,19 @@ const Job = () => {
             <h2 className="font-bold mb-2">Preferred qualifications</h2>
             <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Talent type:</h4>
-              <p>{job.qualifications.talentType}</p>
+              <p>{job?.qualifications.talentType}</p>
             </div>
             <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Rising Talent:</h4>
-              <p>{job.qualifications.risingTalent ? "Yes" : "No"}</p>
+              <p>{job?.qualifications.risingTalent ? "Yes" : "No"}</p>
             </div>
             <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">English level:</h4>
-              <p>{job.qualifications.english}</p>
+              <p>{job?.qualifications.english}</p>
             </div>
             <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Amount earned:</h4>
-              <p>{job.qualifications.amountEarned}</p>
+              <p>{job?.qualifications.amountEarned}</p>
             </div>
           </div>
 
@@ -208,19 +163,19 @@ const Job = () => {
             <h2 className="font-bold mb-2">Activity on this job</h2>
             <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Proposals:</h4>
-              <p>{job.activity.proposals}</p>
+              <p>{job?.activity.proposals}</p>
             </div>
             <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Interviewing:</h4>
-              <p>{job.activity.interviewing}</p>
+              <p>{job?.activity.interviewing}</p>
             </div>
             <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Invites sent:</h4>
-              <p>{job.activity.invites}</p>
+              <p>{job?.activity.invites}</p>
             </div>
             <div className="infoList">
               <h4 className="text-gray-500 lg:mr-2">Unanswered invites:</h4>
-              <p>{job.activity.unanswered}</p>
+              <p>{job?.activity.unanswered}</p>
             </div>
           </div>
         </div>
@@ -273,7 +228,7 @@ const Job = () => {
         <h4 className="px-6 pt-4  font-bold mb-2 text-lg">
           About the client
         </h4>
-        {job.client.paymentVerified ? (
+        {job?.client.paymentVerified ? (
           <div className="px-6 flex items-center mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -294,22 +249,22 @@ const Job = () => {
         ) : null}
 
         <div className="px-6 flex justify-between mb-2 lg:block">
-          <h4 className="font-bold">{job.client.coutry}</h4>
+          <h4 className="font-bold">{job?.client.coutry}</h4>
           <p className="text-gray-500">Forest Town Mansfield 01:57 pm</p>
         </div>
         <div className="px-6 flex justify-between mb-2 lg:block">
           <h4 className="font-bold">
-            {job.client.pastJobsCounter} jobs posted
+            {job?.client.pastJobsCounter} jobs posted
           </h4>
           <p className="text-gray-500">100% hire rate, 1 open job</p>
         </div>
         <div className="px-6 flex justify-between mb-2 lg:block">
-          <h4 className="font-bold">{job.client.spent}+ total spent</h4>
+          <h4 className="font-bold">{job?.client.spent}+ total spent</h4>
           <p className="text-gray-500">1 hire, 1 active</p>
         </div>
         <div className="px-6 flex justify-between mb-2 lg:block">
           <h4 className="font-bold">
-            {job.client.average} avg hourly rate paid
+            {job?.client.average} avg hourly rate paid
           </h4>
           <p className="text-gray-500">73 hours</p>
         </div>

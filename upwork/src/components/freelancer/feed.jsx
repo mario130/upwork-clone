@@ -256,11 +256,11 @@ const Main = () => {
             </div>
           ))}
 
-          <div className="text-center bg-white p-4">
+          {jobs.length !== 0 ? <div className="text-center bg-white p-4">
             <button className="px-6 py-2 border rounded-full text-primary font-bold">
               Load more
             </button>
-          </div>
+          </div> : null}
         </div>
       </div>
 
