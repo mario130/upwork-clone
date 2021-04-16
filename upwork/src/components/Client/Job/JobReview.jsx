@@ -16,7 +16,7 @@ const JobReview = (props) => {
                 <h2 className="text-xl font-extrabold mb-8">Title</h2>
                 <div className="mb-5">
                     <h5 className="text-sm font-bold mb-4">Title</h5>
-                    <p>{jobPost.jobTitle}</p>
+                    <p>{jobPost.title}</p>
                 </div>
                     <div className="mb-5">
                     <h5 className="text-sm font-bold mb-4">Job Category</h5>
@@ -55,7 +55,7 @@ const JobReview = (props) => {
               <div className="mb-5">
                     <h5 className="text-sm font-bold mb-4">Skills</h5>
                     <div className="flex flex-wrap">
-                    {jobPost.skills.length >0 && jobPost.skills.map((skill,i)=>(
+                    {jobPost.skills  && jobPost.skills.map((skill,i)=>(
                         <div key={i}>
                             <span className="rounded-full py-1 px-3 inline-block mr-3 text-twilight  border border-grey bg-hair hover:bg-gray-300 cursor-default">
                                 {skill}
@@ -83,7 +83,7 @@ const JobReview = (props) => {
              </div>
              <div className="mb-5 w-full md:w-3/6">
                     <h5 className="text-sm font-bold mb-4">Budget</h5>
-                    <p>{jobPost.estimatedBudget}</p>
+                    <p>{jobPost.budget}</p>
              </div>
               </div>
               </li>

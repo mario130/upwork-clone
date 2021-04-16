@@ -14,11 +14,11 @@ const Budget = (props) => {
   const formik = useFormik({
     initialValues: {
       paymentChioce: "Pay By the hour",
-      estimatedBudget: 0,
+      budget: 0,
     },
     validationSchema: Yup.object({
       paymentChioce: Yup.string().required("Required"),
-      estimatedBudget:Yup.number().min(4,"Minimum budget is 5 US Dollars").required("Required")
+      budget:Yup.number().min(5,"Minimum budget is 5 US Dollars").required("Required")
     }),
     onSubmit: (values) => {
       dispatch(addJob(values))
@@ -26,11 +26,11 @@ const Budget = (props) => {
       props.ToNextStep("Review");
     },
   });
-  const { paymentChioce,estimatedBudget } = useSelector((state) => state.jobPost)
+  const { paymentChioce,budget } = useSelector((state) => state.jobPost)
   useEffect(()=>{
 
-  formik.setValues({paymentChioce,estimatedBudget})
-},[paymentChioce,estimatedBudget])
+  formik.setValues({paymentChioce,budget})
+},[paymentChioce,budget])
   return (
     <div className="col-span-4">
       <form onSubmit={formik.handleSubmit}>
@@ -84,7 +84,7 @@ const Budget = (props) => {
               <p className="font-bold text-sm mb-2">Enter your hourly range</p>
               <Input
                 className={
-                  formik.touched.estimatedBudget && formik.errors.estimatedBudget
+                  formik.touched.budget && formik.errors.budget
                     ? "border-danger focus:ring-danger pl-10"
                     : "pl-10"
                 }
@@ -108,14 +108,14 @@ const Budget = (props) => {
                 }
                 type="number"
                 minNum="0"
-                name="estimatedBudget"
+                name="budget"
                 placeholder="0"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.estimatedBudget}
+                value={formik.values.budget}
                 errorMsg={
-                  formik.touched.estimatedBudget && formik.errors.estimatedBudget
-                    ? formik.errors.estimatedBudget
+                  formik.touched.budget && formik.errors.budget
+                    ? formik.errors.budget
                     : null
                 }
               />
@@ -124,7 +124,7 @@ const Budget = (props) => {
               <p className="font-bold text-sm mb-2">Enter your fixed price</p>
               <Input
               className={
-                formik.touched.estimatedBudget && formik.errors.estimatedBudget
+                formik.touched.budget && formik.errors.budget
                   ? "border-danger focus:ring-danger pl-10"
                   : "pl-10"
               }
@@ -149,14 +149,14 @@ const Budget = (props) => {
                 }
                 type="number"
                 minNum="0"
-                name="estimatedBudget"
+                name="budget"
                 placeholder="0"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.estimatedBudget}
+                value={formik.values.budget}
                 errorMsg={
-                  formik.touched.estimatedBudget && formik.errors.estimatedBudget
-                    ? formik.errors.estimatedBudget
+                  formik.touched.budget && formik.errors.budget
+                    ? formik.errors.budget
                     : null
                 }                
               />
@@ -173,7 +173,7 @@ const Budget = (props) => {
             <Btn
             type="submit"
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
-              disabled={(formik.touched.skills||formik.touched.experience) && (formik.errors.skills||formik.errors.experience)}
+              disabled={(formik.touched.budget||formik.touched.paymentChioce) && (formik.errors.budget||formik.errors.paymentChioce)}
             >
               Next
             </Btn>

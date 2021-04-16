@@ -36,6 +36,20 @@ const PostJob = () => {
       )
     );
   };
+  const goToCurrentTab = (tabName) => {
+    const clonedTabs =[...tabs]
+    for (const tab of clonedTabs) {
+      tab.isChecked=false
+
+    }
+      for (const tab of clonedTabs) {
+        tab.isChecked=true
+        if(tab.tabName === tabName)
+        break;
+      }
+
+    setTabs(clonedTabs);
+  }
   return (
     <div id="jobPost" className="bg-bodyGray">
       <div className="container  mx-auto px-16 py-12 ">
@@ -46,10 +60,11 @@ const PostJob = () => {
                 <li
                   className={
                     tab.isChecked
-                      ? "text-gray-900 mb-3 mr-3 font-bold"
-                      : "text-gray-400 mb-3 mr-3 font-bold"
+                      ? "text-gray-900 mb-3 mr-3 font-bold cursor-pointer"
+                      : "text-gray-400 mb-3 mr-3 font-bold cursor-pointer"
                   }
                   key={i}
+                  onClick={()=>goToCurrentTab(tab.tabName)}
                 >
                   {tab.tabName}
                 </li>
