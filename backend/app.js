@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRouter')
+const freelanceProfileRouter = require('./routes/freelanceProfileRouter')
 const passport = require('passport')
 require('dotenv').config();
 require('./middleware/passportConfig')
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 
 // ADD ROUTES
 app.use('/users',userRouter)
+app.use('/profile',freelanceProfileRouter)
 
 // ERROR HANDLER
 app.use((err,req,resp,next) =>{
