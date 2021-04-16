@@ -5,7 +5,8 @@ import Input from "../../components/UI/Form/Input/Input";
 import Radio from "../../components/UI/Form/Radio/Radio";
 import Select from "../../components/UI/Form/Select/Select";
 
-const SignupDetails = () => {
+const SignupDetails = (props) => {
+  
   return (
     <>
     {/* NAVBAR */}
@@ -40,7 +41,9 @@ const SignupDetails = () => {
         <h2 className="h1 text-3xl font-bold my-3">
           Complete your free account setup
         </h2>
-        <h4 className="my-6">hesham2020@gmail.com</h4>
+        <h4 className="my-6">
+          {props.location.search.split('=')[1]}
+        </h4>
         <div className="grid md:grid-cols-2 md:gap-x-1">
           <div className="w-full ">
             <Input

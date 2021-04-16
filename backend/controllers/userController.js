@@ -55,10 +55,16 @@ module.exports.getById = (req,resp,next) => {
 }
 
 module.exports.getByEmail = (req,resp,next) => {
-    User.findOne({email:req.params.email},(err,data) => {
+    User.findOne({email:req.body.email},(err,data) => {
         if(!err)
-            if(data == null) resp.status(422).send("User E-Mail is not correct!!")
-            else resp.status(200).send('Valid E-Mail')
+            if(data == null) {
+              // resp.status(422).json("User E-Mail is not correct!!")
+              resp.redirect(`http://localhost:3000/signup/details?email=${req.body.email}`)
+            }
+            else {
+              // resp.status(200).json('Valid E-Mail')
+              resp.redirect(`http://localhost:3000/login?email=${req.body.email}`)
+            }
         else
             return next(err)
     })

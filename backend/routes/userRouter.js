@@ -9,7 +9,7 @@ router.get('/getById/:id',userControl.getById);
 router.put('/update/:id',userControl.update);
 router.delete('/delete/:id',userControl.delete);
 router.post('/auth',userControl.authenticate);
-router.get('/checkEmail/:email',userControl.getByEmail);
+router.post('/checkEmail/',userControl.getByEmail);
 
 
 module.exports = router;
