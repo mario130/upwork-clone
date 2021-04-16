@@ -36,7 +36,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={GuestHomepage} />
           <Route path="/freelancer" component={FreelancerHomepage} />
-          <Route path="/job" component={Job} />
+          <Route path="/job/:id" component={Job} />
           <Route path="/freelancer-profile" component={FreelancerProfile} />
           <Route path="/client/home" component={ClientHomePage} />
           <Route path="/client/job-post" component={PostJob} />

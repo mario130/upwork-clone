@@ -5,7 +5,7 @@ const Nav = () => {
   const [links] = useState([
     { title: "Guest home", link: "/" },
     { title: "Frealancer home", link: "/freelancer" },
-    { title: "Job", link: "/job" },
+    { title: "Job", link: "/job/6078554ae48496a93f483c0d" },
     { title: "F-profile", link: "/freelancer-profile" },
     { title: "Proposal", link: "/proposal" },
     { title: "Applicants", link: "/applicants" },

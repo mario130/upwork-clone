@@ -1,0 +1,5 @@
+input[type="radio"]:checked + label span.ball {
+    background-color: #37a000; 
+    box-shadow: 0px 0px 2px 2px white inset;
+    outline: 2px solid #EEE;
+  }

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import Budget from "../../components/Client/Job/Budget";
 import JobDescription from "../../components/Client/Job/JobDescription";
 import JobDetails from "../../components/Client/Job/JobDetails";
+import JobExpertise from "../../components/Client/Job/JobExpertise";
+import JobReview from "../../components/Client/Job/JobReview";
 // import { Link } from "react-router-dom";
 // import Btn from "../../../components/UI/Form/Btn/Btn";
 // import Input from "../../../components/UI/Form/Input/Input";
@@ -11,13 +14,15 @@ const PostJob = () => {
     { tabName: "Description", isChecked: false },
     { tabName: "Details", isChecked: false },
     { tabName: "Expertise", isChecked: false },
-    { tabName: "Visibilty", isChecked: false },
     { tabName: "Budget", isChecked: false },
+    { tabName: "Review", isChecked: false },
+
+    
   ];
 
   const [tabs, setTabs] = useState(initialState);
-  // const [disabled, setDiabled] = useState(true);
   const ToNextStep = (tabName) => {
+  
     setTabs(
       tabs.map((tab) =>
         tab.tabName === tabName ? { ...tab, isChecked: true } : tab
@@ -55,7 +60,11 @@ const PostJob = () => {
             <JobTitle ToNextStep={ToNextStep}  />
           ) : null}
           {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked===false ? <JobDescription ToNextStep={ToNextStep} backStep={backStep}/>  : null}
-          {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked ? <JobDetails ToNextStep={ToNextStep} backStep={backStep}/> : null}
+          {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked && tabs[3].isChecked===false  ? <JobDetails ToNextStep={ToNextStep} backStep={backStep}/> : null}
+          {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked && tabs[3].isChecked && tabs[4].isChecked===false ? <JobExpertise ToNextStep={ToNextStep} backStep={backStep}/> : null}
+          {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked && tabs[3].isChecked && tabs[4].isChecked && tabs[5].isChecked ===false ? <Budget ToNextStep={ToNextStep} backStep={backStep}/> : null}
+          {tabs[0].isChecked && tabs[1].isChecked && tabs[2].isChecked && tabs[3].isChecked && tabs[4].isChecked && tabs[5].isChecked  ? <JobReview ToNextStep={ToNextStep} backStep={backStep}/> : null}
+
 
         </div>
       </div>
