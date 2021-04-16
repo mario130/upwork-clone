@@ -1,7 +1,7 @@
 const Select = (props) => {
   return (
     <div className="relative w-full border border-gray-300 rounded-lg ">
-      <select className=" text-gray-600 appearance-none  inline-block py-3 pl-3 pr-8 rounded leading-tight w-full border border-gray-300 focus:outline-none">
+      <select name={props.name} className=" text-gray-600 appearance-none  inline-block py-3 pl-3 pr-8 rounded leading-tight w-full border border-gray-300 focus:outline-none">
           {props.options.map((option,index) => (
               <option key={index} >{option}</option>
 

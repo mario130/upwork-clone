@@ -13,10 +13,16 @@ module.exports.register = (req,resp,next) => {
     user.userType=req.body.userType;
     user.save((err,doc) =>{
         if(!err)
-            resp.send(doc);
+            {
+              // resp.send(doc);
+              resp.redirect(`http://localhost:3000/freelancer`)
+            }
         else{
             if(err.code == 11000)
-                resp.status(422).send('E-mail already exists');
+            {
+              console.log(err);
+              resp.status(422).send('E-mail already exists');
+            }
             else
                 return next(err);
         }
