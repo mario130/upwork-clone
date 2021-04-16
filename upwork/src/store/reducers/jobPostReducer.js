@@ -6,8 +6,9 @@ const initialState = {
     projectType:"",
     skills:[],
     experience:"",
-    paymentChioce:"",
-    budget:0
+    paymentChoice:"",
+    budget:0,
+    duration:""
 }
 
 export const jobPostReducer = (state=initialState,action)=>{

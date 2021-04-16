@@ -13,11 +13,11 @@ const Budget = (props) => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      paymentChioce: "Pay By the hour",
+      paymentChoice: "Pay By the hour",
       budget: 0,
     },
     validationSchema: Yup.object({
-      paymentChioce: Yup.string().required("Required"),
+      paymentChoice: Yup.string().required("Required"),
       budget:Yup.number().min(5,"Minimum budget is 5 US Dollars").required("Required")
     }),
     onSubmit: (values) => {
@@ -26,11 +26,11 @@ const Budget = (props) => {
       props.ToNextStep("Review");
     },
   });
-  const { paymentChioce,budget } = useSelector((state) => state.jobPost)
+  const { paymentChoice,budget } = useSelector((state) => state.jobPost)
   useEffect(()=>{
 
-  formik.setValues({paymentChioce,budget})
-},[paymentChioce,budget])
+  formik.setValues({paymentChoice,budget})
+},[paymentChoice,budget])
   return (
     <div className="col-span-4">
       <form onSubmit={formik.handleSubmit}>
@@ -48,39 +48,39 @@ const Budget = (props) => {
               <RadioBox
                 svg={<FontAwesomeIcon icon={faClock} />}
                 id="payByHour"
-                name="paymentChioce"
+                name="paymentChoice"
                 value="Pay By the hour"
                 text="Pay hourly to easily scale up and down."
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.paymentChioce === "Pay By the hour"}
+                checked={formik.values.paymentChoice === "Pay By the hour"}
               ></RadioBox>
               <RadioBox
                 id="payFixedPrice"
-                name="paymentChioce"
+                name="paymentChoice"
 
                 svg={<FontAwesomeIcon icon={faDollarSign} />}
                 value="Pay a Fixed Price"
                 text="Define payment before work begins and pay only when work is delivered."
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.paymentChioce === "Pay a Fixed Price"}
+                checked={formik.values.paymentChoice === "Pay a Fixed Price"}
               ></RadioBox>
               <div className="error mt-4 ml-4 text-danger text-sm font-bold">
-                {formik.touched.paymentChioce && formik.errors.paymentChioce ? (
+                {formik.touched.paymentChoice && formik.errors.paymentChoice ? (
                   <span>
                     <FontAwesomeIcon
                       icon={faExclamationCircle}
                       className="mr-5 text-danger"
                     />
-                    <span>{formik.errors.paymentChioce} </span>
+                    <span>{formik.errors.paymentChoice} </span>
                   </span>
                 ) : null}
               </div>
             </div>
           </li>
           <li className="item-border">
-            {formik.values.paymentChioce === "Pay By the hour" && <div>
+            {formik.values.paymentChoice === "Pay By the hour" && <div>
               <p className="font-bold text-sm mb-2">Enter your hourly range</p>
               <Input
                 className={
@@ -120,7 +120,7 @@ const Budget = (props) => {
                 }
               />
             </div>}
-            {formik.values.paymentChioce === "Pay a Fixed Price" && <div>
+            {formik.values.paymentChoice === "Pay a Fixed Price" && <div>
               <p className="font-bold text-sm mb-2">Enter your fixed price</p>
               <Input
               className={
@@ -173,7 +173,7 @@ const Budget = (props) => {
             <Btn
             type="submit"
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
-              disabled={(formik.touched.budget||formik.touched.paymentChioce) && (formik.errors.budget||formik.errors.paymentChioce)}
+              disabled={(formik.touched.budget||formik.touched.paymentChoice) && (formik.errors.budget||formik.errors.paymentChoice)}
             >
               Next
             </Btn>

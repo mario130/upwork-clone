@@ -1,0 +1,1 @@
+export const basedUrl ="http://localhost:4001"

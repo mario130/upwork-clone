@@ -27,6 +27,7 @@ import ProfileStep9 from "./pages/complete-profile/profile-step9";
 import ProfileStep10 from "./pages/complete-profile/profile-step10";
 import ProfileStep11 from "./pages/complete-profile/profile-step11";
 import ProfileStep12 from "./pages/complete-profile/profile-step12";
+import SuccessPage from "./components/Client/Job/SuccessPage";
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
           <Route path="/freelancer-profile" component={FreelancerProfile} />
           <Route path="/client/home" component={ClientHomePage} />
           <Route path="/client/job-post" component={PostJob} />
+          <Route path="/client/succes-post" component={SuccessPage} />
+
           <Route path="/proposal" component={Proposal} />
           <Route path="/applicants" component={Applicants} />
           <Route path="/job-list" component={Jobs} />

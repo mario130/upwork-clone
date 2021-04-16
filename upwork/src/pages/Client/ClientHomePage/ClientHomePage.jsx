@@ -1,14 +1,19 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import ClientCarousel from "../../../components/Client/ClientCarousel";
 import Drafts from "../../../components/Client/Drafts";
 import HowItWorks from "../../../components/Client/HowItWorks";
 import Posts from "../../../components/Client/Posts";
 import Templates from "../../../components/Client/Templates";
+import Footer from "../../../components/shared/footer";
+import Nav from "../../../components/shared/navbar";
 import Btn from "../../../components/UI/Form/Btn/Btn";
 import "./ClientHomePage.css"
 const ClientHomePage = () => {
   return (
+    <>
+    <Nav/>
     <div id="home" className="bg-bodyGray">
-      <div className="container  mx-auto lg:px-32 md:px-10 px-4 py-16 ">
+      <div className="pt-4 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl ">
         <div className="flex justify-between flex-wrap mb-12">
           <p className="font-extrabold text-2xl md:mb-0 mb-5">
             Ahmed Mahmoud
@@ -36,9 +41,9 @@ const ClientHomePage = () => {
             <Btn className="bg-white hover:bg-gray-100 focus:ring-gray-300 text-primary  px-8 border border-gray-500 sm:w-auto w-full sm:mb-0 mb-2">
               Browse Project Catalog
             </Btn>
-            <Btn className="bg-primary hover:bg-green-800 focus:ring-green-500  text-white px-8 sm:ml-3 sm:w-auto w-full">
+            <Link to="/client/job-post" className="py-2 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg bg-primary hover:bg-green-800 focus:ring-green-500  text-white px-8 sm:ml-3 sm:w-auto w-full">
               Post Job
-            </Btn>
+            </Link>
           </div>
         </div>
         <div className="flex flex-wrap">
@@ -64,6 +69,8 @@ const ClientHomePage = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

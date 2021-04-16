@@ -6,7 +6,7 @@ interface job{
     skills:String[],
     experience:String,
     duration:String,
-    paymentChioce:String,
+    paymentChoice:String,
     budget:Number
     //
 }
