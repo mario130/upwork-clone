@@ -1,11 +1,12 @@
 interface job{
     title:String,
-    jobCategory:String,
+    category:String,
     description:String,
-    jobType:String,
+    projectType:String,
     skills:String[],
-    experienceLevel:String,
-    ExpectedDuration:String,
+    experience:String,
+    duration:String,
     paymentChioce:String,
-    estimatedBudget:Number
+    budget:Number
+    //
 }

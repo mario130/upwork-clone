@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const jobSchema = mongoose.Schema({
     title:{
         type: String,
+        minLength:[15,"title shoud be more than 15 letters"],
+        trim:true,
         required: "A job must have a title"
     },
     category:{
@@ -11,26 +13,42 @@ const jobSchema = mongoose.Schema({
     },
     description:{
         type: String,
+        minLength:[10,"title shoud be more than 40 letters"],
+        trim:true,
         required: "A job must have a description"
     },
     projectType:{
         type: String,
         required: "A job must have a type"
     },
-    budget:{
+    skills:{
+      type:[String],
+      validate: {
+        validator: function() {
+            return (this.skills.length > 0);  
+        }, 
+        message: "minimum 1 skill should be added"
+      },
+      required:"A job must have skills"
+    },
+    experience:{
         type: String,
+        required: "A job must have a experience"
+    },
+    paymentChoice:{
+        type: String,
+        required: "A job must have a paymentChoice"
+    },
+    budget:{
+        type: Number,
+        min:[5,"budget should more than 5$"],
         required: "A job must have a budget"
     },
     duration:{
         type: String,
         required: "A job must have a duration"
     },
-    experience:{
-        type: String,
-        required: "A job must have a experience"
-    },
-
-    //todo SOME FIELDS ARE STILL MISSING!
+    
 })
 
 module.exports = mongoose.model("Job", jobSchema);

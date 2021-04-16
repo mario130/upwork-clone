@@ -57,7 +57,10 @@ const JobDescription = (props) => {
             }
             value={formik.values.description}
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            onBlur={(e)=>{
+              formik.setValues({description:formik.values.description.trim()})
+            formik.handleBlur(e)
+            }}
             errorMsg={
               formik.touched.description && formik.errors.description
                 ? formik.errors.description

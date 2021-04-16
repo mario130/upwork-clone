@@ -46,11 +46,11 @@ const JobTitle = (props) => {
   const [categoeries] = useState(initialState);
   const formik = useFormik({
     initialValues: {
-      jobTitle: "",
+      title: "",
       category: "",
     },
     validationSchema: Yup.object({
-      jobTitle: Yup.string()
+      title: Yup.string()
       .min(15, "Must be 15 characters or more")
       .required("Required"),
       category:Yup.string().required("Required")
@@ -61,12 +61,12 @@ const JobTitle = (props) => {
       props.ToNextStep("Description");
     },
   });
-  const { jobTitle,category } = useSelector((state) => state.jobPost)
+  const { title,category } = useSelector((state) => state.jobPost)
   const dispatch = useDispatch()
   useEffect(()=>{
-  console.log(jobTitle)
-  formik.setValues({jobTitle,category})
-},[jobTitle,category])
+
+  formik.setValues({title,category})
+},[title,category])
 
    
 
@@ -83,19 +83,22 @@ const JobTitle = (props) => {
               <Input
                 label="Enter the name of your job post"
                 className={
-                  formik.touched.jobTitle && formik.errors.jobTitle
+                  formik.touched.title && formik.errors.title
                     ? "border-danger focus:ring-danger pl-4"
                     : "pl-4"
                 }
                 type="text"
-                name="jobTitle"
+                name="title"
                 placeholder="Job Title"
                 onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.jobTitle}
+                onBlur={(e)=>{
+                  formik.setValues({title:formik.values.title.trim(),category:formik.values.category})
+                formik.handleBlur(e)
+                }}
+                value={formik.values.title}
                 errorMsg={
-                  formik.touched.jobTitle && formik.errors.jobTitle
-                    ? formik.errors.jobTitle
+                  formik.touched.title && formik.errors.title
+                    ? formik.errors.title
                     : null
                 }
               />
@@ -162,7 +165,7 @@ const JobTitle = (props) => {
               <Btn
                 type="submit"
                 className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
-                disabled={(formik.touched.jobTitle||formik.touched.category) && (formik.errors.jobTitle||formik.errors.category)}
+                disabled={(formik.touched.title||formik.touched.category) && (formik.errors.title||formik.errors.category)}
               >
                 Next
               </Btn>
