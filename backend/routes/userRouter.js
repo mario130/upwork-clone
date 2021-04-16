@@ -9,7 +9,6 @@ router.get('/getById/:id',userControl.getById);
 router.put('/update/:id',userControl.update);
 router.delete('/delete/:id',userControl.delete);
 router.post('/auth',userControl.authenticate);
-router.get('/checkMail',userControl.authMail);
 router.get('/checkEmail/:email',userControl.getByEmail);
 
 

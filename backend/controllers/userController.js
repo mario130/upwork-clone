@@ -21,7 +21,6 @@ module.exports.register = (req,resp,next) => {
                 return next(err);
         }
     })
-
 }
 
 module.exports.authenticate = (req,resp,next) => {
@@ -32,20 +31,6 @@ module.exports.authenticate = (req,resp,next) => {
         // registered user
         else if(user)
           return resp.status(200).json({'token': user.generateJwt() });
-        // Unknown user or wrong password
-        else
-          return resp.status(404).json(info);
-      })(req,resp)
-}
-
-module.exports.authMail = (req,resp,next) => {
-    passport.authenticate('local',(err , user, info) => {
-        // check if there is an error from passport middleware
-        if(err)
-          return resp.status(400).json(err);
-        // registered user
-        else if(user)
-          return resp.status(200).send(user);
         // Unknown user or wrong password
         else
           return resp.status(404).json(info);
@@ -72,7 +57,8 @@ module.exports.getById = (req,resp,next) => {
 module.exports.getByEmail = (req,resp,next) => {
     User.findOne({email:req.params.email},(err,data) => {
         if(!err)
-            resp.status(200).send('Email exists')
+            if(data == null) resp.status(422).send("User E-Mail is not correct!!")
+            else resp.status(200).send('Valid E-Mail')
         else
             return next(err)
     })
