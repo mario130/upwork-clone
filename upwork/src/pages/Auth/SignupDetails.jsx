@@ -4,8 +4,88 @@ import CheckBox from "../../components/UI/Form/CheckBox/CheckBox";
 import Input from "../../components/UI/Form/Input/Input";
 import Radio from "../../components/UI/Form/Radio/Radio";
 import Select from "../../components/UI/Form/Select/Select";
+import React, { Component } from 'react';
 
-const SignupDetails = (props) => {
+const validateForm = (errors) => {
+  let valid = true;
+  Object.values(errors).forEach(
+    (val) => val.length > 0 && (valid = false)
+  );
+  return valid;
+}
+
+class SignupDetails extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstName: null,
+      lastName: null,
+      userName: null,
+      password: null,
+      errors: {
+        firstName: '',
+        lastName: '',
+        userName: '',
+        password: '',
+      }
+    };
+  }
+
+
+  handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    let errors = this.state.errors;
+
+    switch (name) {
+      case 'firstName': 
+        errors.firstName = 
+          value.length < 5
+            ? 'First Name must be 5 characters long!'
+            : '';
+        break;
+      case 'lastName': 
+        errors.lastName = 
+          value.length < 5
+            ? 'Last Name must be 5 characters long!'
+            : '';
+        break;
+      case 'userName': 
+        errors.userName = 
+          value.length < 5
+            ? 'User Name must be 5 characters long!'
+            : '';
+        break;
+      case 'password': 
+        errors.password = 
+          value.length < 8
+            ? 'Password must be 8 characters long!'
+            : '';
+        break;
+      default:
+        break;
+    }
+
+    this.setState({errors, [name]: value});
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if(validateForm(this.state.errors)) {
+      console.info('Valid Form')
+    }else{
+      console.error('Invalid Form')
+    }
+  }
+
+
+
+
+
+
+  render(){
+    const {errors} = this.state;
   return (
     <>
       {/* NAVBAR */}
@@ -44,8 +124,8 @@ const SignupDetails = (props) => {
             Complete your free account setup
           </h2>
           {/* <h4 className="my-6">{props.location.search.split("=")[1]}</h4> */}
-          <form action="http://localhost:4001/users/register" method="POST">
-            <Input className="bg-white text-center border-none" name="email" type="text" disabled value={props.location.search.split("=")[1]} />
+          <form action="http://localhost:4001/users/register" method="POST" onSubmit={this.handleSubmit} noValidate>
+            <Input className="bg-white text-center border-none" name="email" type="text" disabled value={this.props.location.search.split("=")[1]} />
             <div className="grid md:grid-cols-2 md:gap-x-1">
               <div className="w-full ">
                 <Input
@@ -53,7 +133,6 @@ const SignupDetails = (props) => {
                   type="text"
                   name="firstName"
                   placeholder="First Name"
-                  errorMsg=""
                   svg={
                     <svg
                       width="18"
@@ -67,7 +146,10 @@ const SignupDetails = (props) => {
                       <path d="M7 8c-3.314 0-6 1.85-6 3.297v2.027c0 .373.358.676.8.676h10.4c.442 0 .8-.303.8-.676v-2.027C13 9.85 10.314 8 7 8zm3-5a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                   }
+                  onChange={this.handleChange} noValidate 
                 />
+                 {errors.firstName.length > 0 && 
+                <small className='text-danger pl-1'>{errors.firstName}</small>}
               </div>
               <div className="w-full ">
                 <Input
@@ -89,7 +171,10 @@ const SignupDetails = (props) => {
                       <path d="M7 8c-3.314 0-6 1.85-6 3.297v2.027c0 .373.358.676.8.676h10.4c.442 0 .8-.303.8-.676v-2.027C13 9.85 10.314 8 7 8zm3-5a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                   }
+                  onChange={this.handleChange} noValidate 
                 />
+                 {errors.lastName.length > 0 && 
+                <small className='text-danger pl-1'>{errors.lastName}</small>}
               </div>
             </div>
             <Input
@@ -98,7 +183,10 @@ const SignupDetails = (props) => {
               placeholder="Username"
               errorMsg=""
               className="pl-10"
+              onChange={this.handleChange} noValidate 
             />
+             {errors.userName.length > 0 && 
+                <small className='text-danger pl-1'>{errors.userName}</small>}
             <Input
               type="password"
               name="password"
@@ -118,7 +206,10 @@ const SignupDetails = (props) => {
                   <path d="M4.5 4.657C4.5 3.192 5.621 2 7 2s2.5 1.19 2.5 2.656V6h-5V4.657zM11.5 6V4.657C11.5 2.09 9.481 0 7 0S2.5 2.09 2.5 4.657V6h-.992C1.228 6 1 6.23 1 6.5v7c0 .276.229.5.5.5h11c.276 0 .5-.231.5-.5v-7a.5.5 0 00-.508-.5H11.5z"></path>
                 </svg>
               }
+              onChange={this.handleChange} noValidate 
             />
+             {errors.password.length > 0 && 
+                <small className='text-danger pl-1'>{errors.password}</small>}
             <div className="my-4">
               <Select name="country" options={["egypt", "cairo", "alex"]} />
             </div>
@@ -169,5 +260,6 @@ const SignupDetails = (props) => {
     </>
   );
 };
+}
 
 export default SignupDetails;
