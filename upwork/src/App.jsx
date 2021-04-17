@@ -8,6 +8,7 @@ import FreelancerProfile from './pages/freelancer/freelancer-profile';
 import Proposal from './pages/freelancer/proposal';
 import Applicants from './pages/Client/Applicants';
 import Jobs from './pages/Client/JobList';
+import AllProposals from './pages/freelancer/allProposals';
 import Nav from "./components/shared/dev-navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Signup from "./pages/Auth/SignUp";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/client/succes-post" component={SuccessPage} />
 
           <Route path="/proposal" component={Proposal} />
+          <Route path="/proposals" component={AllProposals} />
           <Route path="/applicants" component={Applicants} />
           <Route path="/job-list" component={Jobs} />
 

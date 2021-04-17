@@ -8,6 +8,7 @@ const Nav = () => {
     { title: "Job", link: "/job/6078554ae48496a93f483c0d" },
     { title: "F-profile", link: "/freelancer-profile" },
     { title: "Proposal", link: "/proposal" },
+    { title: "Proposals", link: "/proposals" },
     { title: "Applicants", link: "/applicants" },
     { title: "JobsList", link: "/job-list" },
     // { title: "profile-step1", link: "/ProfileStep1" }, // duplicate
