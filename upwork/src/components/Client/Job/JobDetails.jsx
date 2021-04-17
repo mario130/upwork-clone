@@ -20,25 +20,25 @@ const JobDetails = (props) => {
   const formik = useFormik({
     initialValues: {
       projectType: "",
-      duration:""
+      duration: "",
     },
     validationSchema: Yup.object({
       projectType: Yup.string().required("Required"),
-      duration:Yup.string().required("Required"),
+      duration: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
       dispatch(addJob(values));
       props.ToNextStep("Expertise");
     },
   });
-  const { projectType,duration } = useSelector((state) => state.jobPost);
+  const { projectType, duration } = useSelector((state) => state.jobPost);
   useEffect(() => {
-    formik.setValues({ projectType,duration });
-  }, [projectType,duration]);
+    formik.setValues({ projectType, duration });
+  }, [projectType, duration]);
   return (
     <div className="col-span-4">
-        <form onSubmit={formik.handleSubmit}>
-      <div className="bg-white mb-5">
+      <form onSubmit={formik.handleSubmit}>
+        <div className="bg-white mb-5">
           <ul className="list-group">
             <li className="item-border ">
               <p className="text-2xl font-extrabold"> Details </p>
@@ -94,14 +94,12 @@ const JobDetails = (props) => {
                 ) : null}
               </div>
             </li>
-            </ul>
-            </div>
-            <div className="bg-white mb-5">
+          </ul>
+        </div>
+        <div className="bg-white mb-5">
           <ul className="list-group">
             <li className="item-border">
-              <p className="font-bold text-sm mb-5">
-                Expected Duration
-              </p>
+              <p className="font-bold text-sm mb-5">Expected Duration</p>
               <div className="grid sm:grid-cols-2 gap-2">
                 <RadioBox
                   id="shortTime"
@@ -138,7 +136,7 @@ const JobDetails = (props) => {
                 ) : null}
               </div>
             </li>
-            
+
             <li className="item-border">
               <Btn
                 className="text-primary mr-3 border-hair border px-10 py-2 "
@@ -149,18 +147,23 @@ const JobDetails = (props) => {
               <Btn
                 type="submit"
                 className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
+                // disabled={
+                //   formik.touched.projectType && formik.errors.projectType
+                // }
                 disabled={
-                  formik.touched.projectType && formik.errors.projectType
+                  formik.values.projectType === "" ||
+                  formik.values.duration === "" ||
+                  ((formik.touched.projectType || formik.touched.duration) &&
+                    (formik.errors.projectType || formik.errors.duration))
                 }
               >
                 Next
               </Btn>
             </li>
           </ul>
-          </div>
-        </form>
-      </div>
-
+        </div>
+      </form>
+    </div>
   );
 };
 

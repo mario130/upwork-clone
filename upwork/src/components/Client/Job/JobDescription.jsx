@@ -79,7 +79,7 @@ const JobDescription = (props) => {
             <Btn
             type="submit"
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
-              disabled={formik.touched.description && formik.errors.description}
+              disabled={formik.values.description === "" ||(formik.touched.description && formik.errors.description)}
   
             >
               Next
