@@ -7,12 +7,6 @@ import Select from "../../components/UI/Form/Select/Select";
 import React, { Component } from "react";
 const countries = require("../../store/data/countries.json");
 
-const validateForm = (errors) => {
-  let valid = true;
-  Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
-  return valid;
-};
-
 class SignupDetails extends Component {
   constructor(props) {
     super(props);

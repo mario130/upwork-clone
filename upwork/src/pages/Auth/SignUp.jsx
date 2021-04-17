@@ -100,7 +100,7 @@ class Signup  extends Component{
               onChange={this.handleChange} noValidate
             />
              {errors.email.length > 0 && 
-                <span className='text-danger'>{errors.email}</span>}
+                <small className='text-danger'>{errors.email}</small>}
             <button disabled={this.state.email?"":"true"} className="w-full  bg-primary hover:bg-dark focus:ring-green-500  text-white  py-2 px-4 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg ">
               Continue with Email
             </button>
