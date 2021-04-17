@@ -7,6 +7,8 @@ import React, { Component } from "react";
 import baseURL from "./../../store/actions/baseURL";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
+
 
 const validEmailRegex = RegExp(
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -24,7 +26,7 @@ class Login extends Component {
     this.state = {
       email: null,
       password: null,
-      signedIn:false,
+      redirect: false,
       errors: {
         email: "",
         password: "",
@@ -76,6 +78,7 @@ class Login extends Component {
       console.log(`email: ${this.state.email}`);
       console.log(`password: ${this.state.password}`);
       errors.login = "" ;
+      this.setState({ redirect: true })
     } catch (err) {
       errors.login = "Email Address or Password not correct" ;
       console.log(err);
@@ -184,8 +187,9 @@ class Login extends Component {
                   Continue
                 </button>
                 {errors.login.length > 0 && (
-                <small className="text-danger">{errors.login}</small>
-              )}
+                  <small className="text-danger">{errors.login}</small>
+                  )}
+                  { this.state.redirect ? (<Redirect push to="/freelancer"/>) : null }
             </form>
             <Separator>or</Separator>
             <GoogleBtn />
