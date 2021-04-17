@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addJob } from "../../../store/actions/jobPostAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 const initialState = [
   {
@@ -159,13 +160,14 @@ const JobTitle = (props) => {
               <Btn
                 type="button"
                 className="text-primary mr-3 border-hair border px-10 py-2 "
+                handleClicking={()=>props.history.push("/client/home")}
               >
                 cancel
               </Btn>
               <Btn
                 type="submit"
                 className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
-                disabled={(formik.touched.title||formik.touched.category) && (formik.errors.title||formik.errors.category)}
+                disabled={ (formik.values.title==="" || formik.values.category==="") || (( formik.touched.title||formik.touched.category) && ( formik.errors.title||formik.errors.category))}
               >
                 Next
               </Btn>
@@ -178,4 +180,4 @@ const JobTitle = (props) => {
   );
 };
 
-export default JobTitle;
+export default withRouter(JobTitle);

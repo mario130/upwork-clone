@@ -12,7 +12,7 @@ const Carousel = (props) => {
   };
   return (
     <Slider {...settings}>
-      {props.slider.map(slider=>( <div>
+      {props.slider.map(slider=>( <div key={slider.title}>
         <img  className= "w-full" src={slider.src} alt={slider.alt} />
         <div className=" flex justify-center text-center">
           <div className="p-4">

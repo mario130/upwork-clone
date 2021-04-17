@@ -21,7 +21,7 @@ const ProfileStep12 = () => {
                             <h1 className='text-xs mb-6 mt-2'>We take your privacy very seriously. Only your city and country will be shown to clients.</h1>
 
                             <label htmlFor="street" className='text-xs my-2 font-bold block'>Country</label>
-                            <select class="form-select block w-1/2 mb-5 mx-1 my-2 py-2 pl-10 border border-gray-300 shadow-sm bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <select className="form-select block w-1/2 mb-5 mx-1 my-2 py-2 pl-10 border border-gray-300 shadow-sm bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 <option>Egypt</option>
                                 <option>Egypt</option>
                                 <option>Egypt</option>
