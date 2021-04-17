@@ -70,8 +70,8 @@ class Login extends Component {
     try {
       let response = await axios.post(`${baseURL}/users/auth`, data);
       payload = response.data;
-      console.log(payload);
-      localStorage.setItem("user" + this.state.email + "token", payload);
+      console.log(payload.token);
+      localStorage.setItem("user" + this.state.email + "token", payload.token);
       
       console.log(`email: ${this.state.email}`);
       console.log(`password: ${this.state.password}`);
