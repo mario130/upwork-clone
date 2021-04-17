@@ -33,9 +33,8 @@ const Templates = () => {
           <p className="font-bold text-2xl">Job Template</p>
         </li>
         {templates.map((tem) => (
-          <li>
-            {" "}
-            <li className="list-items justify-between p-4 ">
+          
+            <li className="list-items justify-between p-4 " key={tem.temName}>
               <div className="">
                 <h3 className="text-xl hover:underline  hover:text-primary overflow-hidden lines ">
                   <Link to="/">{tem.temName}</Link>
@@ -50,7 +49,7 @@ const Templates = () => {
                     focusable="false"
                     data-prefix="fas"
                     data-icon="arrow-right"
-                    class="svg-inline--fa fa-arrow-right fa-w-14"
+                    className="svg-inline--fa fa-arrow-right fa-w-14"
                     role="img"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
@@ -63,7 +62,7 @@ const Templates = () => {
                 </span>
               </button>
             </li>
-          </li>
+       
         ))}
       </ul>
     </section>

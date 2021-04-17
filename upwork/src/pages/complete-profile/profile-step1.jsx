@@ -13,8 +13,8 @@ const ProfileStep1 = () => {
                 <input type="text" className='border-gray-300 border w-full md:w-1/2 mb-5 py-2 pl-10 bg-white text-gray-700 placeholder-gray-800 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent' name="firstName" placeholder="First Name" />
                 <input type="text" className='border-gray-300 border w-full md:w-1/2 mb-5 py-2 pl-10 bg-white text-gray-700 placeholder-gray-800 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent' name="lastName" placeholder="Last Name" />
                 <input type="password" className='border-gray-300 border w-full mb-5 py-2 pl-10 bg-white text-gray-700 placeholder-gray-800 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent' name="lastName" placeholder="Create a password" />
-                <label class="block">
-                    <select class="form-select inline-flex w-full mb-5 py-2 pl-10 border border-gray-300 shadow-sm bg-white text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <label className="block">
+                    <select className="form-select inline-flex w-full mb-5 py-2 pl-10 border border-gray-300 shadow-sm bg-white text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                         <option>Egypt</option>
                         <option>Egypt</option>
                         <option>Egypt</option>

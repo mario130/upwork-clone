@@ -9,9 +9,9 @@ const ProfileStep3 = () => {
             <div className="md:gap-4 md:grid md:grid-cols-12">
                 <Sidbar />
                 <div className='md:col-span-6 bg-white shadow-lg'>
-                    <div class="flex flex-wrap justify-center">
-                        <div class="w-full">
-                            <img src="https://www.saintlad.com/wp-content/uploads/2021/02/Upwork-Job-Post-Not-Getting-Any-Applications-4-550x314.png" alt="profile image" class="w-full h-48 align-middle border-none" />
+                    <div className="flex flex-wrap justify-center">
+                        <div className="w-full">
+                            <img src="https://www.saintlad.com/wp-content/uploads/2021/02/Upwork-Job-Post-Not-Getting-Any-Applications-4-550x314.png" alt="profile image" className="w-full h-48 align-middle border-none" />
                         </div>
                     </div>
                     <div className='px-5'>

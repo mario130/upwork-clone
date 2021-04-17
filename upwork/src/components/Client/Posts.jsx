@@ -27,7 +27,7 @@ const Posts = () => {
                   all Posts
                 </Link>
               </li>
-              {posts.map(post=> <> <li className="list-items justify-between">
+              {posts.map(post=> <> <li className="list-items justify-between" key={post.title}>
                 <div className="w-2/4">
                   <h3 className="text-xl hover:underline  hover:text-primary overflow-hidden lines ">
                       <Link to="/">
