@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRouter')
 const freelanceProfileRouter = require('./routes/freelanceProfileRouter')
 const jobRoutes = require('./routes/jobRoutes')
+const proposalRoutes = require('./routes/proposalRoutes')
 const passport = require('passport')
 require('dotenv').config();
 require('./middleware/passportConfig')
@@ -31,6 +32,7 @@ app.use(bodyParser.json());
 app.use('/users',userRouter)
 app.use('/profile',freelanceProfileRouter)
 app.use('/jobs',jobRoutes)
+app.use('/proposal',proposalRoutes)
 
 // ERROR HANDLER
 app.use((err,req,resp,next) =>{

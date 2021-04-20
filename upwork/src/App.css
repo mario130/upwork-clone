@@ -53,6 +53,12 @@ button:disabled{
   opacity: 0.5;
   cursor: not-allowed;
 }
+.upload{
+  text-align: center;
+  padding: 4vh 1vw;
+  border: 2px dashed #37A000;
+  background-color: #F9F9F9;
+}
 @keyframes lds-ring {
   0% {
     transform: rotate(0deg);
