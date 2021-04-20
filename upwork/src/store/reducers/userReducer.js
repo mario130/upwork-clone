@@ -1,8 +1,7 @@
 import * as actionTypes from "./../actions/action-types";
 const initialState = {
-  username: "",
-  id: "",
-  token: null,
+  email: "",
+  token: "",
 };
 
 export const userReducer = (state = initialState, action) => {
