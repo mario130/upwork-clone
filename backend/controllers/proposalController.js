@@ -25,8 +25,8 @@ module.exports.addProposal = async (req, resp, next) => {
      const alreadySumitted= job.proposals.find((proposal) => {
       return proposal.freelancer.toString() === req._id.toString()});
       if(alreadySumitted){
-        next("Already submitted");
-        return;
+       return next({msg:"Already submitted",isSubmitted:true});
+
       }
       job.proposals.push(proposal)
       job.save((err,data)=>{
