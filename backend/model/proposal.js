@@ -1,5 +1,3 @@
-// userID, proposalID,bid,upworkFees,received,coverLetter
-
 const mongoose = require("mongoose");
 
 const proposalSchema = mongoose.Schema({
