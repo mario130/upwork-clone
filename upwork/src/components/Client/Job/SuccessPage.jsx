@@ -6,7 +6,7 @@ import Nav from "../../shared/navbar";
 const SuccessPage = (props) => {
   const [redirect, setRedirect] = useState(false);
   useEffect(() => {
-      const id = setTimeout(() => setRedirect( true ), 5000)
+      const id = setTimeout(() => setRedirect( true ), 2000)
 
       return () => {
           clearTimeout(id)

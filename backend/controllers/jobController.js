@@ -1,5 +1,5 @@
 const Job = require("../model/job");
-
+const Client = require("./../model/client")
 module.exports.getAll = (req, resp, next) => {
   Job.find({}, (err, data) => {
     if (!err) {
@@ -16,8 +16,9 @@ module.exports.getById = (req, resp, next) => {
   });
 };
 module.exports.addJob =  (req, resp, next) => {
-  const job = new Job({ ...req.body });
+  const job = new Job({ ...req.body , client:req._id});
    job.save((err,data) => {
+     
     if (!err) resp.status(200).json(data);
     else return next(err);
   });

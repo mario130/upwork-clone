@@ -159,7 +159,7 @@ const Main = () => {
                 <div>
                   <h2 className="font-bold">
                     <Link to={"job/"+job._id}>
-                      <a>{job.title}</a>
+                      {job.title}
                     </Link>
                   </h2>
                   <p className="text-sm font-bold text-gray-500">{job.type}</p>

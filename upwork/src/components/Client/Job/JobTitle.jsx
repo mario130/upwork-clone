@@ -44,6 +44,7 @@ const initialState = [
   },
 ];
 const JobTitle = (props) => {
+  const dispatch = useDispatch()
   const [categoeries] = useState(initialState);
   const formik = useFormik({
     initialValues: {
@@ -63,7 +64,6 @@ const JobTitle = (props) => {
     },
   });
   const { title,category } = useSelector((state) => state.jobPost)
-  const dispatch = useDispatch()
   useEffect(()=>{
 
   formik.setValues({title,category})

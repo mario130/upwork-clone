@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 
 const proposalSchema = mongoose.Schema({
-//   userID: {
-//     type: String,
-//     required: true,
-//   },
-//   jobID: {
+  freelancer: {
+    type: mongoose.Schema.Types.ObjectId,
+    
+    required: true,
+    },
+  // },
+//   job: {
 //     type: String,
 //     required: true,
 //   },
@@ -17,7 +19,7 @@ const proposalSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  duaration: {
+  duration: {
     type: String,
     required: true,
   },
@@ -27,4 +29,4 @@ const proposalSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Proposal", proposalSchema);
+module.exports = proposalSchema
