@@ -11,22 +11,29 @@ module.exports.getAll = (req, resp, next) => {
 
 module.exports.addProposal = async (req, resp, next) => {
 
-  const proposal = {
-    bid:req.body.bid,
-    coverLetter:req.body.coverLetter,
-    duration:req.body.duration,
-    imgPath:req.body.imgPath,
-    freelancer:req._id
-   };
   const job = await Job.findById(
     mongoose.Types.ObjectId(req.params.jobId)
-   )
-   job.proposals.push(proposal)
-   
-   job.save((err,data)=>{
-       if (!err) resp.status(200).json("successfully submit proposal");
-       else return next(err);
+    )
+    if(job){
+     const proposal = {
+       bid:req.body.bid,
+       coverLetter:req.body.coverLetter,
+       duration:req.body.duration,
+       imgPath:req.body.imgPath,
+       freelancer:req._id
+      };
+     const alreadySumitted= job.proposals.find((proposal) => {
+      return proposal.freelancer.toString() === req._id.toString()});
+      if(alreadySumitted){
+        next("Already submitted");
+        return;
+      }
+      job.proposals.push(proposal)
+      job.save((err,data)=>{
+          if (!err) resp.status(200).json("successfully submit proposal");
+          else return next(err);
+      })
+   }
 
-   })
 
 };
