@@ -1,7 +1,6 @@
 const FreelanceProfile = require('../model/freelanceProfile');
 const User = require('../model/user');
-const g = require('lodash');
-const { pick } = require('lodash');
+
 
 module.exports.addProfile = (req,resp,next) => {
     let freelanceProfile = new FreelanceProfile();
@@ -16,13 +15,17 @@ module.exports.addProfile = (req,resp,next) => {
     freelanceProfile.hourlyRate=req.body.hourlyRate;
     freelanceProfile.title=req.body.title;
     freelanceProfile.overView=req.body.overView;
-    freelanceProfile.profilePhoto=req.body.profilePhoto;
+    freelanceProfile.profilePhoto=req.file.path;
     freelanceProfile.location=req.body.location;
     freelanceProfile.phone=req.body.phone;
 
     freelanceProfile.save((err,doc) =>{
         if(!err)
             resp.send(doc);
+        else if(err.code == 11000)
+        {
+            resp.status(422).send('User already has profile');
+        }
         else{
             return next(err);
         }
@@ -30,7 +33,7 @@ module.exports.addProfile = (req,resp,next) => {
 }
 
 module.exports.getData = (req,resp,next) => {
-    FreelanceProfile.find({userId:req._id},(err,data) => {
+    FreelanceProfile.find({userId:req._id},(err,profileData) => {
         if(err){
             return next(err)
         }
@@ -39,10 +42,24 @@ module.exports.getData = (req,resp,next) => {
                 if(!user){
                     return resp.status(404).json( {status:false,message:'user record not found'} )
                  }else{
-                     resp.status(200).json({data, user : g.pick(user,['email','firstName'])})
+                     resp.status(200).json({profileData, user })
                  }
-            })
+            }).select('email firstName lastName userName country')
          }
         }
     )
+}
+
+module.exports.updateProfile = (req,resp,next) => {
+    let freelanceProfile=req.body
+    User.updateOne({_id: req.params.id},freelanceProfile).then((data, err) => {
+        if (!err) {
+          if(data === null){
+            return resp.status(200).send('Not found')
+          }
+          return resp.status(200).send(data)
+        } else {
+          resp.status(400).send(err)
+        }
+    })
 }
