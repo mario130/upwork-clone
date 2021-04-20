@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
     },
     userName:{
         type:String,
-        // required: "User name field can\'t be empty",
+        required: "User name field can\'t be empty",
         unique:true
     },
     country:{

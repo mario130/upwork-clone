@@ -3,7 +3,13 @@ const mongoose = require("mongoose");
 const freelanceProfileSchema = mongoose.Schema({
     userId:{
         type: String,
-        required: "User ID field can\'t be empty"
+        required: "User ID field can\'t be empty",
+        unique:true,
+    
+        validate: async function(){
+            let User=mongoose.model('User');
+            return await User.findOne({_id:this.userId,userType:'freelance'})
+        }
     },
     categoryType:{
         type:String,
@@ -22,11 +28,11 @@ const freelanceProfileSchema = mongoose.Schema({
         required: "Expertise level field can\'t be empty"
     },
     education:{
-        type:Array,
+        type:Object,
         required: "Add at least one item in education field"
     },
     employment:{
-        type:Array,
+        type:Object,
         required: "Add at least one item in employment field"
     },
     languages:{
