@@ -7,8 +7,8 @@ const freelanceProfileSchema = mongoose.Schema({
         unique:true,
     
         validate: async function(){
-            let User=mongoose.model('Frelancer');
-            return await User.findOne({_id:this.userId,userType:'freelance'})
+            let User=mongoose.model('Freelancer');
+            return await User.findOne({_id:this.userId})
         }
     },
     categoryType:{

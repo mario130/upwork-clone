@@ -1,7 +1,7 @@
 import * as actionTypes from "./../actions/action-types";
 const initialState = {
-  email: "",
-  token: "",
+  email: localStorage.getItem("user") || "",
+  token: localStorage.getItem("token") || "",
 };
 
 export const userReducer = (state = initialState, action) => {
