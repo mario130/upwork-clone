@@ -7,7 +7,7 @@ const freelanceProfileSchema = mongoose.Schema({
         unique:true,
     
         validate: async function(){
-            let User=mongoose.model('User');
+            let User=mongoose.model('Frelancer');
             return await User.findOne({_id:this.userId,userType:'freelance'})
         }
     },
@@ -64,7 +64,8 @@ const freelanceProfileSchema = mongoose.Schema({
     phone:{
         type:String,
         required: "Phone field can\'t be empty"
-    }
+    },
+    proposals:[]
 })
 
 module.exports = mongoose.model("FreelanceProfile", freelanceProfileSchema);

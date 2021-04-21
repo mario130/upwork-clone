@@ -8,14 +8,30 @@ interface job{
     duration:String,
     paymentChoice:String,
     budget:Number
-    // client:clientId,
-    proposals:[Proposal],
+    client:"clientId",
+    submittedProposals:[Proposal],
 
 }
 interface Proposal {
     freelancer:String,
     coverLetter:String,
-    upload:String
+    upload:String,
+    jobId:String
 }
-interface ClientProfile{
+interface client{
+
+
 }
+interface freelancer{
+    hisProposals:[Proposal],
+    // acceptedJobs: [job],
+    profileId:"id"
+
+}
+interface profile {
+    freelanceId : "id",
+    // ....
+}
+// get all proposals for freelancer
+// get all proposals for job 
+

@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
 
 const proposalSchema = mongoose.Schema({
-  freelancer: {
+  freelancerId: {
     type: mongoose.Schema.Types.ObjectId,
-    
+    ref: "Freelancer",
     required: true,
-    },
+  },
   // },
-//   job: {
-//     type: String,
-//     required: true,
-//   },
+  //   job: {
+  //     type: String,
+  //     required: true,
+  //   },
   bid: {
     type: Number,
     required: true,
@@ -29,4 +29,4 @@ const proposalSchema = mongoose.Schema({
   },
 });
 
-module.exports = proposalSchema
+module.exports = proposalSchema;
