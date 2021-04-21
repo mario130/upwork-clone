@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {useDispatch} from 'react-redux';
 import { logout } from "../../store/actions/logoutAction";
+import {Link} from 'react-router-dom';
 
 const ListItem = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +51,11 @@ const ListItem = (props) => {
       {isOpen ? (
         <ul>
           {props.list.list?.map((item) => (
-            <li className="pt-4 ml-4 text-sm">{item}</li>
+            <li className="pt-4 ml-4 text-sm">
+              <Link to={item.link}>
+                {item.title}
+              </Link>
+            </li>
           ))}
         </ul>
       ) : null}
