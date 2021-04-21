@@ -4,7 +4,7 @@ const jobControl = require('../controllers/jobController');
 const jwtHelper = require('../middleware/jwtHelper');
 
 
-router.get('/getAll',jobControl.getAll);
+router.get('/getAll',jwtHelper.verifyJwtToken,jobControl.getAllClientJobs);
 router.get('/:jobId', jobControl.getById);
 router.post('/add-job',jwtHelper.verifyJwtToken , jobControl.addJob);
 

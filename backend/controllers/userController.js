@@ -26,10 +26,9 @@ module.exports.register = (req, resp, next) => {
       if (user.userType === "client") {
         const client = new Client();
         client.userId = doc._id;
+     
         client.save((err, doc) => {
-          if (err) {
-            console.log(err);
-          }
+          if (err) console.log(err);
         });
       }
 

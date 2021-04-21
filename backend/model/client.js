@@ -5,6 +5,7 @@ const clientSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: "Client ID field can\'t be empty",
         ref:'User',
+        unique: true,
 
     },
     jobs:[{

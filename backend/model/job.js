@@ -50,7 +50,7 @@ const jobSchema = mongoose.Schema({
     required: "A job must have a duration",
   },
   proposals: [proposalSchema],
-  client: { type: mongoose.Schema.Types.ObjectId, ref: "Client", required: true },
+  clientId: { type: mongoose.Schema.Types.ObjectId, ref: "Client", required: true },
 });
 
 module.exports = mongoose.model("Job", jobSchema);

@@ -12,7 +12,7 @@ require('./middleware/passportConfig')
 const app = express()
 app.use(express.urlencoded({extended: false}))
 
-mongoose.connect(process.env.MONGO_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGO_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true})
 .then(()=>console.log('Connected to mongodb!'))
 .catch(()=> console.log('Couldn\'t connect to mongodb!'));
 
