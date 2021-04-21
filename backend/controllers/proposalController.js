@@ -3,21 +3,26 @@ const Proposal = require("../model/proposal");
 const mongoose = require("mongoose");
 const Freelancer = require("../model/freelancer");
 module.exports.getFreelancerProposoal = (req, resp, next) => {
-  Freelancer.find({userId: req._id}, (err, data) => {
+  Freelancer.find({ userId: req._id }, (err, data) => {
     if (!err) {
       resp.status(200).send(data[0].submittedProposals);
     } else return next(err);
   });
 };
 module.exports.getJobProposals = (req, resp, next) => {
-  console.log(mongoose.Types.ObjectId(req.params.jobId))
-  Job.findById( mongoose.Types.ObjectId(req.params.jobId), (err, data) => {
-    if (!err) {
-      resp.status(200).send(data.proposals);
-    } else return next(err);
-  });
+  console.log(mongoose.Types.ObjectId(req.params.jobId));
+  Job.findById(mongoose.Types.ObjectId(req.params.jobId))
+  .populate({ 
+      path: 'proposals.freelancerId',
+      model:"User",
+      select:["firstName","lastName","userName"] 
+   })
+    .exec((err, data) => {
+      if (!err) {
+        resp.status(200).send(data.proposals);
+      } else return next(err);
+    });
 };
-
 
 module.exports.addProposal = async (req, resp, next) => {
   const job = await Job.findById(mongoose.Types.ObjectId(req.params.jobId));
@@ -26,7 +31,7 @@ module.exports.addProposal = async (req, resp, next) => {
       bid: req.body.bid,
       coverLetter: req.body.coverLetter,
       duration: req.body.duration,
-      imgPath: req.file.path,
+      imgPath: req.body.imgPath,
       freelancerId: req._id,
     };
 
