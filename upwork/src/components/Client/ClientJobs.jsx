@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Navbar from './Jobs-navbar';
 
 const Jobs = () => {
-  const [allJobs] = useState([
+  /* const [allJobs] = useState([
     {
       title: "Job post 1",
       applicants: 3,
@@ -15,8 +16,23 @@ const Jobs = () => {
       title: "Job post 3",
       applicants: 1,
     },
-  ])
+  ]) */
+  const [allJobs,setAlljobs]=useState([]);
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:4001/jobs/getAll`,{
+          headers:{'Authorization':`Bearer ${token}`}
+        }
+      )
+      .then((data) => {
+        console.log(data);
+        setAlljobs(data.data);
+      });
+  }, []);
 
+  console.log(allJobs)
   return (
     <>
       <Navbar />
@@ -25,12 +41,12 @@ const Jobs = () => {
         <div className="">
           <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Jobs ({allJobs.length})</h2>
 
-          {allJobs.map(job => (
+          {allJobs.map( (job) => (
             <div className="p-4 md:px-6 border-b border-gray-200">
               <div className="flex py-2 justify-between cursor-pointer items-center">
                 <div>
                   <h2 className="text-primary font-bold">{job.title}</h2>
-                  <h5 className="text-gray-500">{job.applicants} applicants</h5>
+                  <h5 className="text-gray-500">{job.proposals.length} applicants</h5>
                 </div>
                 <button className="bg-primary text-white px-3 py-1 rounded-full flex items-center">View job
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

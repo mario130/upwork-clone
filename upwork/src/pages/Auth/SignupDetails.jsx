@@ -83,7 +83,9 @@ class SignupDetails extends Component {
 
             <p className="text-white">
               <span className="hidden md:inline">Already have an account?</span>{" "}
-              <span className="font-bold text-primary">Log in</span>
+              <Link to="/login">
+                <span className="font-bold text-primary">Log in</span>
+              </Link>
             </p>
           </div>
         </div>
