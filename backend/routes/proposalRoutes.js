@@ -4,7 +4,8 @@ const proposalControl = require('../controllers/proposalController');
 const jwtHelper = require('../middleware/jwtHelper');
 
 
-router.get('/getAll',proposalControl.getFreelancerProposoal);
+router.get('/getFreelancerProposals',jwtHelper.verifyJwtToken,proposalControl.getFreelancerProposoal);
+router.get('/getJobProposals/:jobId',jwtHelper.verifyJwtToken,proposalControl.getJobProposals);
 router.post('/add/:jobId',jwtHelper.verifyJwtToken, proposalControl.addProposal);
 
 module.exports = router;
