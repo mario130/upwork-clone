@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../shared/spinner";
+import { Link } from "react-router-dom";
 
 const Job = (props) => {
   const [job, setJob] = useState(null);
@@ -9,14 +10,14 @@ const Job = (props) => {
       .get(`https://upwork-4.herokuapp.com/jobs/${props.id}`)
       .then((data) => {
         console.log(data);
+        localStorage.setItem("job", JSON.stringify(data));
         setJob(data.data);
       });
   }, []);
-
   return (
     <div className="min-h-screen flex justify-center items-center">
       {job?.title ? (
-        <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-7 lg:rounded-lg border border-gray-200">
+        <div className="w-full mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-7 lg:rounded-lg border border-gray-200">
           {/* <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl "> */}
           {/* lg left part */}
           <div className="lg:col-start-1 col-span-5 lg:border-r lg:border-gray-200">
@@ -111,7 +112,7 @@ const Job = (props) => {
               <p>{job?.projectType}</p>
             </div>
 
-            <div className="p-6 grayBottomBorder text-sm">
+            {/* <div className="p-6 grayBottomBorder text-sm">
               <h4 className="font-bold">
                 You will be asked to answer the following questions when
                 submitting a proposal:
@@ -123,26 +124,23 @@ const Job = (props) => {
                   </li>
                 ))}
               </ol>
-            </div>
+            </div> */}
 
             <div className="p-6 grayBottomBorder text-sm">
               <h4 className="mb-6 font-bold text-lg">Skills and Expertise</h4>
-              <div className="flex flex-wrap justify-between space-y-2">
+              <div className="flex flex-wrap">
                 {job?.skills.map((skill) => (
-                  <div className="w-1/2">
-                    <h5 className="font-bold my-2">{skill.title}</h5>
-                    {skill.tags.map((tag) => (
-                      <span className="px-2 py-1 bg-gray-100 rounded-full mr-2 font-semibold text-gray-800">
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="">
+                    <span className="px-2 py-1 bg-gray-100 rounded-full mr-2 font-semibold text-gray-800">
+                      {skill}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="lg:flex">
-              <div className="p-6 text-sm grayBottomBorder lg:w-1/2">
+              {/* <div className="p-6 text-sm grayBottomBorder lg:w-1/2">
                 <h2 className="font-bold mb-2">Preferred qualifications</h2>
                 <div className="infoList">
                   <h4 className="text-gray-500 lg:mr-2">Talent type:</h4>
@@ -160,15 +158,15 @@ const Job = (props) => {
                   <h4 className="text-gray-500 lg:mr-2">Amount earned:</h4>
                   <p>{job?.qualifications.amountEarned}</p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="p-6 text-sm grayBottomBorder lg:w-1/2">
                 <h2 className="font-bold mb-2">Activity on this job</h2>
                 <div className="infoList">
                   <h4 className="text-gray-500 lg:mr-2">Proposals:</h4>
-                  <p>{job?.activity.proposals}</p>
+                  <p>{job?.proposals.length}</p>
                 </div>
-                <div className="infoList">
+                {/* <div className="infoList">
                   <h4 className="text-gray-500 lg:mr-2">Interviewing:</h4>
                   <p>{job?.activity.interviewing}</p>
                 </div>
@@ -179,7 +177,7 @@ const Job = (props) => {
                 <div className="infoList">
                   <h4 className="text-gray-500 lg:mr-2">Unanswered invites:</h4>
                   <p>{job?.activity.unanswered}</p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -187,9 +185,11 @@ const Job = (props) => {
           <div className="text-sm grayBottomBorder lg:col-start-6 col-span-2">
             <div className="p-4 hidden lg:block grayBottomBorder">
               <div className="space-y-2 p-3">
-                <button className="w-full p-2 rounded-lg font-bold text-sm bg-primary text-white">
-                  Submit a proposal
-                </button>
+                <Link to={`/proposal/${props.id}`}>
+                  <button className="w-full p-2 rounded-lg font-bold text-sm bg-primary text-white">
+                    Submit a proposal
+                  </button>
+                </Link>
                 <button className="w-full p-2 rounded-lg font-bold text-sm text-primary border flex justify-center items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -231,43 +231,41 @@ const Job = (props) => {
             <h4 className="px-6 pt-4  font-bold mb-2 text-lg">
               About the client
             </h4>
-            {job?.client.paymentVerified ? (
-              <div className="px-6 flex items-center mb-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-white"
-                  fill="#14bff4"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                  />
-                </svg>
-                <p className="font-bold text-gray-500">Payment verified</p>
-              </div>
-            ) : null}
+            <div className="px-6 flex items-center mb-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-white"
+                fill="#14bff4"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                />
+              </svg>
+              <p className="font-bold text-gray-500">Payment verified</p>
+            </div>
 
             <div className="px-6 flex justify-between mb-2 lg:block">
-              <h4 className="font-bold">{job?.client.coutry}</h4>
+              <h4 className="font-bold">{job?.client?.coutry}</h4>
               <p className="text-gray-500">Forest Town Mansfield 01:57 pm</p>
             </div>
-            <div className="px-6 flex justify-between mb-2 lg:block">
+            {/* <div className="px-6 flex justify-between mb-2 lg:block">
               <h4 className="font-bold">
-                {job?.client.pastJobsCounter} jobs posted
+                {job?.client?.pastJobsCounter} jobs posted
               </h4>
               <p className="text-gray-500">100% hire rate, 1 open job</p>
-            </div>
-            <div className="px-6 flex justify-between mb-2 lg:block">
-              <h4 className="font-bold">{job?.client.spent}+ total spent</h4>
+            </div> */}
+            {/* <div className="px-6 flex justify-between mb-2 lg:block">
+              <h4 className="font-bold">{job?.client?.spent}+ total spent</h4>
               <p className="text-gray-500">1 hire, 1 active</p>
-            </div>
+            </div> */}
             <div className="px-6 flex justify-between mb-2 lg:block">
               <h4 className="font-bold">
-                {job?.client.average} avg hourly rate paid
+                {job?.client?.average} avg hourly rate paid
               </h4>
               <p className="text-gray-500">73 hours</p>
             </div>
