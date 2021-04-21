@@ -3,24 +3,54 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import baseURL from './../../store/actions/baseURL';
+import { axios } from 'axios';
+import {Link} from 'react-router-dom';
 
 const Proposal = () => {
+
   const job =JSON.parse(localStorage.getItem("job")).data
   const formik = useFormik({
     initialValues: {
       bid: "",
       duration: "",
       coverLetter: "",
+      imgPath : ""
     },
     validationSchema: Yup.object({
       bid: Yup.string().required("bid is required"),
       duration: Yup.string().required("duration is required"),
       coverLetter: Yup.string().required("duration is required"),
     }),
-    onSubmit: (fields) => {
-      alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+    onSubmit :async(fields)=>{
+      postProposal()
     },
   });
+
+  async function postProposal() {
+    try{
+      await axios({
+        method: 'post',
+        url: `${baseURL}/proposal/add/${job.id}`,
+        headers: {
+          'Content-Type' : 'multipart/form-data' ,
+          'Authorization': 'Bearer '+localStorage.getItem('token')
+        },
+        data: {
+          bid: formik.values.bid,
+          duration: formik.values.duration,
+          coverLetter: formik.values.coverLetter,
+          imgPath: "aa"
+        }
+      });
+    }
+    catch(error){
+      console.log("errror");
+      console.log(error);
+
+    }
+  }
+ 
 
   return (
     
@@ -73,10 +103,12 @@ const Proposal = () => {
         </h5>
 
         <div className="px-4 md:px-6 py-3 md:py-5 text-sm md:flex md:divide-x md:divide-gray-200">
-          <div className="pr-4">
+          <div className="pr-4 flex-1">
             <h5 className="font-bold my-3">{job.title}</h5>
             <p className="mb-3">{job.description}</p>
-            <a className="text-primary font-semibold">View job posting</a>
+            <Link to={`/job/${job._id}`}>
+              <a className="text-primary font-semibold">View job posting</a>
+            </Link>
           </div>
           <div className="px-4 md:pl-5 md:pr-16 hidden md:block">
             <div className="flex mb-3">
@@ -117,7 +149,7 @@ const Proposal = () => {
                 />
               </svg>
               <div className="w-max ml-3">
-                <h6 className="font-bold">{job.type}</h6>
+                <h6 className="font-bold">{job.projectType}</h6>
               </div>
             </div>
           </div>

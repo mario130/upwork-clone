@@ -1,14 +1,26 @@
 import React, { useState } from "react";
+import {useDispatch} from 'react-redux';
+import { logout } from "../../store/actions/logoutAction";
+import {Link} from 'react-router-dom';
 
 const ListItem = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch()
+  const logoutUser = () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    return dispatch(logout())
+  }
 
   return (
     <div>
       <div className="flex justify-between items-center border-b border-navBorder pt-4 cursor-pointer" onClick={()=>setIsOpen(!isOpen)}>
         <div className="flex container mx-auto items-center pb-4">
           {props.list.rightIcon}
-          <h4 className="text-sm">{props.list.title}</h4>
+          {props.list.title === 'Log out' 
+          ? <h4 className="text-sm" onClick={logoutUser}>{props.list.title}</h4>
+          : <h4 className="text-sm">{props.list.title}</h4>}
+          
         </div>
 
         {/* has dropdown? */}
@@ -39,7 +51,11 @@ const ListItem = (props) => {
       {isOpen ? (
         <ul>
           {props.list.list?.map((item) => (
-            <li className="pt-4 ml-4 text-sm">{item}</li>
+            <li className="pt-4 ml-4 text-sm">
+              <Link to={item.link}>
+                {item.title}
+              </Link>
+            </li>
           ))}
         </ul>
       ) : null}

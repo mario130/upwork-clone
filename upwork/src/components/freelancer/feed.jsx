@@ -287,7 +287,9 @@ const Main = () => {
               clipRule="evenodd"
             />
           </svg>
-          <p className="text-sm font-bold ">View Profile</p>
+          <Link to="/freelancer-profile">
+            <p className="text-sm font-bold ">View Profile</p>
+          </Link>
         </div>
 
         <div>
@@ -321,9 +323,15 @@ const Main = () => {
         <div>
           <h3 className="mt-6 font-bold text-lg mb-2">Proposals</h3>
           <ul className="space-y-2">
-            <li className="text-primary font-bold">1 active candidacy</li>
-            <li className="text-primary font-bold">4 submitted proposals</li>
-            <li className="text-primary font-bold">120 available connects</li>
+            <Link to="/proposals">
+              <li className="text-primary font-bold">1 active candidacy</li>
+            </Link>
+            <Link to="/proposals">
+              <li className="text-primary font-bold">4 submitted proposals</li>
+            </Link>
+            <Link to="/proposals">
+              <li className="text-primary font-bold">120 available connects</li>
+            </Link>
           </ul>
         </div>
       </div>

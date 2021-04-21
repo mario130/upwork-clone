@@ -7,7 +7,7 @@ const Nav = () => {
     { title: "Frealancer home", link: "/freelancer" },
     { title: "Job", link: "/job/6078554ae48496a93f483c0d" },
     { title: "F-profile", link: "/freelancer-profile" },
-    { title: "Proposal", link: "/proposal" },
+    { title: "Proposal", link: "/proposal/6078554ae48496a93f483c0d" },
     { title: "Proposals", link: "/proposals" },
     { title: "Applicants", link: "/applicants" },
     { title: "JobsList", link: "/job-list" },
