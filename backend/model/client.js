@@ -6,19 +6,11 @@ const clientSchema = mongoose.Schema({
         required: "Client ID field can\'t be empty",
         ref:'User',
 
-        // validate: async function(){
-        //     let User=mongoose.model('User');
-        //     return await User.findOne({_id:this.userId,userType:'client'})
-        // }
     },
-    // jobs:[{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref:"Job"
-    // }],
-    // totalPaid: {
-    //     type:Number,
-    //     required:true
-    // }
+    jobs:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Job"
+    }],
     
 })
 
