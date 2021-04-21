@@ -117,7 +117,7 @@ const Proposal = () => {
                 />
               </svg>
               <div className="w-max ml-3">
-                <h6 className="font-bold">{job.type}</h6>
+                <h6 className="font-bold">{job.projectType}</h6>
               </div>
             </div>
           </div>

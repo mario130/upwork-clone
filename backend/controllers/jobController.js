@@ -22,8 +22,8 @@ module.exports.getById = (req, resp, next) => {
 };
 module.exports.addJob = async (req, resp, next) => {
   const job = new Job({ ...req.body});
+  job.clientId = req._id
 const client= await  Client.findOne({userId:mongoose.Types.ObjectId(req._id)});
-job.clientId = req._id
 
 if(client) {
   client.jobs.push(job)
@@ -31,7 +31,7 @@ if(client) {
      
     if (!err) {
      client.save((err)=>{
-       if(err) console.log("error in saving job in client")
+       if(err) console.log(err)
      }) 
      resp.status(200).json(data)
     }

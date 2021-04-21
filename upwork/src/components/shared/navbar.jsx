@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import ListItem from "./listItem";
+import {useDispatch} from 'react-redux';
+import { logout } from "../../store/actions/logoutAction";
 
 const Nav = () => {
+  const dispatch = useDispatch()
+  const logoutUser = () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    return dispatch(logout())
+  }
   const [isOpen, setIsOpen] = useState(false);
   const [navLists] = useState([
     {
@@ -230,10 +238,10 @@ const Nav = () => {
           {/* desktop links */}
           <div className="hidden lg:block">
             <ul className="flex space-x-5">
-              <li className="text-light font-medium">Find Work</li>
-              <li>My Jobs</li>
-              <li>Messages</li>
-              <li>Logout</li>
+              <li className="cursor-pointer text-light font-medium">Find Work</li>
+              <li className="cursor-pointer">My Jobs</li>
+              <li className="cursor-pointer">Messages</li>
+              <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
             </ul>
           </div>
 
