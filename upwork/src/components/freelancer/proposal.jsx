@@ -3,24 +3,53 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import baseURL from './../../store/actions/baseURL';
+import { axios } from 'axios';
 
 const Proposal = () => {
+
   const job =JSON.parse(localStorage.getItem("job")).data
   const formik = useFormik({
     initialValues: {
       bid: "",
       duration: "",
       coverLetter: "",
+      imgPath : ""
     },
     validationSchema: Yup.object({
       bid: Yup.string().required("bid is required"),
       duration: Yup.string().required("duration is required"),
       coverLetter: Yup.string().required("duration is required"),
     }),
-    onSubmit: (fields) => {
-      alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+    onSubmit :async(fields)=>{
+      postProposal()
     },
   });
+
+  async function postProposal() {
+    try{
+      await axios({
+        method: 'post',
+        url: `${baseURL}/proposal/add/${job.id}`,
+        headers: {
+          'Content-Type' : 'multipart/form-data' ,
+          'Authorization': 'Bearer '+localStorage.getItem('token')
+        },
+        data: {
+          bid: formik.values.bid,
+          duration: formik.values.duration,
+          coverLetter: formik.values.coverLetter,
+          imgPath: "aa"
+        }
+      });
+    }
+    catch(error){
+      console.log("errror");
+      console.log(error);
+
+    }
+  }
+ 
 
   return (
     
