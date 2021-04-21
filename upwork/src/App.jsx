@@ -44,7 +44,7 @@ function App() {
           <Route path="/client/job-post" component={PostJob} />
           <Route path="/client/succes-post" component={SuccessPage} />
 
-          <Route path="/proposal" component={Proposal} />
+          <Route path="/proposal/:id" component={Proposal} />
           <Route path="/proposals" component={AllProposals} />
           <Route path="/applicants" component={Applicants} />
           <Route path="/job-list" component={Jobs} />

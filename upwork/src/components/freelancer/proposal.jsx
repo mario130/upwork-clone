@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Proposal = () => {
+  const job =JSON.parse(localStorage.getItem("job")).data
   const formik = useFormik({
     initialValues: {
       bid: "",
@@ -22,121 +21,6 @@ const Proposal = () => {
       alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
     },
   });
-
-  const [job] = useState([
-    {
-      // ARRAY FOR TESTING PURPOSES ONLY!
-      title: "FIXED API Developer Needed To Fix/Rebuild API",
-      // category: "Full Stack Development",
-      //todo: add relative date
-      description:
-        "We have an API sending product data from Woocommerce on Wordpress to another website (not Wordpress). It's a simple product data feed that just displays products. We don't have control over the other end, we just supply the API feed - it apparently intermittently throws errors on the receiving side but works fine in testing. Links, API instructions and further information can be provided to the successful candidate. We either need this one fixing or another API setting up to make it function without errors. Zoom to talk through the issues would be beneficial to both parties Thanks!",
-      type: "Fixed price",
-      budget: 160,
-      projectType: "One-time project",
-      duration: "More than 6 months",
-      experience: "Expert",
-      requiredConnects: 4,
-      questions: ["Do you have experience with Wordpress API's?"],
-      skills: [
-        {
-          title: "Back-End Development Deliverables",
-          tags: ["API"],
-        },
-        {
-          title: "Back-End Programming Languages",
-          tags: ["PHP", "NodeJS"],
-        },
-        {
-          title: "Back-End Development Skills",
-          tags: ["eCommerce"],
-        },
-        {
-          title: "Other",
-          tags: ["Backend Rest API"],
-        },
-      ],
-      qualifications: {
-        talentType: "Independent",
-        risingTalent: true,
-        english: "Conversational",
-        amountEarned: "$200+",
-      },
-      activity: {
-        proposals: "5 to 10",
-        //todo: add time again
-        interviewing: 1,
-        invites: 4,
-        unanswered: 3,
-      },
-      client: {
-        paymentVerified: true,
-        rating: 4.86,
-        coutry: "United Kingdom",
-        pastJobsCounter: 4,
-        spent: "90k",
-        average: "28 /hr",
-        //todo: add client join date
-        pastJobs: [],
-      },
-    },
-    {
-      title: "HOURLY API Developer Needed To Fix/Rebuild API",
-      // category: "Full Stack Development",
-      //todo: add relative date
-      description:
-        "We have an API sending product data from Woocommerce on Wordpress to another website (not Wordpress). It's a simple product data feed that just displays products. We don't have control over the other end, we just supply the API feed - it apparently intermittently throws errors on the receiving side but works fine in testing. Links, API instructions and further information can be provided to the successful candidate. We either need this one fixing or another API setting up to make it function without errors. Zoom to talk through the issues would be beneficial to both parties Thanks!",
-      type: "Hourly",
-      projectType: "One-time project",
-      hours: "30+ hrs/week",
-      duration: "More than 6 months",
-      experience: "Expert",
-      payRange: "$15.00-$30.00",
-      requiredConnects: 4,
-      questions: ["Do you have experience with Wordpress API's?"],
-      skills: [
-        {
-          title: "Back-End Development Deliverables",
-          tags: ["API"],
-        },
-        {
-          title: "Back-End Programming Languages",
-          tags: ["PHP", "NodeJS"],
-        },
-        {
-          title: "Back-End Development Skills",
-          tags: ["eCommerce"],
-        },
-        {
-          title: "Other",
-          tags: ["Backend Rest API"],
-        },
-      ],
-      qualifications: {
-        talentType: "Independent",
-        risingTalent: true,
-        english: "Conversational",
-        amountEarned: "$200+",
-      },
-      activity: {
-        proposals: "5 to 10",
-        //todo: add time again
-        interviewing: 1,
-        invites: 4,
-        unanswered: 3,
-      },
-      client: {
-        paymentVerified: true,
-        rating: 4.86,
-        coutry: "United Kingdom",
-        pastJobsCounter: 4,
-        spent: "90k",
-        average: "28 /hr",
-        //todo: add client join date
-        pastJobs: [],
-      },
-    },
-  ]);
 
   return (
     
@@ -172,7 +56,7 @@ const Proposal = () => {
           <p>
             This proposal requires{" "}
             <span className="font-bold">
-              {job[0].requiredConnects} connects
+              {job.requiredConnects} connects
             </span>
           </p>
           <p>
@@ -190,8 +74,8 @@ const Proposal = () => {
 
         <div className="px-4 md:px-6 py-3 md:py-5 text-sm md:flex md:divide-x md:divide-gray-200">
           <div className="pr-4">
-            <h5 className="font-bold my-3">{job[0].title}</h5>
-            <p className="mb-3">{job[0].description}</p>
+            <h5 className="font-bold my-3">{job.title}</h5>
+            <p className="mb-3">{job.description}</p>
             <a className="text-primary font-semibold">View job posting</a>
           </div>
           <div className="px-4 md:pl-5 md:pr-16 hidden md:block">
@@ -213,7 +97,7 @@ const Proposal = () => {
                 />
               </svg>
               <div className="w-max ml-3">
-                <h6 className="font-bold">{job[0].experience} level</h6>
+                <h6 className="font-bold">{job.experience} level</h6>
                 <p className="text-gray-600">Experience level</p>
               </div>
             </div>
@@ -233,7 +117,7 @@ const Proposal = () => {
                 />
               </svg>
               <div className="w-max ml-3">
-                <h6 className="font-bold">{job[0].type}</h6>
+                <h6 className="font-bold">{job.type}</h6>
               </div>
             </div>
           </div>
@@ -245,9 +129,9 @@ const Proposal = () => {
         <div className="bg-white mb-2 md:mb-6 border border-gray-200 md:rounded-lg">
           <div className="px-4 md:px-6 py-3 md:py-5 border-b border-gray-200 md:flex md:justify-between md:items-center">
             <h5 className="font-bold text-xl">Terms</h5>
-            {job[0].budget && (
+            {job.budget && (
               <p className="text-gray-500 text-sm md:text-base md:font-extrabold">
-                Client's budget: ${job[0].budget.toFixed(2)} USD
+                Client's budget: ${job.budget.toFixed(2)} USD
               </p>
             )}
           </div>
@@ -268,7 +152,7 @@ const Proposal = () => {
                     name="bid"
                     type="number"
                     min="0"
-                    max={job[0].budget}
+                    max={job.budget}
                     // className="border border-gray-200 focus:outline-none py-2 px-2 text-right w-60 rounded-lg"
 
                     onChange={formik.handleChange}
