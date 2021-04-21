@@ -49,7 +49,7 @@ module.exports.addProposal = async (req, resp, next) => {
       freelancer[0].submittedProposals.push(proposal);
       freelancer[0].save((err, data) => {
         if (err) {
-          return next("error in saving proposal in freelancer");
+          return next(err);
         }
       });
     }
