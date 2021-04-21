@@ -3,77 +3,61 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import baseURL from './../../store/actions/baseURL';
-import { axios } from 'axios';
+import baseURL from "./../../store/actions/baseURL";
+import axios from "axios";
 
 const Proposal = () => {
-
-  const job =JSON.parse(localStorage.getItem("job")).data
+  const job = JSON.parse(localStorage.getItem("job")).data;
   const formik = useFormik({
     initialValues: {
       bid: "",
       duration: "",
       coverLetter: "",
-      imgPath : ""
+      imgPath: "",
     },
     validationSchema: Yup.object({
       bid: Yup.string().required("bid is required"),
       duration: Yup.string().required("duration is required"),
       coverLetter: Yup.string().required("duration is required"),
     }),
-    onSubmit :async(fields)=>{
-      postProposal()
-    },
-  });
-
-  async function postProposal() {
-    try{
+    onSubmit: async (fields) => {
+      console.log(job._id);
       await axios({
-        method: 'post',
-        url: `${baseURL}/proposal/add/${job.id}`,
+        method: "post",
+        url: `${baseURL}/proposal/add/${job._id}`,
         headers: {
-          'Content-Type' : 'multipart/form-data' ,
-          'Authorization': 'Bearer '+localStorage.getItem('token')
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         data: {
           bid: formik.values.bid,
           duration: formik.values.duration,
           coverLetter: formik.values.coverLetter,
-          imgPath: "aa"
-        }
+          imgPath: "aa",
+        },
       });
-    }
-    catch(error){
-      console.log("errror");
-      console.log(error);
-
-    }
-  }
- 
+    },
+  });
 
   return (
-    
     <div className="bg-gray-100 md:mx-10 lg:max-w-5xl lg:mx-auto">
       <h3 className="px-4 mt-6 mb-2 font-bold text-2xl">Submit a proposal</h3>
 
-      
-        {(
-          formik.errors.coverLetter
-         || formik.errors.bid
-         || formik.errors.duration
-         ) ? (
-          <div className="bg-white mb-2 md:mb-6 border border-gray-200 md:rounded-lg">
+      {formik.errors.coverLetter ||
+      formik.errors.bid ||
+      formik.errors.duration ? (
+        <div className="bg-white mb-2 md:mb-6 border border-gray-200 md:rounded-lg">
           <div className="px-4 md:px-6 py-3 md:py-5 text-sm space-y-1">
-          <span>
-            <FontAwesomeIcon
-              icon={faExclamationCircle}
-              className="mr-5 text-danger"
-            />{" "}
-            <span>Please fix the errors below </span>
-          </span>
+            <span>
+              <FontAwesomeIcon
+                icon={faExclamationCircle}
+                className="mr-5 text-danger"
+              />{" "}
+              <span>Please fix the errors below </span>
+            </span>
+          </div>
         </div>
-      </div>
-        ) : null}
+      ) : null}
 
       {/* Proposal settings */}
       <div className="bg-white mb-2 md:mb-6 border border-gray-200 md:rounded-lg">
@@ -84,9 +68,7 @@ const Proposal = () => {
         <div className="px-4 md:px-6 py-3 md:py-5 text-sm space-y-1">
           <p>
             This proposal requires{" "}
-            <span className="font-bold">
-              {job.requiredConnects} connects
-            </span>
+            <span className="font-bold">{job.requiredConnects} connects</span>
           </p>
           <p>
             When you submit this proposal, you'll have{" "}
@@ -152,8 +134,13 @@ const Proposal = () => {
           </div>
         </div>
       </div>
-
-      <form onSubmit={formik.handleSubmit}>
+      <form
+        onSubmit={formik.handleSubmit}
+        //  action={this.registerUser}
+        //  action="{{ url('http://localhost:4001/proposal/add/'. $job.id ) }} "
+        //  action="{{http://localhost:4001/proposal/add/$job.id}}"
+        //  method="POST"
+      >
         {/* Terms */}
         <div className="bg-white mb-2 md:mb-6 border border-gray-200 md:rounded-lg">
           <div className="px-4 md:px-6 py-3 md:py-5 border-b border-gray-200 md:flex md:justify-between md:items-center">
@@ -268,7 +255,7 @@ const Proposal = () => {
             onBlur={formik.handleBlur}
             // className="px-3 py-1 bg-white border border-gray-200 w-full md:w-64 focus:outline-none cursor-pointer rounded-lg"
             className={
-             ( formik.touched.duration && formik.errors.duration)
+              formik.touched.duration && formik.errors.duration
                 ? "px-3 py-1 bg-white w-full md:w-64 cursor-pointer border-2 border-red-500 focus:outline-none   rounded-lg "
                 : "px-3 py-1 bg-white border border-gray-200 w-full md:w-64 focus:outline-none cursor-pointer rounded-lg"
             }
