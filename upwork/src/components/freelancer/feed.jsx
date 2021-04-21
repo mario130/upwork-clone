@@ -228,7 +228,6 @@ const Main = () => {
 
               {/* past payments */}
               <div className="flex space-x-7 items-center">
-                {job.client.verified ? (
                   <div className="flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -246,10 +245,9 @@ const Main = () => {
                     </svg>
                     <p className="font-bold text-gray-500">Payment verified</p>
                   </div>
-                ) : null}
 
                 <div className="font-light text-gray-500 text-sm">
-                  <span className="font-bold text-black">${job.client.spent}+</span>{" "}
+                  <span className="font-bold text-black">${job.client?.spent ? job.client.spent : 400}+</span>{" "}
                   spent
                 </div>
               </div>

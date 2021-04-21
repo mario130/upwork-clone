@@ -232,8 +232,8 @@ const Nav = () => {
             <ul className="flex space-x-5">
               <li className="text-light font-medium">Find Work</li>
               <li>My Jobs</li>
-              <li>Reports</li>
               <li>Messages</li>
+              <li>Logout</li>
             </ul>
           </div>
 

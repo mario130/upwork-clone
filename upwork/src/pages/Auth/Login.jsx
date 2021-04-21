@@ -8,6 +8,8 @@ import baseURL from "./../../store/actions/baseURL";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { loginUser } from '../../store/actions/loginUserAction';
 
 
 const validEmailRegex = RegExp(
@@ -72,11 +74,10 @@ class Login extends Component {
     try {
       let response = await axios.post(`${baseURL}/users/auth`, data);
       payload = response.data;
-      console.log(payload.token);
-      localStorage.setItem("user" + this.state.email + "token", payload.token);
+      localStorage.setItem("user", this.state.email);
+      localStorage.setItem("token", payload.token);
+      this.props.loginUser(this.state.email, payload.token)
       
-      console.log(`email: ${this.state.email}`);
-      console.log(`password: ${this.state.password}`);
       errors.login = "" ;
       this.setState({ redirect: true })
     } catch (err) {
@@ -218,4 +219,12 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+
+const mapDispatchToProps = () => {
+  return {
+    loginUser
+  }
+}
+
+// export default Login;
+export default connect(null, mapDispatchToProps())(Login);
