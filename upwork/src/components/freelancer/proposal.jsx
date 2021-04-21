@@ -3,14 +3,9 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-<<<<<<< HEAD
-import baseURL from "./../../store/actions/baseURL";
-import axios from "axios";
-=======
 import baseURL from './../../store/actions/baseURL';
-import { axios } from 'axios';
+import axios from 'axios';
 import {Link} from 'react-router-dom';
->>>>>>> 65854afa798ca1beb4c121463e34fcb022d91364
 
 const Proposal = () => {
   const job = JSON.parse(localStorage.getItem("job")).data;
