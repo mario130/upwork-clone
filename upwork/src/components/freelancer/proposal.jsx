@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import baseURL from './../../store/actions/baseURL';
 import { axios } from 'axios';
+import {Link} from 'react-router-dom';
 
 const Proposal = () => {
 
@@ -102,10 +103,12 @@ const Proposal = () => {
         </h5>
 
         <div className="px-4 md:px-6 py-3 md:py-5 text-sm md:flex md:divide-x md:divide-gray-200">
-          <div className="pr-4">
+          <div className="pr-4 flex-1">
             <h5 className="font-bold my-3">{job.title}</h5>
             <p className="mb-3">{job.description}</p>
-            <a className="text-primary font-semibold">View job posting</a>
+            <Link to={`/job/${job._id}`}>
+              <a className="text-primary font-semibold">View job posting</a>
+            </Link>
           </div>
           <div className="px-4 md:pl-5 md:pr-16 hidden md:block">
             <div className="flex mb-3">
