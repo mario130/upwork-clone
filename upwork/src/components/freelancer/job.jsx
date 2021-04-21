@@ -16,7 +16,7 @@ const Job = (props) => {
   return (
     <div className="min-h-screen flex justify-center items-center">
       {job?.title ? (
-        <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-7 lg:rounded-lg border border-gray-200">
+        <div className="w-full mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-7 lg:rounded-lg border border-gray-200">
           {/* <div className="mt-6 bg-white mb-6 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl "> */}
           {/* lg left part */}
           <div className="lg:col-start-1 col-span-5 lg:border-r lg:border-gray-200">
@@ -111,7 +111,7 @@ const Job = (props) => {
               <p>{job?.projectType}</p>
             </div>
 
-            <div className="p-6 grayBottomBorder text-sm">
+            {/* <div className="p-6 grayBottomBorder text-sm">
               <h4 className="font-bold">
                 You will be asked to answer the following questions when
                 submitting a proposal:
@@ -123,26 +123,23 @@ const Job = (props) => {
                   </li>
                 ))}
               </ol>
-            </div>
+            </div> */}
 
             <div className="p-6 grayBottomBorder text-sm">
               <h4 className="mb-6 font-bold text-lg">Skills and Expertise</h4>
-              <div className="flex flex-wrap justify-between space-y-2">
+              <div className="flex flex-wrap">
                 {job?.skills.map((skill) => (
-                  <div className="w-1/2">
-                    <h5 className="font-bold my-2">{skill.title}</h5>
-                    {skill.tags.map((tag) => (
+                  <div className="">
                       <span className="px-2 py-1 bg-gray-100 rounded-full mr-2 font-semibold text-gray-800">
-                        {tag}
+                        {skill}
                       </span>
-                    ))}
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="lg:flex">
-              <div className="p-6 text-sm grayBottomBorder lg:w-1/2">
+              {/* <div className="p-6 text-sm grayBottomBorder lg:w-1/2">
                 <h2 className="font-bold mb-2">Preferred qualifications</h2>
                 <div className="infoList">
                   <h4 className="text-gray-500 lg:mr-2">Talent type:</h4>
@@ -160,15 +157,15 @@ const Job = (props) => {
                   <h4 className="text-gray-500 lg:mr-2">Amount earned:</h4>
                   <p>{job?.qualifications.amountEarned}</p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="p-6 text-sm grayBottomBorder lg:w-1/2">
                 <h2 className="font-bold mb-2">Activity on this job</h2>
                 <div className="infoList">
                   <h4 className="text-gray-500 lg:mr-2">Proposals:</h4>
-                  <p>{job?.activity.proposals}</p>
+                  <p>{job?.proposals.length}</p>
                 </div>
-                <div className="infoList">
+                {/* <div className="infoList">
                   <h4 className="text-gray-500 lg:mr-2">Interviewing:</h4>
                   <p>{job?.activity.interviewing}</p>
                 </div>
@@ -179,7 +176,7 @@ const Job = (props) => {
                 <div className="infoList">
                   <h4 className="text-gray-500 lg:mr-2">Unanswered invites:</h4>
                   <p>{job?.activity.unanswered}</p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -231,7 +228,6 @@ const Job = (props) => {
             <h4 className="px-6 pt-4  font-bold mb-2 text-lg">
               About the client
             </h4>
-            {job?.client.paymentVerified ? (
               <div className="px-6 flex items-center mb-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -249,25 +245,24 @@ const Job = (props) => {
                 </svg>
                 <p className="font-bold text-gray-500">Payment verified</p>
               </div>
-            ) : null}
 
             <div className="px-6 flex justify-between mb-2 lg:block">
-              <h4 className="font-bold">{job?.client.coutry}</h4>
+              <h4 className="font-bold">{job?.client?.coutry}</h4>
               <p className="text-gray-500">Forest Town Mansfield 01:57 pm</p>
             </div>
-            <div className="px-6 flex justify-between mb-2 lg:block">
+            {/* <div className="px-6 flex justify-between mb-2 lg:block">
               <h4 className="font-bold">
-                {job?.client.pastJobsCounter} jobs posted
+                {job?.client?.pastJobsCounter} jobs posted
               </h4>
               <p className="text-gray-500">100% hire rate, 1 open job</p>
-            </div>
-            <div className="px-6 flex justify-between mb-2 lg:block">
-              <h4 className="font-bold">{job?.client.spent}+ total spent</h4>
+            </div> */}
+            {/* <div className="px-6 flex justify-between mb-2 lg:block">
+              <h4 className="font-bold">{job?.client?.spent}+ total spent</h4>
               <p className="text-gray-500">1 hire, 1 active</p>
-            </div>
+            </div> */}
             <div className="px-6 flex justify-between mb-2 lg:block">
               <h4 className="font-bold">
-                {job?.client.average} avg hourly rate paid
+                {job?.client?.average} avg hourly rate paid
               </h4>
               <p className="text-gray-500">73 hours</p>
             </div>
