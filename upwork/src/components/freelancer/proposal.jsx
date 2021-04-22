@@ -3,17 +3,17 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import {Link} from 'react-router-dom';
-import Alert from '@material-ui/lab/Alert';
-import axios from 'axios';
-import {localBackend} from './../../services/basedUrl';
+import { Link } from "react-router-dom";
+import Alert from "@material-ui/lab/Alert";
+import axios from "axios";
+import {localBackend} from "./../../services/basedUrl";
 import { CircularProgress } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 const Proposal = () => {
   const job = JSON.parse(localStorage.getItem("job")).data;
-  const [success,setSuccess]=useState(false); 
-  const [error,setError]=useState(false); 
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const history = useHistory();
   const formik = useFormik({
     initialValues: {
@@ -33,37 +33,34 @@ const Proposal = () => {
       // alert( formik.values.duration );
       // alert( formik.values.coverLetter );
       // alert( formik.values.imgPath !== "" ? formik.values.imgPath : "" );
-      try{
+      try {
         await axios({
-        method: "post",
-        url: `${localBackend}/proposal/add/${job._id}`,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        data: {
-          bid: formik.values.bid,
-          duration: formik.values.duration,
-          coverLetter: formik.values.coverLetter,
-          imgPath: formik.values.imgPath !== "" ? formik.values.imgPath : "",
-        },
-      })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        setError(false)
-       setSuccess(true)
-       setTimeout(() => {
-         history.push("/freelancer");
-       }, 1500);
-
-      });
-    }
-    catch(err){
-      console.log(err);
-      setSuccess(false)
-      setError(true)
-    }
+          method: "post",
+          url: `${localBackend}/proposal/add/${job._id}`,
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          data: {
+            bid: formik.values.bid,
+            duration: formik.values.duration,
+            coverLetter: formik.values.coverLetter,
+            imgPath: formik.values.imgPath !== "" ? formik.values.imgPath : "",
+          },
+        }).then((res) => {
+          console.log(res);
+          console.log(res.data);
+          setError(false);
+          setSuccess(true);
+          setTimeout(() => {
+            history.push("/freelancer");
+          }, 1500);
+        });
+      } catch (err) {
+        console.log(err);
+        setSuccess(false);
+        setError(true);
+      }
     },
   });
 
@@ -365,28 +362,49 @@ const Proposal = () => {
           <div className="px-4 md:px-6 text-sm">
             <h6 className="font-bold pt-3 pb-1">Attachments</h6>
             <div className="upload">
-              <input type="file" name="imgPath" id="imgPath"
-                 onChange={formik.handleChange}
-                 value={formik.values.imgPath}
+              <input
+                type="file"
+                name="imgPath"
+                id="imgPath"
+                onChange={formik.handleChange}
+                value={formik.values.imgPath}
               ></input>
             </div>
           </div>
 
           <div className="mt-4 px-3 md:px-5 pt-6 pb-3 border-t border-gray-200">
             <div className="flex md:w-96">
-              <button className="flex-1 md:order-2 mx-1 py-2 rounded-lg font-bold text-primary">
-                Cancel
-              </button>
+              <Link to={`/job/${job._id}`}>
+                <button className="flex-1 md:order-2 mx-1 py-2 rounded-lg font-bold text-primary">
+                  Cancel
+                </button>
+              </Link>
               <button
                 className="flex-1 md:order-1 mx-1 py-2 rounded-lg font-bold bg-primary text-white"
                 type="submit"
               >
                 Submit a proposal
               </button>
-
             </div>
-         {success && <div className="pt-3"> <Alert severity="success"> Success And Redirecting You To Feed Page  <CircularProgress color="#76ff03" style={{width:15,height:15}} /> </Alert> </div>}
-         {error && <div className="pt-3"> <Alert severity="error"> Error In Your Connection </Alert> </div>}
+            {success && (
+              <div className="pt-3">
+                {" "}
+                <Alert severity="success">
+                  {" "}
+                  Success And Redirecting You To Feed Page{" "}
+                  <CircularProgress
+                    color="#76ff03"
+                    style={{ width: 15, height: 15 }}
+                  />{" "}
+                </Alert>{" "}
+              </div>
+            )}
+            {error && (
+              <div className="pt-3">
+                {" "}
+                <Alert severity="error"> Error In Your Connection </Alert>{" "}
+              </div>
+            )}
           </div>
         </div>
       </form>
