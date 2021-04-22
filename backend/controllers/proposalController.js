@@ -16,10 +16,10 @@ module.exports.getJobProposals = (req, resp, next) => {
       path: 'proposals.freelancerId',
       model:"User",
       select:["firstName","lastName","userName"] 
-   })
+   }).select("title")
     .exec((err, data) => {
       if (!err) {
-        resp.status(200).send(data.proposals);
+        resp.status(200).send(data);
       } else return next(err);
     });
 };
@@ -31,7 +31,7 @@ module.exports.addProposal = async (req, resp, next) => {
       bid: req.body.bid,
       coverLetter: req.body.coverLetter,
       duration: req.body.duration,
-      imgPath: req.body.imgPath,
+      imgPath: req.file.path,
       freelancerId: req._id,
     };
 
@@ -42,12 +42,12 @@ module.exports.addProposal = async (req, resp, next) => {
       return next("Already submitted");
     }
 
-    const freelancer = await Freelancer.find({
+    const freelancer = await Freelancer.findOne({
       userId: mongoose.Types.ObjectId(req._id),
     });
     if (freelancer) {
-      freelancer[0].submittedProposals.push(proposal);
-      freelancer[0].save((err, data) => {
+      freelancer.submittedProposals.push(proposal);
+      freelancer.save((err, data) => {
         if (err) {
           return next(err);
         }

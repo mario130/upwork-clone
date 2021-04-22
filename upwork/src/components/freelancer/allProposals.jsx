@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { localBackend } from '../../services/basedUrl';
 
 const Jobs = () => {
   const [proposals] = useState({
@@ -25,7 +27,17 @@ const Jobs = () => {
       },
     ]
   })
-
+  useEffect(() => {
+    axios.get(`${localBackend}/proposal/getFreelancerProposals`,
+    {
+      headers:{
+        "Authorization":`Bearer ${localStorage.getItem("token")}`
+      }
+    }).then((data)=>{
+      console.log(data)
+    }).catch(err=>console.log(err))
+  
+  }, [])
   return (
     <>
       <h1 className="px-4 md:px-6 py-2 mt-6 mb-3 font-bold text-2xl lg:container lg:mx-auto lg:max-w-5xl">My Proposals</h1>  
