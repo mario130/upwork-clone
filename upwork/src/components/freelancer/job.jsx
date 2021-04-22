@@ -288,9 +288,11 @@ const Job = (props) => {
           </div>
 
           <div className="sticky bottom-0 p-6 flex bg-white border-t grayBottomBorder space-x-2 lg:hidden">
-            <button className="w-1/2 p-2 rounded-lg font-bold text-sm bg-primary text-white">
-              Submit a proposal
-            </button>
+            <Link to={`/proposal/${props.id}`}>
+              <button className="w-1/2 p-2 rounded-lg font-bold text-sm bg-primary text-white">
+                Submit a proposal
+              </button>
+            </Link>
             <button className="w-1/2 p-2 rounded-lg font-bold text-sm text-primary border flex justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
