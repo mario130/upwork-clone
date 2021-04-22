@@ -26,6 +26,7 @@ const upload = multer({storage:storage, limits:{
 
 router.get('/getFreelancerProposals',jwtHelper.verifyJwtToken,proposalControl.getFreelancerProposoal);
 router.get('/getJobProposals/:jobId',jwtHelper.verifyJwtToken,proposalControl.getJobProposals);
-router.post('/add/:jobId',upload.single('imgPath'),jwtHelper.verifyJwtToken, proposalControl.addProposal);
+// router.post('/add/:jobId',upload.single('imgPath'),jwtHelper.verifyJwtToken, proposalControl.addProposal);
+router.post('/add/:jobId',jwtHelper.verifyJwtToken, proposalControl.addProposal);
 
 module.exports = router;
