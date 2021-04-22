@@ -5,6 +5,7 @@ import Input from "../../components/UI/Form/Input/Input";
 import Radio from "../../components/UI/Form/Radio/Radio";
 import Select from "../../components/UI/Form/Select/Select";
 import React, { Component } from "react";
+import {localBackend} from '../../services/basedUrl';
 const countries = require("../../store/data/countries.json");
 
 class SignupDetails extends Component {
@@ -97,7 +98,7 @@ class SignupDetails extends Component {
             </h2>
             {/* <h4 className="my-6">{props.location.search.split("=")[1]}</h4> */}
             <form
-              action="https://upwork-4.herokuapp.com/users/register"
+              action={`${localBackend}/users/register`}
               method="POST"
             >
               <Input

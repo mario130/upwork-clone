@@ -6,7 +6,7 @@ import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import {Link} from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
-import baseURL from './../../store/actions/baseURL';
+import {localBackend} from './../../services/basedUrl';
 import { CircularProgress } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
@@ -36,7 +36,7 @@ const Proposal = () => {
       try{
         await axios({
         method: "post",
-        url: `${baseURL}/proposal/add/${job._id}`,
+        url: `${localBackend}/proposal/add/${job._id}`,
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + localStorage.getItem("token"),

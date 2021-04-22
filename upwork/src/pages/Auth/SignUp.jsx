@@ -5,7 +5,7 @@ import Input from "../../components/UI/Form/Input/Input";
 import Separator from "../../components/UI/Seperator/Seperator";
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-
+import {localBackend} from '../../services/basedUrl';
 
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
@@ -82,7 +82,7 @@ class Signup  extends Component{
           <GoogleBtn />
           <AppleBtn />
           <Separator>or</Separator>
-          <form action="https://upwork-4.herokuapp.com/users/checkEmail/" method="POST">
+          <form action={`${localBackend}/users/checkEmail/`} method="POST">
             <Input
               type="email"
               name="email"

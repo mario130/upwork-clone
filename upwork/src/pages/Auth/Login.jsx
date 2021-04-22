@@ -4,7 +4,7 @@ import Btn from "../../components/UI/Form/Btn/Btn";
 import Input from "../../components/UI/Form/Input/Input";
 import Separator from "../../components/UI/Seperator/Seperator";
 import React, { Component } from "react";
-import baseURL from "./../../store/actions/baseURL";
+import {localBackend} from "./../../services/basedUrl";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
@@ -72,7 +72,7 @@ class Login extends Component {
     let payload;
     let errors = this.state.errors;
     try {
-      let response = await axios.post(`${baseURL}/users/auth`, data);
+      let response = await axios.post(`${localBackend}/users/auth`, data);
       payload = response.data;
       localStorage.setItem("user", this.state.email);
       localStorage.setItem("token", payload.token);

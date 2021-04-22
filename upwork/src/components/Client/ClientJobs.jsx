@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../shared/spinner';
 import Navbar from './Jobs-navbar';
-
+import {localBackend} from '../../services/basedUrl';
 
 const Jobs = () => {
   /* const [allJobs] = useState([
@@ -27,7 +27,7 @@ const Jobs = () => {
     
     axios
       .get(
-        `http://localhost:4001/jobs/getAll`,{
+        `${localBackend}/jobs/getAll`,{
           headers:{'Authorization':`Bearer ${token}`}
         }
       )

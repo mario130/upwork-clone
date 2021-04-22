@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../shared/spinner";
 import { Link } from "react-router-dom";
+import {localBackend} from '../../services/basedUrl';
 
 const Job = (props) => {
   const [job, setJob] = useState(null);
   useEffect(() => {
     axios
-      .get(`https://upwork-4.herokuapp.com/jobs/${props.id}`)
+      .get(`${localBackend}/jobs/${props.id}`)
       .then((data) => {
         console.log(data);
         localStorage.setItem("job", JSON.stringify(data));

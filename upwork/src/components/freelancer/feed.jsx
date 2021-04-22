@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import Spinner from '../shared/spinner';
+import {localBackend} from '../../services/basedUrl';
 
 const Main = () => {
   const [jobs, setJobs] = useState([])
   useEffect(() => {
     axios
       .get(
-        `https://upwork-4.herokuapp.com/jobs/getAllJobs`
+        `${localBackend}/jobs/getAllJobs`
       )
       .then((data) => {
         setJobs(data.data);
