@@ -8,7 +8,7 @@ const Main = () => {
   useEffect(() => {
     axios
       .get(
-        `https://upwork-4.herokuapp.com/jobs/getAll`
+        `https://upwork-4.herokuapp.com/jobs/getAllJobs`
       )
       .then((data) => {
         setJobs(data.data);

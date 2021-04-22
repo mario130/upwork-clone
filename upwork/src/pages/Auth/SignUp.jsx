@@ -82,7 +82,7 @@ class Signup  extends Component{
           <GoogleBtn />
           <AppleBtn />
           <Separator>or</Separator>
-          <form action="http://localhost:4001/users/checkEmail/" method="POST">
+          <form action="https://upwork-4.herokuapp.com/users/checkEmail/" method="POST">
             <Input
               type="email"
               name="email"

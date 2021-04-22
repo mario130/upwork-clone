@@ -97,7 +97,7 @@ class SignupDetails extends Component {
             </h2>
             {/* <h4 className="my-6">{props.location.search.split("=")[1]}</h4> */}
             <form
-              action="http://localhost:4001/users/register"
+              action="https://upwork-4.herokuapp.com/users/register"
               method="POST"
             >
               <Input

@@ -13,6 +13,16 @@ module.exports.getAllClientJobs = (req, resp, next) => {
 
 };
 
+module.exports.getAllJobs = (req, res, next) => {
+  Job.find({}, (err, data) => {
+    if (!err){
+      res.status(200).send(data)
+    } else {
+      return next(err)
+    } 
+  })
+}
+
 module.exports.getById = (req, resp, next) => {
   Job.findOne({ _id: req.params.jobId }, (err, data) => {
     if (!err) {
