@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileNavOpen, setMobileNav] = useState(false);
@@ -94,10 +95,14 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <ul className="flex space-x-4">
               <li>
-                <a>Log In</a>
+                <Link to="/login">
+                  <p>Log In</p>
+                </Link>
               </li>
               <li>
-                <a className="bg-primary text-white rounded-lg px-4 py-1">Sign Up</a>
+                <Link to="/signup">
+                  <span className="bg-primary text-white rounded-lg px-4 py-1">Sign Up</span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -106,10 +111,14 @@ const Navbar = () => {
           <div className="lg:hidden">
             <ul className="flex space-x-4 text-sm">
               <li>
-                <a>Log In</a>
+                <Link to="/login">
+                  <p>Log In</p>
+                </Link>
               </li>
               <li>
-                <a>Sign Up</a>
+                <Link to="/login">
+                  <p>Sign Up</p>
+                </Link>
               </li>
             </ul>
           </div>

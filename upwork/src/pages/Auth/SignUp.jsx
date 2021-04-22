@@ -4,6 +4,7 @@ import Btn from "../../components/UI/Form/Btn/Btn";
 import Input from "../../components/UI/Form/Input/Input";
 import Separator from "../../components/UI/Seperator/Seperator";
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -68,7 +69,9 @@ class Signup  extends Component{
 
           <p className="text-white">
             <span className="hidden md:inline">Already have an account?</span>{" "}
-            <span className="font-bold text-primary">Log in</span>
+            <Link to="/login">
+              <span className="font-bold text-primary">Log in</span>
+            </Link>
           </p>
         </div>
       </div>
