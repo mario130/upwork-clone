@@ -38,14 +38,14 @@ const Proposal = () => {
           method: "post",
           url: `${localBackend}/proposal/add/${job._id}`,
           headers: {
-            "Content-Type": "multipart/form-data",
+            // "Content-Type": "multipart/form-data",
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
           data: {
             bid: formik.values.bid,
             duration: formik.values.duration,
             coverLetter: formik.values.coverLetter,
-            imgPath: formik.values.imgPath !== "" ? formik.values.imgPath : "",
+            // imgPath: formik.values.imgPath !== "" ? formik.values.imgPath : "empty",
           },
         }).then((res) => {
           console.log(res);
@@ -359,7 +359,7 @@ const Proposal = () => {
             </div>
           </div>
 
-          <div className="px-4 md:px-6 text-sm">
+          {/* <div className="px-4 md:px-6 text-sm">
             <h6 className="font-bold pt-3 pb-1">Attachments</h6>
             <div className="upload">
               <input
@@ -370,7 +370,7 @@ const Proposal = () => {
                 value={formik.values.imgPath}
               ></input>
             </div>
-          </div>
+          </div> */}
 
           <div className="mt-4 px-3 md:px-5 pt-6 pb-3 border-t border-gray-200">
             <div className="flex md:w-96">
