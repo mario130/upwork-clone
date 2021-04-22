@@ -8,11 +8,13 @@ import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import baseURL from './../../store/actions/baseURL';
 import { CircularProgress } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const Proposal = () => {
   const job = JSON.parse(localStorage.getItem("job")).data;
   const [success,setSuccess]=useState(false); 
   const [error,setError]=useState(false); 
+  const history = useHistory();
   const formik = useFormik({
     initialValues: {
       bid: "",
@@ -51,6 +53,10 @@ const Proposal = () => {
         console.log(res.data);
         setError(false)
        setSuccess(true)
+       setTimeout(() => {
+         history.push("/freelancer");
+       }, 1500);
+
       });
     }
     catch(err){
