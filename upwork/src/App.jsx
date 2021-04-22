@@ -46,7 +46,7 @@ function App() {
 
           <Route path="/proposal/:id" component={Proposal} />
           <Route path="/proposals" component={AllProposals} />
-          <Route path="/applicants" component={Applicants} />
+          <Route path="/applicants/:jobId" component={Applicants} />
           <Route path="/job-list" component={Jobs} />
 
           <Route path="/signup/details" exact component={SignupDetails} />
