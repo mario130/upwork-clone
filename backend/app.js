@@ -9,7 +9,7 @@ const passport = require('passport')
 const cors=require('cors');
 require('dotenv').config();
 require('./middleware/passportConfig')
-
+const errorHandler = require('./middleware/errorHandler');
 const app = express()
 app.use(express.urlencoded({extended: false}))
 
@@ -34,21 +34,22 @@ app.use('/users',userRouter)
 app.use('/profile',freelanceProfileRouter)
 app.use('/jobs',jobRoutes)
 app.use('/proposal',proposalRoutes)
+app.use('/',errorHandler);
 
 // ERROR HANDLER
-app.use((err,req,resp,next) =>{
-  if(err.name == 'ValidationError'){
-    var valErrors =[];
-    Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
-    resp.status(422).send(valErrors);
-  }
-  else if(err.path == "_id"){
-    resp.status(422).send('User ID is incorrect!!')
-  }
-  else{
-    resp.status(400).send(err);
-  }
-})
+// app.use((err,req,resp,next) =>{
+//   if(err.name == 'ValidationError'){
+//     var valErrors =[];
+//     Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
+//     resp.status(422).send(valErrors);
+//   }
+//   else if(err.path == "_id"){
+//     resp.status(422).send('User ID is incorrect!!')
+//   }
+//   else{
+//     resp.status(400).send(err);
+//   }
+// })
 
 const PORT = process.env.PORT || 4001
 app.listen(PORT, ()=>console.log(`Now listening on port ${PORT}`))
