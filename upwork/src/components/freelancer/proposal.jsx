@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import baseURL from './../../store/actions/baseURL';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert';
+import axios from 'axios';
+import baseURL from './../../store/actions/baseURL';
+import { CircularProgress } from "@material-ui/core";
 
 const Proposal = () => {
   const job = JSON.parse(localStorage.getItem("job")).data;
+  const [success,setSuccess]=useState(false); 
+  const [error,setError]=useState(false); 
   const formik = useFormik({
     initialValues: {
       bid: "",
@@ -21,9 +25,14 @@ const Proposal = () => {
       duration: Yup.string().required("duration is required"),
       coverLetter: Yup.string().required("duration is required"),
     }),
-    onSubmit: async (fields) => {
+    onSubmit: async () => {
       console.log(job._id);
-      await axios({
+      // alert( formik.values.bid );
+      // alert( formik.values.duration );
+      // alert( formik.values.coverLetter );
+      // alert( formik.values.imgPath !== "" ? formik.values.imgPath : "" );
+      try{
+        await axios({
         method: "post",
         url: `${baseURL}/proposal/add/${job._id}`,
         headers: {
@@ -34,9 +43,21 @@ const Proposal = () => {
           bid: formik.values.bid,
           duration: formik.values.duration,
           coverLetter: formik.values.coverLetter,
-          imgPath: "aa",
+          imgPath: formik.values.imgPath !== "" ? formik.values.imgPath : "",
         },
+      })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        setError(false)
+       setSuccess(true)
       });
+    }
+    catch(err){
+      console.log(err);
+      setSuccess(false)
+      setError(true)
+    }
     },
   });
 
@@ -269,13 +290,13 @@ const Proposal = () => {
                 : null
             }
           >
-            <option value="0" selected>
+            <option value="Not Selected" selected>
               Please select...
             </option>
-            <option value="1">More than 6 months</option>
-            <option value="2">3 to 6 months</option>
-            <option value="3">1 to 3 months</option>
-            <option value="4">Less than 1 month</option>
+            <option value="More than 6 months">More than 6 months</option>
+            <option value="3 to 6 months">3 to 6 months</option>
+            <option value="1 to 3 months">1 to 3 months</option>
+            <option value="Less than 1 month">Less than 1 month</option>
           </select>
           <div className="pt-1">
             {formik.touched.duration && formik.errors.duration ? (
@@ -338,7 +359,10 @@ const Proposal = () => {
           <div className="px-4 md:px-6 text-sm">
             <h6 className="font-bold pt-3 pb-1">Attachments</h6>
             <div className="upload">
-              <input type="file" name="file"></input>
+              <input type="file" name="imgPath" id="imgPath"
+                 onChange={formik.handleChange}
+                 value={formik.values.imgPath}
+              ></input>
             </div>
           </div>
 
@@ -353,7 +377,10 @@ const Proposal = () => {
               >
                 Submit a proposal
               </button>
+
             </div>
+         {success && <div className="pt-3"> <Alert severity="success"> Success And Redirecting You To Feed Page  <CircularProgress color="#76ff03" style={{width:15,height:15}} /> </Alert> </div>}
+         {error && <div className="pt-3"> <Alert severity="error"> Error In Your Connection </Alert> </div>}
           </div>
         </div>
       </form>
