@@ -14,7 +14,7 @@ const Contract = () => {
       "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png",
     localTime: "8:36 am",
   });
-  const [openTab, setOpenTab] = useState(3);
+  const [openTab, setOpenTab] = useState(1);
 
   return (
     <div className="pt-3 max-w-5xl mx-auto">
