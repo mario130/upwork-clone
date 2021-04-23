@@ -14,6 +14,7 @@ const Contract = () => {
       "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png",
     localTime: "8:36 am",
   });
+  const [openTab, setOpenTab] = useState(3);
 
   return (
     <div className="pt-3 max-w-5xl mx-auto">
@@ -38,39 +39,65 @@ const Contract = () => {
         </div>
 
         <ul className="px-3 lg:px-6 pt-4 mb-4 flex font-bold border-b border-gray-200 space-x-6">
-          <li className="cursor-pointer border-b-2 border-primary text-primary text-sm">
+          <li
+            className={`cursor-pointer border-b-2 text-sm ${
+              openTab === 1
+                ? "border-primary text-primary"
+                : "border-transparent"
+            }`}
+            onClick={()=>setOpenTab(1)}
+          >
             Milestones & Earnings
           </li>
-          {/* <li className="border-b-2 border-transparent text-sm">
-          Messages & Files
-        </li> */}
-          <li className="cursor-pointer border-b-2 border-transparent text-sm">
+          <li
+            className={`cursor-pointer border-b-2 text-sm ${
+              openTab === 2
+                ? "border-primary text-primary"
+                : "border-transparent"
+            }`}
+            onClick={()=>setOpenTab(2)}
+          >
             Terms & settings
           </li>
-          <li className="cursor-pointer border-b-2 border-transparent text-sm">
+          <li
+            className={`cursor-pointer border-b-2 text-sm ${
+              openTab === 3
+                ? "border-primary text-primary"
+                : "border-transparent"
+            }`}
+            onClick={()=>setOpenTab(3)}
+          >
             Feedback
           </li>
         </ul>
 
         {/* Milestones */}
-        <div className="px-3 lg:px-6 flex flex-wrap text-sm">
-          <div className="w-1/2 lg:w-1/4 mb-2">
-            <h4 className="font-bold">Budget</h4>
-            <p className="text-lg">${contract.budget}</p>
-          </div>
-          <div className="w-1/2 lg:w-1/4">
-            <h4 className="font-bold">Milestones Paid</h4>
-            <p className="text-lg">${contract.paid}</p>
-          </div>
-          <div className="w-1/2 lg:w-1/4">
-            <h4 className="font-bold">Remaining</h4>
-            <p className="text-lg">${contract.remaining}</p>
-          </div>
-          <div className="w-1/2 lg:w-1/4">
-            <h4 className="font-bold">Total Earnings</h4>
-            <p className="text-lg">${contract.earnings}</p>
-          </div>
+        {openTab === 1 
+        ? <div className="px-3 lg:px-6 flex flex-wrap text-sm">
+        <div className="w-1/2 lg:w-1/4 mb-2">
+          <h4 className="font-bold">Budget</h4>
+          <p className="text-lg">${contract.budget}</p>
         </div>
+        <div className="w-1/2 lg:w-1/4">
+          <h4 className="font-bold">Milestones Paid</h4>
+          <p className="text-lg">${contract.paid}</p>
+        </div>
+        <div className="w-1/2 lg:w-1/4">
+          <h4 className="font-bold">Remaining</h4>
+          <p className="text-lg">${contract.remaining}</p>
+        </div>
+        <div className="w-1/2 lg:w-1/4">
+          <h4 className="font-bold">Total Earnings</h4>
+          <p className="text-lg">${contract.earnings}</p>
+        </div>
+      </div>
+      : null}
+
+      {openTab === 3 
+      ? <div className="px-3 lg:px-6">
+        <textarea name="feedback" id="feedback" className="w-full border border-gray-200 focus:outline-none rounded-lg p-4 " cols="30" placeholder="Please enter your feedback"></textarea>
+      </div>
+      : null}
 
         {/* accept decline */}
         <div className="px-3 lg:px-6 flex md:w-96 mt-8 text-sm">
