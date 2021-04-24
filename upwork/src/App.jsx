@@ -30,31 +30,36 @@ import ProfileStep10 from "./pages/complete-profile/profile-step10";
 import ProfileStep11 from "./pages/complete-profile/profile-step11";
 import ProfileStep12 from "./pages/complete-profile/profile-step12";
 import SuccessPage from "./components/Client/Job/SuccessPage";
-
+import  ProtectedFreelancer from './components/shared/ProtectedFreelancer'
+import ProtectedClient from "./components/shared/ProtectedClient";
 function App() {
+ 
+
   return (
     <BrowserRouter>
       <div className="font-nuni">
         <Nav />
         <Switch>
           <Route path="/" exact component={GuestHomepage} />
-          <Route path="/freelancer" component={FreelancerHomepage} />
-          <Route path="/job/:id" component={Job} />
-          <Route path="/freelancer-profile" component={FreelancerProfile} />
-          <Route path="/client/home" component={ClientHomePage} />
-          <Route path="/client/job-post" component={PostJob} />
-          <Route path="/client/succes-post" component={SuccessPage} />
-
-          <Route path="/contract/:id" component={Contract} />
-
-          <Route path="/proposal/:id" component={Proposal} />
-          <Route path="/proposals" component={AllProposals} />
-          <Route path="/applicants/:jobId" component={Applicants} />
-          <Route path="/job-list" component={Jobs} />
-
           <Route path="/signup/details" exact component={SignupDetails} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" component={Login} />
+          
+          <ProtectedFreelancer path="/freelancer" component={FreelancerHomepage} />
+          <ProtectedFreelancer path="/job/:id" component={Job} />
+          <ProtectedFreelancer path="/freelancer-profile" component={FreelancerProfile} />
+          <ProtectedClient path="/client/home" component={ClientHomePage} />
+          <ProtectedFreelancer path="/proposal/:id" component={Proposal} />
+          <ProtectedFreelancer path="/proposals" component={AllProposals} />
+        
+          <ProtectedClient path="/client/job-post" component={PostJob} />
+          <ProtectedClient path="/client/succes-post" component={SuccessPage} />
+
+          <ProtectedClient path="/contract/:id" component={Contract} />
+
+          <ProtectedClient path="/applicants/:jobId" component={Applicants} />
+          <ProtectedClient path="/job-list" component={Jobs} />
+
           <Route path="/ProfileStep1" component={ProfileStep1} />
           <Route path="/ProfileStep2" component={ProfileStep2} />
           <Route path="/ProfileStep3" component={ProfileStep3} />

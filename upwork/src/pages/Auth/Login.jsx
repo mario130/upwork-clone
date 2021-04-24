@@ -76,7 +76,9 @@ class Login extends Component {
       payload = response.data;
       localStorage.setItem("user", this.state.email);
       localStorage.setItem("token", payload.token);
-      this.props.loginUser(this.state.email, payload.token)
+      localStorage.setItem("userType", payload.userType);
+
+      this.props.loginUser(this.state.email, payload.token,payload.userType)
       
       errors.login = "" ;
       this.setState({ redirect: true })

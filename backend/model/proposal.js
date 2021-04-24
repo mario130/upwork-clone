@@ -23,10 +23,10 @@ const proposalSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  // imgPath: {
-  //   type: String,
-  //   required: true,
-  // },
+  imgPath: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = proposalSchema;

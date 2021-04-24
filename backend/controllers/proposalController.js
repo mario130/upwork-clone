@@ -25,13 +25,14 @@ module.exports.getJobProposals = (req, resp, next) => {
 };
 
 module.exports.addProposal = async (req, resp, next) => {
+ 
   const job = await Job.findById(mongoose.Types.ObjectId(req.params.jobId));
   if (job) {
     const proposal = {
       bid: req.body.bid,
       coverLetter: req.body.coverLetter,
       duration: req.body.duration,
-      imgPath: req.file.path,
+      imgPath: req.body.imgPath,
       freelancerId: req._id,
     };
 
