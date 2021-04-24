@@ -29,12 +29,11 @@ const Jobs = () => {
 
   return (
     <>
-      <Navbar activeLink="jobs" />
-      {loading ? 
-        <div className="text-center my-4">
-          <Spinner/>
-        </div>
-      : <><h1 className="px-4 md:px-6 py-2 mt-6 mb-3 font-bold text-2xl lg:container lg:mx-auto lg:max-w-5xl">All Jobs</h1>  
+      <Navbar activeLink="active-jobs" />
+      {loading ? <div className="text-center my-4">
+        <Spinner/>
+      </div> : 
+      <><h1 className="px-4 md:px-6 py-2 mt-6 mb-3 font-bold text-2xl lg:container lg:mx-auto lg:max-w-5xl">All Jobs</h1>  
       <div className="bg-white mb-6 md:rounded-lg md:mx-12 lg:container lg:mx-auto lg:max-w-5xl border border-gray-200">
         <div className="">
           <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Jobs ({allJobs.jobs && allJobs.jobs.length})</h2>
