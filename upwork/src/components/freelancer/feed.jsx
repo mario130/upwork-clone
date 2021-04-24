@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import Spinner from '../shared/spinner';
-import {localBackend} from '../../services/basedUrl';
+import { localBackend } from '../../services/basedUrl';
 
 const Main = () => {
   const [jobs, setJobs] = useState([])
+  const [searchedJobs, setSearchedJobs] = useState([])
   useEffect(() => {
     axios
       .get(
@@ -13,8 +14,16 @@ const Main = () => {
       )
       .then((data) => {
         setJobs(data.data);
+        setSearchedJobs(data.data);
       });
   }, []);
+
+  const handelSearch = (event) => {
+    const result = jobs.filter((job) => {
+      return job.description.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
+    })
+    setSearchedJobs(result);
+  }
 
   return (
     <main className="bg-bodyGray h-full container mx-auto  max-w-5xl sm:px-10 lg:grid lg:grid-cols-10 lg:mt-5">
@@ -89,6 +98,7 @@ const Main = () => {
               type="text"
               className="w-full px-5 py-1 border-gray-200 rounded-l-md"
               placeholder="Search for jobs"
+              onChange={handelSearch}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -153,13 +163,13 @@ const Main = () => {
           {jobs.length === 0 ? <div className="text-center my-14">
             <Spinner />
           </div> : null}
-          {jobs.map((job) => (
+          {searchedJobs.map((job) => (
             <div className="p-5 border-b border-gray-200">
               {/* title */}
               <div className="flex justify-between space-x-4">
                 <div>
                   <h2 className="font-bold">
-                    <Link to={"job/"+job._id}>
+                    <Link to={"job/" + job._id}>
                       {job.title}
                     </Link>
                   </h2>
@@ -229,23 +239,23 @@ const Main = () => {
 
               {/* past payments */}
               <div className="flex space-x-7 items-center">
-                  <div className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-white"
-                      fill="#14bff4"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                      />
-                    </svg>
-                    <p className="font-bold text-gray-500">Payment verified</p>
-                  </div>
+                <div className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-white"
+                    fill="#14bff4"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                    />
+                  </svg>
+                  <p className="font-bold text-gray-500">Payment verified</p>
+                </div>
 
                 <div className="font-light text-gray-500 text-sm">
                   <span className="font-bold text-black">${job.client?.spent ? job.client.spent : 400}+</span>{" "}
