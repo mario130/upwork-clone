@@ -5,29 +5,38 @@ import Input from "../../components/UI/Form/Input/Input";
 import Radio from "../../components/UI/Form/Radio/Radio";
 import Select from "../../components/UI/Form/Select/Select";
 import React, { Component } from "react";
-import {localBackend} from '../../services/basedUrl';
+import { localBackend } from "../../services/basedUrl";
+import axios from "axios";
+import Alert from "@material-ui/lab/Alert";
+import { CircularProgress } from "@material-ui/core";
 const countries = require("../../store/data/countries.json");
 
 class SignupDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: null,
-      lastName: null,
-      userName: null,
-      password: null,
+      email: this.props.location.search.split("=")[1],
+      firstName: "",
+      lastName: "",
+      userName: "",
+      password: "",
+      country: "",
+      userType: "",
       countries: countries,
       errors: {
         firstName: "",
         lastName: "",
         userName: "",
         password: "",
+        country: "",
+        userType: "",
       },
+      successfullyRegistered: false,
+      errMsg: "",
     };
   }
 
   handleChange = (event) => {
-    event.preventDefault();
     const { name, value } = event.target;
     let errors = this.state.errors;
 
@@ -48,13 +57,67 @@ class SignupDetails extends Component {
         errors.password =
           value.length < 8 ? "Password must be 8 characters long!" : "";
         break;
+      case "userType":
+        errors.userType = value.length === 0 ? "Required" : "";
+        break;
+      case "country":
+        errors.country = value.length === 0 ? "Required" : "";
+        break;
       default:
         break;
     }
 
     this.setState({ errors, [name]: value });
   };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const {
+      email,
+      firstName,
+      lastName,
+      userName,
+      password,
+      country,
+      userType,
+    } = this.state;
+    axios
+      .post(`${localBackend}/users/register`, {
+        email,
+        firstName,
+        lastName,
+        userName,
+        password,
+        userType,
+        country,
+      })
+      .then((res) => {
+        setTimeout(() => {
+          this.props.history.push("/login");
+        }, 1500);
 
+        this.setState({
+          ...this.state,
+          email: "",
+          firstName: "",
+          lastName: "",
+          userName: "",
+          password: "",
+          userType: "",
+          country: "",
+          successfullyRegistered: true,
+        });
+      })
+      .catch((exception) => {
+        if (exception.response && exception.response.status >= 400) {
+          // Display server validation errors
+          this.setState({
+            ...this.state,
+            errMsg: exception.response.data,
+            successfullyRegistered: false,
+          });
+        }
+      });
+  };
   render() {
     const { errors } = this.state;
     return (
@@ -97,16 +160,13 @@ class SignupDetails extends Component {
               Complete your free account setup
             </h2>
             {/* <h4 className="my-6">{props.location.search.split("=")[1]}</h4> */}
-            <form
-              action={`${localBackend}/users/register`}
-              method="POST"
-            >
+            <form onSubmit={this.handleSubmit}>
               <Input
                 className="bg-white text-center border-none"
                 name="email"
                 type="text"
                 disabled
-                value={this.props.location.search.split("=")[1]}
+                value={this.state.email}
               />
               <div className="grid md:grid-cols-2 md:gap-x-1">
                 <div className="w-full ">
@@ -129,7 +189,7 @@ class SignupDetails extends Component {
                       </svg>
                     }
                     onChange={this.handleChange}
-                    noValidate
+                    value={this.state.firstName}
                   />
                   {errors.firstName.length > 0 && (
                     <small className="text-danger pl-1">
@@ -158,7 +218,7 @@ class SignupDetails extends Component {
                       </svg>
                     }
                     onChange={this.handleChange}
-                    noValidate
+                    value={this.state.lastName}
                   />
                   {errors.lastName.length > 0 && (
                     <small className="text-danger pl-1">
@@ -174,7 +234,7 @@ class SignupDetails extends Component {
                 errorMsg=""
                 className="pl-10"
                 onChange={this.handleChange}
-                noValidate
+                value={this.state.userName}
               />
               {errors.userName.length > 0 && (
                 <small className="text-danger pl-1">{errors.userName}</small>
@@ -199,7 +259,7 @@ class SignupDetails extends Component {
                   </svg>
                 }
                 onChange={this.handleChange}
-                noValidate
+                value={this.state.usepasswordrName}
               />
               {errors.password.length > 0 && (
                 <small className="text-danger pl-1">{errors.password}</small>
@@ -207,19 +267,30 @@ class SignupDetails extends Component {
               <div className="my-4">
                 <Select
                   name="country"
+                  onChange={this.handleChange}
                   options={Object.keys(this.state.countries).map((key) => {
-                    return (
-                      this.state.countries[key]
-                    );
+                    return this.state.countries[key];
                   })}
                 />
               </div>
               <p className="font-bold text-xl mt-4 mb-2">I want to</p>
               <div className="flex justify-center">
-                <Radio name="userType" id="client" value="client">
+                <Radio
+                  name="userType"
+                  id="client"
+                  value="client"
+                  onChange={this.handleChange}
+                  checked={this.state.userType === "client"}
+                >
                   Hire
                 </Radio>
-                <Radio name="userType" id="freelancer" value="freelancer">
+                <Radio
+                  name="userType"
+                  id="freelancer"
+                  value="freelancer"
+                  onChange={this.handleChange}
+                  checked={this.state.userType === "freelancer"}
+                >
                   Work
                 </Radio>
               </div>
@@ -241,12 +312,47 @@ class SignupDetails extends Component {
                   .
                 </CheckBox>
               </div>
-              <button disabled={(this.state.firstName&&this.state.lastName&&this.state.password&&this.state.userName&&!errors.password&&!errors.firstName&&!errors.lastName&&!errors.userName)?"":"true"} className="w-full  bg-primary hover:bg-green-700 focus:ring-green-500  text-white  py-2 px-4 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg ">
+              <button
+                disabled={
+                  this.state.firstName &&
+                  this.state.lastName &&
+                  this.state.password &&
+                  this.state.userName &&
+                  this.state.country &&
+                  this.state.userType &&
+                  !errors.password &&
+                  !errors.firstName &&
+                  !errors.lastName &&
+                  !errors.userType &&
+                  !errors.lastName &&
+                  !errors.country &&
+                  !this.state.errMsg
+                    ? false
+                    : true
+                }
+                className="w-full  bg-primary hover:bg-green-700 focus:ring-green-500  text-white  py-2 px-4 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg "
+              >
                 Create My Account
               </button>
-              {/* <Btn className="w-full  bg-primary hover:bg-green-700 focus:ring-green-500  text-white ">
-              Create My Account
-            </Btn> */}
+
+              {this.state.successfullyRegistered ? (
+                <div className="pt-3">
+                  {" "}
+                  <Alert severity="success">
+                    {" "}
+                    Successfully Registered{" "}
+                    <CircularProgress
+                      color="#76ff03"
+                      style={{ width: 15, height: 15 }}
+                    />{" "}
+                  </Alert>
+                </div>
+              ) : null}
+              {this.state.errMsg ? (
+                <div className="pt-3">
+                  <Alert severity="error">{this.state.errMsg}</Alert>
+                </div>
+              ) : null}
             </form>
           </div>
         </div>

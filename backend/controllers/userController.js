@@ -35,7 +35,7 @@ module.exports.register = (req, resp, next) => {
       resp.send(doc);
     } else {
       if (err.code == 11000) {
-        console.log(err);
+     
         resp.status(422).send("E-mail already exists");
       } else return next(err);
     }
@@ -69,16 +69,17 @@ module.exports.getById = (req, resp, next) => {
 };
 
 module.exports.getByEmail = (req, resp, next) => {
+  console.log(req.body.email)
   User.findOne({ email: req.body.email }, (err, data) => {
     if (!err)
-      if (data == null) {
-        // resp.status(422).json("User E-Mail is not correct!!")
-        resp.redirect(
-          `http://localhost:3000/signup/details?email=${req.body.email}`
-        );
+    if (data == null) {
+        resp.status(200).json("valid email")
+        // resp.redirect(
+        //   `http://localhost:3000/signup/details?email=${req.body.email}`
+        // );
       } else {
-        // resp.status(200).json('Valid E-Mail')
-        resp.redirect(`http://localhost:3000/login?email=${req.body.email}`);
+        resp.status(400).json("this email already registered")
+        // resp.redirect(`http://localhost:3000/login?email=${req.body.email}`);
       }
     else return next(err);
   });

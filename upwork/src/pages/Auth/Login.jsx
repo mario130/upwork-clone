@@ -4,13 +4,12 @@ import Btn from "../../components/UI/Form/Btn/Btn";
 import Input from "../../components/UI/Form/Input/Input";
 import Separator from "../../components/UI/Seperator/Seperator";
 import React, { Component } from "react";
-import {localBackend} from "./../../services/basedUrl";
+import { localBackend } from "./../../services/basedUrl";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { loginUser } from '../../store/actions/loginUserAction';
-
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { loginUser } from "../../store/actions/loginUserAction";
 
 const validEmailRegex = RegExp(
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -26,9 +25,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
-      password: null,
-      redirect: false,
+      email: "",
+      password: "",
       errors: {
         email: "",
         password: "",
@@ -53,6 +51,7 @@ class Login extends Component {
       default:
         break;
     }
+    errors.login =""
 
     this.setState({ errors, [name]: value });
   };
@@ -78,12 +77,17 @@ class Login extends Component {
       localStorage.setItem("token", payload.token);
       localStorage.setItem("userType", payload.userType);
 
-      this.props.loginUser(this.state.email, payload.token,payload.userType)
-      
-      errors.login = "" ;
-      this.setState({ redirect: true })
+      this.props.loginUser(this.state.email, payload.token, payload.userType);
+      if( payload.userType === "client"){
+        this.props.history.replace("/client/home")
+      }else {
+        this.props.history.replace("/")
+
+      }
+
+      errors.login = "";
     } catch (err) {
-      errors.login = "Email Address or Password not correct" ;
+      errors.login = "Email Address or Password not correct";
       console.log(err);
     }
     this.setState(errors);
@@ -121,17 +125,12 @@ class Login extends Component {
         <div id="login" className="py-0 md:py-5 bg-bodyGray">
           <div className="mt-4 form-wrapper py-6 bg-white text-center md:w-1/2 lg:w-2/5 w-full mx-auto px-5 lg:px-20 md:rounded-lg">
             <h2 className="h1 text-3xl font-bold my-6">Log in to Upwork</h2>
-            <form
-              // action="http://localhost:4001/users/auth"
-              // method="POST"
-              onSubmit={this.handleSubmit}
-              noValidate
-            >
+            <form onSubmit={this.handleSubmit} >
               <Input
                 type="email"
                 name="email"
                 placeholder="Your email"
-                errorMsg=""
+                errorMsg={errors.email.length > 0 && errors.email}
                 className="pl-10"
                 svg={
                   <svg
@@ -145,17 +144,14 @@ class Login extends Component {
                   </svg>
                 }
                 onChange={this.handleChange}
-                noValidate
+                value={this.state.email}
               />
-              {errors.email.length > 0 && (
-                <small className="text-danger">{errors.email}</small>
-              )}
 
               <Input
                 type="password"
                 name="password"
                 placeholder="Password"
-                errorMsg=""
+                errorMsg={errors.password.length > 0 && errors.password}
                 className="pl-10"
                 svg={
                   <svg
@@ -171,28 +167,26 @@ class Login extends Component {
                   </svg>
                 }
                 onChange={this.handleChange}
-                noValidate
+                value={this.state.password}
               />
-              {errors.password.length > 0 && (
-                <small className="text-danger pl-1">{errors.password}</small>
+
+              <button
+                disabled={
+                  this.state.email &&
+                  this.state.password &&
+                  !errors.email &&
+                  !errors.password
+                    ? ""
+                    : "true"
+                }
+                className="w-full  bg-primary hover:bg-dark focus:ring-green-500  text-white  py-2 px-4 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg "
+              >
+                Continue
+              </button>
+              {errors.login.length > 0 && (
+                <small className="text-danger">{errors.login}</small>
               )}
-                <button
-                  disabled={
-                    this.state.email &&
-                    this.state.password &&
-                    !errors.email &&
-                    !errors.password
-                      ? ""
-                      : "true"
-                  }
-                  className="w-full  bg-primary hover:bg-dark focus:ring-green-500  text-white  py-2 px-4 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg "
-                >
-                  Continue
-                </button>
-                {errors.login.length > 0 && (
-                  <small className="text-danger">{errors.login}</small>
-                  )}
-                  { this.state.redirect ? (<Redirect push to="/freelancer"/>) : null }
+              {this.state.redirect ? <Redirect push to="/freelancer" /> : null}
             </form>
             <Separator>or</Separator>
             <GoogleBtn />
@@ -224,9 +218,9 @@ class Login extends Component {
 
 const mapDispatchToProps = () => {
   return {
-    loginUser
-  }
-}
+    loginUser,
+  };
+};
 
 // export default Login;
 export default connect(null, mapDispatchToProps())(Login);
