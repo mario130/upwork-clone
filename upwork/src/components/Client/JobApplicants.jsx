@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Navbar from './Jobs-navbar';
 
-const Jobs = () => {
+const Applicants = () => {
   /* const [job] = useState({
     title: "API Developer Needed To Fix/Rebuild API",
     type: "Hourly",
@@ -66,10 +66,11 @@ const Jobs = () => {
       <h1 className="px-4 md:px-6 py-2 mt-6 mb-3 font-bold text-2xl lg:container lg:mx-auto lg:max-w-5xl">Full Stack Developer MERN</h1>  
       <div className="bg-white mb-6 md:rounded-lg md:mx-12 lg:container lg:mx-auto lg:max-w-5xl border border-gray-200">
         <div className="">
-          <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Applicants ({allApplicants.length})</h2>
+          <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Applicants ({allApplicants.proposals?.length})</h2>
 
-          {allApplicants.map(applicant => (
-            <div className="p-4 md:px-6 border-b border-gray-200 lg:flex">
+          {allApplicants.proposals?.length > 0 
+          ? allApplicants.proposals.map((applicant, i) => (
+            <div key={i} className="p-4 md:px-6 border-b border-gray-200 lg:flex">
               <div className="flex py-2">
                 <img src={applicant.imgPath} className="w-16 h-16 rounded-full mr-4 md:mr-6" alt=""/>
                 <div>
@@ -107,11 +108,12 @@ const Jobs = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )) 
+          : null}
         </div>
       </div>
     </>
   )
 }
 
-export default Jobs;
+export default Applicants;

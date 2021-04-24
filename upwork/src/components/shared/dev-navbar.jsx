@@ -11,6 +11,7 @@ const Nav = () => {
     { title: "Proposals", link: "/proposals" },
     { title: "Applicants", link: "/applicants" },
     { title: "JobsList", link: "/job-list" },
+    { title: "ActiveJobs", link: "/active-jobs" },
     { title: "Contract", link: "/contract/6078554ae48496a93f483c0d" },
     { title: "clientHome", link: "/client/home" },
     { title: "job post", link: "/client/job-post" },

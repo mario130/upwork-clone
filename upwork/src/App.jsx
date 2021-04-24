@@ -8,6 +8,7 @@ import FreelancerProfile from './pages/freelancer/freelancer-profile';
 import Proposal from './pages/freelancer/proposal';
 import Applicants from './pages/Client/Applicants';
 import Jobs from './pages/Client/JobList';
+import ActiveJobs from './pages/Client/ActiveJobs';
 import AllProposals from './pages/freelancer/allProposals';
 import Contract from './pages/shared/contract';
 import Nav from "./components/shared/dev-navbar";
@@ -59,6 +60,7 @@ function App() {
 
           <ProtectedClient path="/applicants/:jobId" component={Applicants} />
           <ProtectedClient path="/job-list" component={Jobs} />
+          <ProtectedClient path="/active-jobs" component={ActiveJobs} />
 
           <Route path="/ProfileStep1" component={ProfileStep1} />
           <Route path="/ProfileStep2" component={ProfileStep2} />
