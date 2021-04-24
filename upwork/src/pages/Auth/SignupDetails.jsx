@@ -92,7 +92,7 @@ class SignupDetails extends Component {
       })
       .then((res) => {
         setTimeout(() => {
-          this.props.history.push("/login");
+          this.props.history.replace("/login");
         }, 1500);
 
         this.setState({
