@@ -7,7 +7,6 @@ export const serverFrontend ="https://upwork-4.web.app/"
 export let localBackend;
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log(process.env.NODE_ENV);
   localBackend ="http://localhost:4001"
 } else {
   localBackend ="https://upwork-4.herokuapp.com"

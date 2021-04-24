@@ -7,7 +7,6 @@ const Navbar = (props) => (
       <Link to="/job-list">
         <li className="cursor-pointer" className={`${props.activeLink === "jobs" ? "text-primary" : ""}`}>My Jobs</li>
       </Link>
-      <li className="cursor-pointer">Contracts</li>
       <Link to="/active-jobs">
       <li className="cursor-pointer" className={`${props.activeLink === "active-jobs" ? "text-primary" : ""}`}>Active contracts</li>
       </Link>
