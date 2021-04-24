@@ -1,11 +1,18 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const Navbar = () => (
+const Navbar = (props) => (
   <div className="py-2 bg-white text-darkText">
     <ul className="px-4 md:px-6 flex space-x-6 font-bold container mx-auto max-w-5xl">
-      <li>My Jobs</li>
-      <li>Contracts</li>
-      <li>Post a Job</li>
+      <Link to="/job-list">
+        <li className="cursor-pointer" className={`${props.activeLink === "jobs" ? "text-primary" : ""}`}>My Jobs</li>
+      </Link>
+      <Link to="/active-jobs">
+      <li className="cursor-pointer" className={`${props.activeLink === "active-jobs" ? "text-primary" : ""}`}>Active contracts</li>
+      </Link>
+      <Link to="/client/job-post">
+        <li className="cursor-pointer">Post a Job</li>
+      </Link>
     </ul>
   </div>
 )
