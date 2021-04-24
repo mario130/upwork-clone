@@ -81,7 +81,7 @@ class Login extends Component {
       if( payload.userType === "client"){
         this.props.history.replace("/client/home")
       }else {
-        this.props.history.replace("/")
+        this.props.history.replace("/freelancer")
 
       }
 
