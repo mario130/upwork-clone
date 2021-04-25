@@ -9,7 +9,9 @@ const Main = () => {
   const [searchedJobs, setSearchedJobs] = useState([])
   const [activeFilterSkill, setActiveFilterSkill] = useState('')
   const [skills] = useState(['HTML', "CSS", 'Javascript', "React", "Angular", "NodeJS", "Express", 'MongoDB'])
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
+    setLoading(true)
     axios
       .get(
         `${localBackend}/jobs/getAllJobs`
@@ -17,6 +19,7 @@ const Main = () => {
       .then((data) => {
         setJobs(data.data);
         setSearchedJobs(data.data);
+        setLoading(false)
       });
   }, []);
 
@@ -185,11 +188,12 @@ const Main = () => {
           </div> : null}
           {/* IF NO JOBS */}
           {searchedJobs.length === 0 
-          ? <div>
-            <div className="text-center my-6 font-bold">
-              No jobs found
+          ? loading ? null 
+          : <div>
+              <div className="text-center my-6 font-bold">
+                No jobs found
+              </div>
             </div>
-          </div>
           : null}
           {searchedJobs.map((job) => (
             <div className="p-5 border-b border-gray-200">
