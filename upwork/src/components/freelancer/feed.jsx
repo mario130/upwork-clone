@@ -7,6 +7,7 @@ import { localBackend } from '../../services/basedUrl';
 const Main = () => {
   const [jobs, setJobs] = useState([])
   const [searchedJobs, setSearchedJobs] = useState([])
+  const [activeFilterSkill, setActiveFilterSkill] = useState('')
   useEffect(() => {
     axios
       .get(
@@ -23,6 +24,19 @@ const Main = () => {
       return job.description.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
     })
     setSearchedJobs(result);
+  }
+
+  const filterBySkill = (skill)=> {
+    if (skill === "") {
+      setSearchedJobs(jobs)
+      setActiveFilterSkill("")
+      return
+    }
+    const result = jobs.filter(job => {
+      return job.skills.includes(skill)
+    })
+    setSearchedJobs(result)
+    setActiveFilterSkill(skill)
   }
 
   return (
@@ -80,12 +94,35 @@ const Main = () => {
           <li className="font-bold text-gray-700 px-2 py-1">Custom search 3</li>
         </ul>
 
-        <h3 className="font-bold text-black px-2 py-1">Recent Searches</h3>
+        <h3 className="font-bold text-black px-2 py-1">Filter by skill</h3>
         <ul className="space-y-1">
-          <li className="text-primary font-bold ml-2">Search 1</li>
-          <li className="text-primary font-bold ml-2">Search 2</li>
-          <li className="text-primary font-bold ml-2">Search 3</li>
-          <li className="text-primary font-bold ml-2">Search 4</li>
+          <li className="text-primary font-bold ml-2">
+            <span className={`cursor-pointer ${activeFilterSkill === "HTML" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('HTML')}>HTML</span>
+          </li>
+          <li className="text-primary font-bold ml-2">
+            <span className={`cursor-pointer ${activeFilterSkill === "CSS" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('CSS')}>CSS</span>
+          </li>
+          <li className="text-primary font-bold ml-2">
+            <span className={`cursor-pointer ${activeFilterSkill === "Javascript" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('Javascript')}>Javascript</span>
+          </li>
+          <li className="text-primary font-bold ml-2">
+            <span className={`cursor-pointer ${activeFilterSkill === "React" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('React')}>React</span>
+          </li>
+          <li className="text-primary font-bold ml-2">
+            <span className={`cursor-pointer ${activeFilterSkill === "Angular" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('Angular')}>Angular</span>
+          </li>
+          <li className="text-primary font-bold ml-2">
+            <span className={`cursor-pointer ${activeFilterSkill === "NodeJS" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('NodeJS')}>NodeJS</span>
+          </li>
+          <li className="text-primary font-bold ml-2">
+            <span className={`cursor-pointer ${activeFilterSkill === "Express" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('Express')}>Express</span>
+          </li>
+          <li className="text-primary font-bold ml-2">
+            <span className={`cursor-pointer ${activeFilterSkill === "MongoDB" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('MongoDB')}>MongoDB</span>
+          </li>
+          <li className="text-gray-600 font-bold ml-2">
+            <span className={`cursor-pointer `} onClick={()=>filterBySkill('')}>Remove filter</span>
+          </li>
         </ul>
       </div>
 

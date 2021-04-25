@@ -13,7 +13,8 @@ module.exports = {
         "bodyGray": '#f1f2f4',
         "hair":"#e0e0e0",
         "darkText": "#222",
-        "danger":"#e74c3c"
+        "danger":"#e74c3c",
+        "darkGreen": "#143c16"
       },
       fontFamily: {
         nuni: ["Nunito Sans"],
