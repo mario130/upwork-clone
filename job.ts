@@ -58,3 +58,4 @@ interface Contract {
     // status: ["active"]
 // }
 
+// >> proposal >> accepted true

@@ -23,6 +23,11 @@ const proposalSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  accepted:{
+    type:Boolean,
+    required:true,
+    default:false
+  }
   // imgPath: {
   //   type: String,
   //   required: true,
