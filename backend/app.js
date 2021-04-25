@@ -38,7 +38,7 @@ app.use('/profile',freelanceProfileRouter)
 app.use('/jobs',jobRoutes)
 app.use('/proposal',proposalRoutes)
 app.use('/contract',contractRoutes)
-app.use('/mail',mailRoutes)
+// app.use('/mail',mailRoutes)
 
 app.use('/',errorHandler);
 
