@@ -33,6 +33,7 @@ import ProfileStep12 from "./pages/complete-profile/profile-step12";
 import SuccessPage from "./components/Client/Job/SuccessPage";
 import  ProtectedFreelancer from './components/shared/ProtectedFreelancer'
 import ProtectedClient from "./components/shared/ProtectedClient";
+import CreateProfile from "./pages/complete-profile/create-profile";
 function App() {
  
 
@@ -46,7 +47,7 @@ function App() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" component={Login} />
           
-          <ProtectedFreelancer path="/freelancer" component={FreelancerHomepage} />
+          <ProtectedFreelancer path="/freelancer" exact component={FreelancerHomepage} />
           <ProtectedFreelancer path="/job/:id" component={Job} />
           <ProtectedFreelancer path="/freelancer-profile" component={FreelancerProfile} />
           <ProtectedClient path="/client/home" component={ClientHomePage} />
@@ -61,7 +62,7 @@ function App() {
           <ProtectedClient path="/applicants/:jobId" component={Applicants} />
           <ProtectedClient path="/job-list" component={Jobs} />
           <ProtectedClient path="/active-jobs" component={ActiveJobs} />
-
+          <ProtectedFreelancer path="/freelancer/create-profile/:step" exact component = {CreateProfile}/>
           <Route path="/ProfileStep1" component={ProfileStep1} />
           <Route path="/ProfileStep2" component={ProfileStep2} />
           <Route path="/ProfileStep3" component={ProfileStep3} />

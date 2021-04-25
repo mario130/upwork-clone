@@ -10,10 +10,7 @@ const ProfileStep10 = () => {
 
     return (
 
-        <div className='w-full bg-bodyGray md:py-6'>
-            <div className="md:gap-4 md:grid md:grid-cols-12">
-                <Sidbar />
-                <div className='md:col-span-6 bg-white  shadow-lg'>
+        <>
                     <TagHeader tag='Title & Overview' value='7' />
 
                     <hr />
@@ -29,9 +26,7 @@ const ProfileStep10 = () => {
 
                         <BackNextBtns />
                     </div>
-                </div>
-            </div>
-        </div >
+                </>
 
     )
 }

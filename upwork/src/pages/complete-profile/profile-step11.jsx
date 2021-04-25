@@ -7,10 +7,7 @@ import BackNextBtns from '../../components/complete-profile/back-nextBtns'
 const ProfileStep11 = () => {
     return (
 
-        <div className='w-full bg-bodyGray md:py-6'>
-            <div className="md:gap-4 md:grid md:grid-cols-12">
-                <Sidbar />
-                <div className='md:col-span-6 bg-white  shadow-lg'>
+        <>
                     <TagHeader tag='Profile Photo & Phone No.' value='8' />
                     <hr />
                     <div className='bg-white px-5 py-5 md:py-4'>
@@ -38,10 +35,8 @@ const ProfileStep11 = () => {
 
                         <BackNextBtns />
                     </div>
-                </div>
-            </div>
-        </div >
-
+                </>
+          
     )
 }
 

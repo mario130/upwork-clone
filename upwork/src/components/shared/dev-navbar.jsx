@@ -18,14 +18,14 @@ const Nav = () => {
     { title: "signup", link: "/signup" },
     { title: "Signup details", link: "/signup/details" },
     { title: "login", link: "/login" },
-    { title: "profile-step3", link: "/ProfileStep3" },
-    { title: "profile-step4", link: "/ProfileStep4" },
-    { title: "profile-step5", link: "/ProfileStep5" },
-    { title: "profile-step7", link: "/ProfileStep7" },
-    { title: "profile-step8", link: "/ProfileStep8" },
-    { title: "profile-step10", link: "/ProfileStep10" },
-    { title: "profile-step11", link: "/ProfileStep11" },
-    { title: "profile-step12", link: "/ProfileStep12" },
+    { title: "create-profile", link: "/freelancer/create-profile/step1" },
+    // { title: "profile-step4", link: "/ProfileStep4" },
+    // { title: "profile-step5", link: "/ProfileStep5" },
+    // { title: "profile-step7", link: "/ProfileStep7" },
+    // { title: "profile-step8", link: "/ProfileStep8" },
+    // { title: "profile-step10", link: "/ProfileStep10" },
+    // { title: "profile-step11", link: "/ProfileStep11" },
+    // { title: "profile-step12", link: "/ProfileStep12" },
     // { title: "profile-step1", link: "/ProfileStep1" }, // duplicate
     // { title: "profile-step2", link: "/ProfileStep2" }, // verification email
     // { title: "profile-step6", link: "/ProfileStep6" }, // skills

@@ -8,10 +8,7 @@ const ProfileStep9 = () => {
 
     return (
 
-        <div className='w-full bg-bodyGray md:py-6'>
-            <div className="md:gap-4 md:grid md:grid-cols-12">
-                <Sidbar />
-                <div className='md:col-span-6 bg-white  shadow-lg'>
+        <>
                     <TagHeader tag='Hourly rate' value='6' />
 
                     <hr />
@@ -27,9 +24,8 @@ const ProfileStep9 = () => {
 
                         <BackNextBtns />
                     </div>
-                </div>
-            </div>
-        </div >
+                </>
+            
 
     )
 }
