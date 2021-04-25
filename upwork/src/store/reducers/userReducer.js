@@ -3,6 +3,11 @@ const initialState = {
   email: localStorage.getItem("user") || "",
   token: localStorage.getItem("token") || "",
   userType:localStorage.getItem("userType") || "",
+  userName:localStorage.getItem("userName") || "",
+  firstName:localStorage.getItem("firstName") || "",
+
+
+  
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -13,13 +18,17 @@ export const userReducer = (state = initialState, action) => {
         email: action.payload.email,
         userType: action.payload.userType,
         token: action.payload.token,
+        userName:action.payload.userName,
+        firstName:action.payload.firstName,
       };
 
     case actionTypes.LOGOUT:
       return {
         ...state,
         email: "",
-        token: ""
+        token: "",
+        userName:"",
+        firstName:""
       }
 
     default:

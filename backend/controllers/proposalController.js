@@ -5,7 +5,11 @@ const Freelancer = require("../model/freelancer");
 module.exports.getFreelancerProposoal = (req, resp, next) => {
   Freelancer.findOne({ userId: req._id }, (err, data) => {
     if (!err) {
-      resp.status(200).send(data.submittedProposals);
+      if(data){
+        resp.status(200).send(data.submittedProposals);
+      }else {
+        return next(err)
+      }
     } else return next(err);
   });
 };

@@ -76,8 +76,13 @@ class Login extends Component {
       localStorage.setItem("user", this.state.email);
       localStorage.setItem("token", payload.token);
       localStorage.setItem("userType", payload.userType);
+      localStorage.setItem("userName", payload.userName);
+      localStorage.setItem("firstName", payload.firstName);
 
-      this.props.loginUser(this.state.email, payload.token, payload.userType);
+      
+
+
+      this.props.loginUser(this.state.email, payload.token, payload.userType,payload.userName,payload.firstName);
       if( payload.userType === "client"){
         this.props.history.replace("/client/home")
       }else {
