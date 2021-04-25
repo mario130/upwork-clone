@@ -3,9 +3,9 @@ const Proposal = require("../model/proposal");
 const mongoose = require("mongoose");
 const Freelancer = require("../model/freelancer");
 module.exports.getFreelancerProposoal = (req, resp, next) => {
-  Freelancer.find({ userId: req._id }, (err, data) => {
+  Freelancer.findOne({ userId: req._id }, (err, data) => {
     if (!err) {
-      resp.status(200).send(data[0].submittedProposals);
+      resp.status(200).send(data.submittedProposals);
     } else return next(err);
   });
 };
@@ -25,7 +25,6 @@ module.exports.getJobProposals = (req, resp, next) => {
 };
 
 module.exports.addProposal = async (req, resp, next) => {
- 
   const job = await Job.findById(mongoose.Types.ObjectId(req.params.jobId));
   if (job) {
     const proposal = {
@@ -46,6 +45,7 @@ module.exports.addProposal = async (req, resp, next) => {
     const freelancer = await Freelancer.findOne({
       userId: mongoose.Types.ObjectId(req._id),
     });
+    console.log(proposal)
     if (freelancer) {
       freelancer.submittedProposals.push(proposal);
       freelancer.save((err, data) => {

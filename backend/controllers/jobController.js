@@ -14,7 +14,7 @@ module.exports.getAllClientJobs = (req, resp, next) => {
 };
 
 module.exports.getAllJobs = (req, res, next) => {
-  Job.find({}, (err, data) => {
+  Job.find({status:"listed"}, (err, data) => {
     if (!err){
       res.status(200).send(data)
     } else {
@@ -32,6 +32,7 @@ module.exports.getById = (req, resp, next) => {
 };
 module.exports.addJob = async (req, resp, next) => {
   const job = new Job({ ...req.body});
+  
   job.clientId = req._id
 const client= await  Client.findOne({userId:mongoose.Types.ObjectId(req._id)});
 

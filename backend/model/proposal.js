@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const proposalSchema = mongoose.Schema({
   freelancerId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Freelancer",
+    ref: "User",
     required: true,
   },
   // },

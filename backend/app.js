@@ -5,6 +5,8 @@ const userRouter = require('./routes/userRouter')
 const freelanceProfileRouter = require('./routes/freelanceProfileRouter')
 const jobRoutes = require('./routes/jobRoutes')
 const proposalRoutes = require('./routes/proposalRoutes')
+const contractRoutes = require('./routes/contractRoutes')
+
 const passport = require('passport')
 const cors=require('cors');
 require('dotenv').config();
@@ -34,6 +36,8 @@ app.use('/users',userRouter)
 app.use('/profile',freelanceProfileRouter)
 app.use('/jobs',jobRoutes)
 app.use('/proposal',proposalRoutes)
+app.use('/contract',contractRoutes)
+
 app.use('/',errorHandler);
 
 // ERROR HANDLER

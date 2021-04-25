@@ -14,6 +14,8 @@ const Proposal = () => {
   const job = JSON.parse(localStorage.getItem("job")).data;
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const history = useHistory();
   const formik = useFormik({
     initialValues: {
@@ -56,8 +58,9 @@ const Proposal = () => {
             history.push("/freelancer");
           }, 1500);
         });
-      } catch (err) {
-        console.log(err);
+      } catch (ex) {
+        setErrorMsg(ex.response.data.message)
+      
         setSuccess(false);
         setError(true);
       }
@@ -402,7 +405,7 @@ const Proposal = () => {
             {error && (
               <div className="pt-3">
                 {" "}
-                <Alert severity="error"> Error In Your Connection </Alert>{" "}
+                <Alert severity="error"> {errorMsg} </Alert>{" "}
               </div>
             )}
           </div>
