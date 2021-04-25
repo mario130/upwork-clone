@@ -6,6 +6,7 @@ const freelanceProfileRouter = require('./routes/freelanceProfileRouter')
 const jobRoutes = require('./routes/jobRoutes')
 const proposalRoutes = require('./routes/proposalRoutes')
 const contractRoutes = require('./routes/contractRoutes')
+const mailRoutes = require('./routes/mailRoutes')
 
 const passport = require('passport')
 const cors=require('cors');
@@ -37,6 +38,7 @@ app.use('/profile',freelanceProfileRouter)
 app.use('/jobs',jobRoutes)
 app.use('/proposal',proposalRoutes)
 app.use('/contract',contractRoutes)
+app.use('/mail',mailRoutes)
 
 app.use('/',errorHandler);
 
