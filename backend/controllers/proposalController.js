@@ -32,6 +32,7 @@ module.exports.addProposal = async (req, resp, next) => {
       duration: req.body.duration,
       // imgPath: req.body.imgPath,
       freelancerId: req._id,
+      accepted: false
     };
 
     const alreadySumitted = job.proposals.find((proposal) => {

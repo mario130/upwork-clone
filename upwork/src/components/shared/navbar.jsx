@@ -20,10 +20,6 @@ const Nav = () => {
           title: "Find Work",
           link: "/freelancer"
         },
-        // {
-        //   title: "Saved Jobs",
-        //   link: "/"
-        // },
         {
           title: "Proposals",
           link: "/proposals"
@@ -32,18 +28,6 @@ const Nav = () => {
           title: "Profile",
           link: "/freelancer-profile"
         },
-        // {
-        //   title: "My Stats",
-        //   link: "/"
-        // },
-        // {
-        //   title: "Upwork Readiness Test",
-        //   link: "/"
-        // },
-        // {
-        //   title: "My Project Dashboard",
-        //   link: "/"
-        // },
       ],
     },
     {
@@ -57,41 +41,8 @@ const Nav = () => {
           title: "All Contracts",
           link: "/proposals"
         },
-        // {
-        //   title: "Work Diary",
-        //   link: "/"
-        // }
       ],
     },
-    // {
-    //   title: "Reports",
-    //   list: [
-    //     {
-    //       title: "Overview",
-    //       link: "/"
-    //     },
-    //     {
-    //       title: "My Reports",
-    //       link: "/"
-    //     },
-    //     {
-    //       title: "Lifetime Billings by Client",
-    //       link: "/"
-    //     },
-    //     {
-    //       title: "Connects History",
-    //       link: "/"
-    //     },
-    //     {
-    //       title: "Transaction History",
-    //       link: "/"
-    //     },
-    //     {
-    //       title: "Certificate of Earnings",
-    //       link: "/"
-    //     },
-    //   ],
-    // },
     {
       title: "Messages",
     },
