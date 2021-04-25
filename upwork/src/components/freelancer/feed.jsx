@@ -7,7 +7,11 @@ import { localBackend } from '../../services/basedUrl';
 const Main = () => {
   const [jobs, setJobs] = useState([])
   const [searchedJobs, setSearchedJobs] = useState([])
+  const [activeFilterSkill, setActiveFilterSkill] = useState('')
+  const [skills] = useState(['HTML', "CSS", 'Javascript', "React", "Angular", "NodeJS", "Express", 'MongoDB'])
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
+    setLoading(true)
     axios
       .get(
         `${localBackend}/jobs/getAllJobs`
@@ -15,6 +19,7 @@ const Main = () => {
       .then((data) => {
         setJobs(data.data);
         setSearchedJobs(data.data);
+        setLoading(false)
       });
   }, []);
 
@@ -23,6 +28,19 @@ const Main = () => {
       return job.description.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
     })
     setSearchedJobs(result);
+  }
+
+  const filterBySkill = (skill)=> {
+    if (skill === "") {
+      setSearchedJobs(jobs)
+      setActiveFilterSkill("")
+      return
+    }
+    const result = jobs.filter(job => {
+      return job.skills.includes(skill)
+    })
+    setSearchedJobs(result)
+    setActiveFilterSkill(skill)
   }
 
   return (
@@ -80,12 +98,17 @@ const Main = () => {
           <li className="font-bold text-gray-700 px-2 py-1">Custom search 3</li>
         </ul>
 
-        <h3 className="font-bold text-black px-2 py-1">Recent Searches</h3>
+        {/* SKILLS */}
+        <h3 className="font-bold text-black px-2 py-1">Filter by skill</h3>
         <ul className="space-y-1">
-          <li className="text-primary font-bold ml-2">Search 1</li>
-          <li className="text-primary font-bold ml-2">Search 2</li>
-          <li className="text-primary font-bold ml-2">Search 3</li>
-          <li className="text-primary font-bold ml-2">Search 4</li>
+          <li className="text-gray-600 font-bold ml-2">
+            <span className={`cursor-pointer `} onClick={()=>filterBySkill('')}>Remove filter</span>
+          </li>
+          {skills.map(skill => (
+            <li className="text-primary font-bold ml-2">
+              <span className={`cursor-pointer ${activeFilterSkill === skill ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill(skill)}>{skill}</span>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -120,7 +143,7 @@ const Main = () => {
           </button>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-t-md">
+        <div className="bg-white border border-gray-200 rounded-t-md mb-4">
           {/* job feed */}
           <ul className="lg:hidden flex mt-3 ml-3 p-2 space-x-10 border-b border-gray-200">
             <li className="font-bold text-sm text-primary">My Feed</li>
@@ -163,6 +186,15 @@ const Main = () => {
           {jobs.length === 0 ? <div className="text-center my-14">
             <Spinner />
           </div> : null}
+          {/* IF NO JOBS */}
+          {searchedJobs.length === 0 
+          ? loading ? null 
+          : <div>
+              <div className="text-center my-6 font-bold">
+                No jobs found
+              </div>
+            </div>
+          : null}
           {searchedJobs.map((job) => (
             <div className="p-5 border-b border-gray-200">
               {/* title */}
@@ -265,7 +297,7 @@ const Main = () => {
             </div>
           ))}
 
-          {jobs.length !== 0 ? <div className="text-center bg-white p-4">
+          {searchedJobs.length !== 0 ? <div className="text-center bg-white p-4">
             <button className="px-6 py-2 border rounded-full text-primary font-bold">
               Load more
             </button>
