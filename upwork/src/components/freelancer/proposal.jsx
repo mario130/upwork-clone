@@ -115,8 +115,8 @@ const Proposal = () => {
           <div className="pr-4 flex-1">
             <h5 className="font-bold my-3">{job.title}</h5>
             <p className="mb-3">{job.description}</p>
-            <Link to={`/job/${job._id}`}>
-              <a className="text-primary font-semibold">View job posting</a>
+            <Link to={`/job/${job._id}`} className="text-primary font-semibold">
+              View job posting
             </Link>
           </div>
           <div className="px-4 md:pl-5 md:pr-16 hidden md:block">

@@ -18,8 +18,8 @@ module.exports.register = (req, resp, next) => {
       if (user.userType === "freelancer") {
         const freelancer = new Freelancer();
         freelancer.userId = doc._id;
-
-        freelancer.save((err, doc) => {
+        console.log(freelancer)
+        freelancer.save((err, data) => {
           if (err) console.log(err);
         });
       }
@@ -74,12 +74,9 @@ module.exports.getByEmail = (req, resp, next) => {
     if (!err)
     if (data == null) {
         resp.status(200).json("valid email")
-        // resp.redirect(
-        //   `http://localhost:3000/signup/details?email=${req.body.email}`
-        // );
+    
       } else {
         resp.status(400).json("this email already registered")
-        // resp.redirect(`http://localhost:3000/login?email=${req.body.email}`);
       }
     else return next(err);
   });

@@ -1,71 +1,112 @@
 const mongoose = require("mongoose");
 
 const freelanceProfileSchema = mongoose.Schema({
-    userId:{
-        type: String,
-        required: "User ID field can\'t be empty",
-        unique:true,
-    
-        validate: async function(){
-            let User=mongoose.model('Freelancer');
-            return await User.findOne({_id:this.userId})
-        }
+  // userId:{
+  //     type: String,
+  //     required: "User ID field can\'t be empty",
+  //     unique:true,
+
+  //     validate: async function(){
+  //         let User=mongoose.model('Freelancer');
+  //         return await User.findOne({_id:this.userId})
+  //     }
+  // },
+  category: {
+    type: String,
+    required: "Category type field can't be empty",
+    default: "it",
+  },
+  subcategory: {
+    type: String,
+    required: "subcategory info field can't be empty",
+    default: "Web, Mobile & Software Dev",
+  },
+  title: {
+    type: String,
+    required: "Title can't be empty",
+    default: "full Stack developer",
+  },
+  overview: {
+    type: String,
+    required: "overview can't be empty",
+    minlength: [100, "Over view can't be less than 100 characters"],
+    default:
+      "What is Upwork? Upwork is a huge virtual international market place where a large number of clients and freelancers are available to hire and to be hired. It is a ...",
+  },
+//   expertise: {
+//     type: { String },
+//     required: "At least one skill is required",
+//     // validate: {
+//     //   validator: function () {
+//     //     return this.expertise.length > 0;
+//     //   },
+//     //   message: "minimum 1 skill should be added",
+//     // },
+//     default: ["skill1"],
+//   },
+  expertiseLevel: {
+    type: String,
+    required: "Expertise level field can't be empty",
+    default: "entry level",
+  },
+  education: {
+    school: {
+      type: String,
+      required: "school field can't be empty",
+      default: "school1",
     },
-    categoryType:{
-        type:String,
-        required: "Category type field can\'t be empty"
-    },
-    categoryInfo:{
-        type:String,
-        required: "Category info field can\'t be empty"
-    },
-    expertise:{
-        type:Array,
-        required: "At least one skill is required"
-    },
-    expertiseLevel:{
-        type:String,
-        required: "Expertise level field can\'t be empty"
-    },
-    education:{
-        type:Object,
-        required: "Add at least one item in education field"
-    },
-    employment:{
-        type:Object,
-        required: "Add at least one item in employment field"
-    },
-    languages:{
-        type:Array,
-        required: "Add at least one item in languages field"
-    },
-    hourlyRate:{
-        type:Number,
-        required: "Hourly rate field can\'t be empty"
-    },
-    title:{
-        type:String,
-        required: "Title field can\'t be empty"
-    },
-    overView:{
-        type:String,
-        required: "Over view field can\'t be empty",
-        minlength: [100,"Over view can\'t be less than 100 characters"]
-    },
-    profilePhoto:{
-        type:String,
-        required: "Profile photo field can\'t be empty"
-    },
-    location:{
-        type:Object,
-        required: "location field can\'t be empty"
+    AreaOfStudy: String,
+    degree: String,
+  },
+
+  languages: {
+    type: [String],
+    required: "Add at least one item in languages field",
+    default: ["english"],
+  },
+  hourlyRate: {
+    type: Number,
+    required: "Hourly rate field can't be empty",
+    default: 10,
+  },
+
+  profilePhoto: {
+    type: String,
+    required: "Profile photo field can't be empty",
+    default: "/src/photo1",
+  },
+  location: {
+    country: {
+      type: String,
+      required: true,
+    default: "egypt",
 
     },
-    phone:{
-        type:String,
-        required: "Phone field can\'t be empty"
-    },
-    proposals:[]
-})
+    streetAddress: {
+      type: String,
+      required: true,
+    default: "salah salem",
 
-module.exports = mongoose.model("FreelanceProfile", freelanceProfileSchema);
+    },
+    city: {
+      type: String,
+      required: true,
+    default: "beni suef",
+
+    },
+    postalCode: {
+      type: String,
+      required: true,
+    default: "61255",
+      
+    },
+  },
+  phone: {
+    type: String,
+    required: "Phone field can't be empty",
+    default: "01008005403",
+
+  },
+});
+
+module.exports =  freelanceProfileSchema;

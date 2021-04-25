@@ -23,6 +23,7 @@ module.exports.hireFreelancer = (req, resp, next) => {
                     contract.save((err,contract)=>{
                         if(!err){
                             if(contract){
+                                
                                 resp.status(200).send(contract)
                             }
                         }else {

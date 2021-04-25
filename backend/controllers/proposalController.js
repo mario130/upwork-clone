@@ -15,8 +15,7 @@ module.exports.getJobProposals = (req, resp, next) => {
   .populate({ 
       path: 'proposals.freelancerId',
       model:"User",
-      select:["firstName","lastName","userName"] 
-   }).select("title proposals")
+   })
     .exec((err, data) => {
       if (!err) {
         resp.status(200).send(data);
