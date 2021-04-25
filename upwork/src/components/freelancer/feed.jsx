@@ -8,6 +8,7 @@ const Main = () => {
   const [jobs, setJobs] = useState([])
   const [searchedJobs, setSearchedJobs] = useState([])
   const [activeFilterSkill, setActiveFilterSkill] = useState('')
+  const [skills] = useState(['HTML', "CSS", 'Javascript', "React", "Angular", "NodeJS", "Express", 'MongoDB'])
   useEffect(() => {
     axios
       .get(
@@ -94,35 +95,17 @@ const Main = () => {
           <li className="font-bold text-gray-700 px-2 py-1">Custom search 3</li>
         </ul>
 
+        {/* SKILLS */}
         <h3 className="font-bold text-black px-2 py-1">Filter by skill</h3>
         <ul className="space-y-1">
-          <li className="text-primary font-bold ml-2">
-            <span className={`cursor-pointer ${activeFilterSkill === "HTML" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('HTML')}>HTML</span>
-          </li>
-          <li className="text-primary font-bold ml-2">
-            <span className={`cursor-pointer ${activeFilterSkill === "CSS" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('CSS')}>CSS</span>
-          </li>
-          <li className="text-primary font-bold ml-2">
-            <span className={`cursor-pointer ${activeFilterSkill === "Javascript" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('Javascript')}>Javascript</span>
-          </li>
-          <li className="text-primary font-bold ml-2">
-            <span className={`cursor-pointer ${activeFilterSkill === "React" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('React')}>React</span>
-          </li>
-          <li className="text-primary font-bold ml-2">
-            <span className={`cursor-pointer ${activeFilterSkill === "Angular" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('Angular')}>Angular</span>
-          </li>
-          <li className="text-primary font-bold ml-2">
-            <span className={`cursor-pointer ${activeFilterSkill === "NodeJS" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('NodeJS')}>NodeJS</span>
-          </li>
-          <li className="text-primary font-bold ml-2">
-            <span className={`cursor-pointer ${activeFilterSkill === "Express" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('Express')}>Express</span>
-          </li>
-          <li className="text-primary font-bold ml-2">
-            <span className={`cursor-pointer ${activeFilterSkill === "MongoDB" ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill('MongoDB')}>MongoDB</span>
-          </li>
           <li className="text-gray-600 font-bold ml-2">
             <span className={`cursor-pointer `} onClick={()=>filterBySkill('')}>Remove filter</span>
           </li>
+          {skills.map(skill => (
+            <li className="text-primary font-bold ml-2">
+              <span className={`cursor-pointer ${activeFilterSkill === skill ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill(skill)}>{skill}</span>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -157,7 +140,7 @@ const Main = () => {
           </button>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-t-md">
+        <div className="bg-white border border-gray-200 rounded-t-md mb-4">
           {/* job feed */}
           <ul className="lg:hidden flex mt-3 ml-3 p-2 space-x-10 border-b border-gray-200">
             <li className="font-bold text-sm text-primary">My Feed</li>
@@ -200,6 +183,14 @@ const Main = () => {
           {jobs.length === 0 ? <div className="text-center my-14">
             <Spinner />
           </div> : null}
+          {/* IF NO JOBS */}
+          {searchedJobs.length === 0 
+          ? <div>
+            <div className="text-center my-6 font-bold">
+              No jobs found
+            </div>
+          </div>
+          : null}
           {searchedJobs.map((job) => (
             <div className="p-5 border-b border-gray-200">
               {/* title */}
@@ -302,7 +293,7 @@ const Main = () => {
             </div>
           ))}
 
-          {jobs.length !== 0 ? <div className="text-center bg-white p-4">
+          {searchedJobs.length !== 0 ? <div className="text-center bg-white p-4">
             <button className="px-6 py-2 border rounded-full text-primary font-bold">
               Load more
             </button>
