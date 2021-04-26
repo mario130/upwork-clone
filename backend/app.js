@@ -6,7 +6,7 @@ const freelanceProfileRouter = require('./routes/freelanceProfileRouter')
 const jobRoutes = require('./routes/jobRoutes')
 const proposalRoutes = require('./routes/proposalRoutes')
 const contractRoutes = require('./routes/contractRoutes')
-const mailRoutes = require('./routes/mailRoutes')
+const io = require('socket.io');
 
 const passport = require('passport')
 const cors=require('cors');
@@ -58,4 +58,8 @@ app.use('/',errorHandler);
 // })
 
 const PORT = process.env.PORT || 4001
-app.listen(PORT, ()=>console.log(`Now listening on port ${PORT}`))
+const listen = app.listen(PORT, ()=>console.log(`Now listening on port ${PORT}`))
+// var socket =
+//  io.listen(listen);
+
+// require('./routes/routes')(app,socket);
