@@ -76,8 +76,13 @@ class Login extends Component {
       localStorage.setItem("user", this.state.email);
       localStorage.setItem("token", payload.token);
       localStorage.setItem("userType", payload.userType);
+      localStorage.setItem("userName", payload.userName);
+      localStorage.setItem("firstName", payload.firstName);
 
-      this.props.loginUser(this.state.email, payload.token, payload.userType);
+      
+
+
+      this.props.loginUser(this.state.email, payload.token, payload.userType,payload.userName,payload.firstName);
       if( payload.userType === "client"){
         this.props.history.replace("/client/home")
       }else {
@@ -176,8 +181,8 @@ class Login extends Component {
                   this.state.password &&
                   !errors.email &&
                   !errors.password
-                    ? ""
-                    : "true"
+                    ? false
+                    : true
                 }
                 className="w-full  bg-primary hover:bg-dark focus:ring-green-500  text-white  py-2 px-4 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg "
               >

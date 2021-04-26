@@ -18,7 +18,6 @@ module.exports.register = (req, resp, next) => {
       if (user.userType === "freelancer") {
         const freelancer = new Freelancer();
         freelancer.userId = doc._id;
-        console.log(freelancer)
         freelancer.save((err, data) => {
           if (err) console.log(err);
         });
@@ -47,7 +46,7 @@ module.exports.authenticate = (req, resp, next) => {
     // check if there is an error from passport middleware
     if (err) return resp.status(400).json(err);
     // registered user
-    else if (user) return resp.status(200).json({ token: user.generateJwt(),userType:user.userType });
+    else if (user) return resp.status(200).json({ token: user.generateJwt(),userType:user.userType, userName:user.userName,firstName:user.firstName });
     // Unknown user or wrong password
     else return resp.status(404).json(info);
   })(req, resp);

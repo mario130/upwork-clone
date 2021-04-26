@@ -7,7 +7,7 @@ const JobPage = (props) => {
 
   return (
     <div className="bg-bodyGray">
-      <Nav />
+      <Nav variation="freelancer" />
       <Job id={props.match.params.id} />
       <Footer />
     </div>

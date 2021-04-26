@@ -8,7 +8,7 @@ const FreelancerProfile = () => {
 
   return (
     <div className="bg-bodyGray">
-      <Nav />
+      <Nav variation="freelancer" />
       <Main />
       <Footer />
     </div>

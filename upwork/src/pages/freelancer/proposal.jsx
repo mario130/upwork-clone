@@ -8,7 +8,7 @@ const ProposalPage = () => {
 
   return (
     <div className="bg-bodyGray">
-      <Nav />
+      <Nav variation="freelancer" />
       <Proposal />
       <Footer />
     </div>

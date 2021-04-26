@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const Client = require("./../model/client");
-const Contract = require("./../model/contract");
+const Freelancer = require("../model/freelancer");
 
 const Job = require("../model/job");
-module.exports.hireFreelancer = (req, resp, next) => {
+const Contract = require("./../model/contract");
+
+module.exports.hireFreelancer = async (req, resp, next) => {
   // change job status to active
   const jobId = req.params.jobId;
 
@@ -14,27 +15,35 @@ module.exports.hireFreelancer = (req, resp, next) => {
         const proposal = jobDoc.proposals.find(
           (pro) => pro._id.toString() === req.body.proposalId.toString()
         );
-       
+
         if (proposal) {
           proposal.accepted = true;
 
           jobDoc.save((err, job) => {
             if (err) next(err);
-
-            const contract = new Contract({
-              freelancerId:proposal.freelancerId,
-              jobId: job._id,
-              clientId: job.clientId,
-            });
-            contract.save((err, contract) => {
-              if (!err) {
-                if (contract) {
-                  resp.status(200).send(contract);
+            if (job) {
+              const contract = new Contract({
+                freelancerId: proposal.freelancerId,
+                jobId: job._id,
+                clientId: job.clientId,
+              });
+              contract.save((err, createdcontract) => {
+                if (!err) {
+                  if (createdcontract) {
+                    jobDoc.contractId = createdcontract._id;
+                    jobDoc.save((err, updated) => {
+                      if (!err) {
+                        if (updated) {
+                          resp.status(200).send(createdcontract);
+                        }
+                      }
+                    });
+                  } else {
+                    return next(err);
+                  }
                 }
-              } else {
-                return next(err);
-              }
-            });
+              });
+            }
           });
         } else {
           return resp.status(400).json("proposal id is invalid");
@@ -45,4 +54,62 @@ module.exports.hireFreelancer = (req, resp, next) => {
     }
   });
   ///
+};
+module.exports.endContract = async (req, res, next) => {
+  const jobId = req.params.jobId;
+
+  // change job to closed
+
+  (await Job.findById(jobId))
+    .populate("contractId")
+    .execPopulate((err, jobDoc) => {
+      if (!err) {
+        if (jobDoc) {
+          jobDoc.status = "closed";
+          jobDoc.contractId.status = "ended";
+         console.log( jobDoc.contractId.status)
+          jobDoc.save((err, data) => {
+            if (!err) {
+              if (data) {
+                //add review
+                Freelancer.findOne({ userId:  mongoose.Types.ObjectId(jobDoc.contractId.freelancerId) }, (err, freelancer) => {
+                  if (!err) {
+                    if (freelancer) {
+                      const feedback = {
+                        feedback: req.body.feedback,
+                        rate: req.body.rate,
+                      };
+                      freelancer.profile.feedbacks.push(feedback);
+                      freelancer.save((err,updatedDoc)=>{
+                          if(!err){
+                              if(updatedDoc){
+                             Contract.findById(jobDoc.contractId,(err,contract)=>{
+                               if(!err){
+                                if(contract){
+                                  contract.status = "ended"
+                                  contract.save()
+                                }else return next(err)
+                               }else return next(err)
+                             })
+
+
+                                res.status(200).json( {status :jobDoc.contractId.status})
+                              }
+                          }return next(err)
+                      })
+                    } else {
+                      return next(err);
+                    }
+                  } else return next(err);
+                });
+
+
+                //end
+
+              } else return next(err);
+            } else return next(err);
+          });
+        } else return next(err);
+      } else return next(err);
+    });
 };

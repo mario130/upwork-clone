@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Btn from "../../components/UI/Form/Btn/Btn";
 import CheckBox from "../../components/UI/Form/CheckBox/CheckBox";
 import Input from "../../components/UI/Form/Input/Input";
 import Radio from "../../components/UI/Form/Radio/Radio";
@@ -265,13 +264,13 @@ class SignupDetails extends Component {
                 <small className="text-danger pl-1">{errors.password}</small>
               )}
               <div className="my-4">
-                <Select
-                  name="country"
-                  onChange={this.handleChange}
-                  options={Object.keys(this.state.countries).map((key) => {
-                    return this.state.countries[key];
+                <Select name="country" onChange={this.handleChange}>
+                  {Object.keys(this.state.countries).map((key) => {
+                    return <option>
+{this.state.countries[key]}
+                    </option> 
                   })}
-                />
+                </Select>
               </div>
               <p className="font-bold text-xl mt-4 mb-2">I want to</p>
               <div className="flex justify-center">

@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import Sidbar from "../../components/complete-profile/sidbar";
 
 const ProfileStep4 = () => {
   return (

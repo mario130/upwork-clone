@@ -55,7 +55,16 @@ interface Contract {
     // freelancerId:"req.body",  
     // clientId:"req.id", // 
     // jobId:"req.params",
-    // status: ["active"]
+    // status: ["active","closed"]
 // }
 
 // >> proposal >> accepted true
+
+// time 
+//end contract and review
+// closed job
+// status contract
+// add review to profile
+
+//
+//notification (back ,front)

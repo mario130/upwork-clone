@@ -107,6 +107,16 @@ const freelanceProfileSchema = mongoose.Schema({
     default: "01008005403",
 
   },
+  feedbacks:[{
+    feedback:{
+      type:String,
+      required:true
+    },
+    rate:{
+      type:Number,
+      required:true
+    }
+  }]
 });
 
 module.exports =  freelanceProfileSchema;
