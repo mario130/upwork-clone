@@ -4,8 +4,11 @@ const nodemailer = require("nodemailer");
 module.exports.sendMail = async (email) => {
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
+      // host: "smtp.gmail.com",
+      service: 'gmail',
+      // port: 587,
+      // ignoreTLS: false,
+      // secure: false,
       auth: {
         user: "upwork.clone.test@gmail.com",
         pass: "upwork.clone.test424",
@@ -29,7 +32,7 @@ module.exports.sendMail = async (email) => {
         console.log("Message sent: %s", info.messageId);
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
         // resp.status(200).send("done sending email to " + req.body.email);
-       return("done sending email to " + req.body.email);
+       return("done sending email to " + email);
       }
     });
   } catch(err){

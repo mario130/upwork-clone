@@ -2,6 +2,8 @@ const Job = require("../model/job");
 const Proposal = require("../model/proposal");
 const mongoose = require("mongoose");
 const Freelancer = require("../model/freelancer");
+const { pushNotification } = require("../services/notificationServices/notificationService");
+const { sendMail } = require("../services/mailServices/mailSevices");
 module.exports.getFreelancerProposoal = (req, resp, next) => {
   Freelancer.findOne({ userId: req._id })
     .populate({
@@ -62,6 +64,8 @@ module.exports.addProposal = async (req, resp, next) => {
         }
       });
     }
+    pushNotification(req._id, "You have Submit Proposal");
+    sendMail("mohammed.mfoad@gmail.com");
     job.proposals.push(proposal);
     job.save((err, data) => {
       if (!err) resp.status(200).json("successfully submit proposal");
