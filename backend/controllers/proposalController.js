@@ -48,7 +48,6 @@ module.exports.addProposal = async (req, resp, next) => {
     const freelancer = await Freelancer.findOne({
       userId: mongoose.Types.ObjectId(req._id),
     });
-    console.log(proposal)
     if (freelancer) {
       freelancer.submittedProposals.push(proposal);
       freelancer.save((err, data) => {

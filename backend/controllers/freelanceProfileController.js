@@ -71,6 +71,7 @@ module.exports.addFeedback = (req, res, next) => {
         freelancer.save((err,data)=>{
             if(!err){
                 if(data){
+                    
                     res.status(200).json("feedback added successfully")
                 }
             }return next(err)
