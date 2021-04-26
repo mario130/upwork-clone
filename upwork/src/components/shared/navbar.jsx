@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import { logout } from "../../store/actions/logoutAction";
 
-const Nav = () => {
+const Nav = (props) => {
   const dispatch = useDispatch()
   const logoutUser = () => {
     localStorage.removeItem('user')
@@ -149,6 +149,22 @@ const Nav = () => {
     },
   ]);
 
+  const [isNotificationsOpen, setNotifications] = useState(false)
+  const openNotifications = ()=> {
+    setNotifications(!isNotificationsOpen)
+  }
+
+  const [notifications] = useState([
+    {
+      title: 'You\'ve been accepted in Angular project',
+      linkToContract: '/contract/123456'
+    },
+    {
+      title: 'You\'ve been accepted in API project',
+      linkToContract: '/contract/123456'
+    },
+  ])
+
   return (
     <div className="lg:p-2 border-b border-gray-200 bg-complementary z-50 text-white">
       <div className="container mx-auto max-w-5xl">
@@ -217,7 +233,7 @@ const Nav = () => {
           </svg>
 
           {/* desktop search */}
-          <div className="flex-1 mx-3 p-3 relative mt-2 hidden lg:block">
+          <div className="flex-1 mx-3 p-3 relative mt-2 hidden lg:block max-w-xs">
             <div className="container mx-auto pb-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -242,7 +258,8 @@ const Nav = () => {
           </div>
 
           {/* desktop links */}
-          <div className="hidden lg:block">
+          {props.variation === 'freelancer'
+          ? <div className="hidden lg:block">
             <ul className="flex space-x-5">
               <li className="cursor-pointer text-light font-medium">
                 <Link to="/freelancer">
@@ -258,12 +275,60 @@ const Nav = () => {
               <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
             </ul>
           </div>
+          : <div className="hidden lg:block">
+          <ul className="flex space-x-5">
+            <li className="cursor-pointer text-light font-medium">
+              <Link to="/client/job-post">
+              Post job
+              </Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link to="/job-list">
+                My Jobs
+              </Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link to="/active-jobs">
+                Active jobs
+              </Link>
+            </li>
+            <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
+          </ul>
+        </div>}
 
           {/* desktop icons */}
           <ul className="space-x-4 hidden lg:flex">
-            {navLists.map((list,i) => (
-              <li key={i}>{list.icon ? list.icon : null}</li>
-            ))}
+            {/* {navLists.map((list) => (
+              <li>{list.icon ? list.icon : null}</li>
+            ))} */}
+            <button onClick={openNotifications} className="flex text-sm rounded-full focus:outline-none">
+              <li className="relative">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg>
+                <span className="absolute top-0 right-0 bg-red-400 w-2 h-2 rounded-full"></span>
+              </li>
+            </button>
+            <div class="ml-3 relative">
+              <div>
+              </div>
+              <div class={`origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${isNotificationsOpen ? "" : "hidden"}`} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                {notifications.map(noti => (
+                  <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href={noti.linkToContract}>{noti.title}</a>
+                ))}
+              </div>
+            </div>
           </ul>
 
           <div className="hidden lg:block">

@@ -8,7 +8,7 @@ const AllProposals = (props) => {
 
   return (
     <div className="bg-bodyGray">
-      <Nav />
+      <Nav variation="freelancer" />
       <Proposals />
       <Footer />
     </div>

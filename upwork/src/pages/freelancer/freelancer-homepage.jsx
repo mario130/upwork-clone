@@ -7,7 +7,7 @@ const FreelancerHomepage = () => {
 
   return (
     <div className="bg-bodyGray">
-      <Nav />
+      <Nav variation="freelancer" />
       <Feed />
       <Footer />
     </div>
