@@ -101,7 +101,18 @@ const freelancerSchema = mongoose.Schema({
       required: "Phone field can't be empty",
       default: "01008005403",
     },
+    feedbacks:[{
+      feedback:{
+        type:String,
+        required:true
+      },
+      rate:{
+        type:Number,
+        required:true
+      }
+    }]
   },
+
 });
 
 module.exports = mongoose.model("Freelancer", freelancerSchema);

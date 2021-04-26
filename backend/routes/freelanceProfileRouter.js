@@ -25,5 +25,7 @@ const upload = multer({storage:storage, limits:{
 router.post('/create-profile',upload.single('profilePhoto'),jwtHelper.verifyJwtToken,freelanceProfileControl.addProfile);
 router.get('/freelance-profile',jwtHelper.verifyJwtToken,freelanceProfileControl.getData);
 router.put('/profile-update/:id',freelanceProfileControl.updateProfile);
+router.post('/add-feedback/:id',freelanceProfileControl.addFeedback);
+
 
 module.exports = router;
