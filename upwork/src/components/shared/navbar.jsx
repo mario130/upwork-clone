@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import { logout } from "../../store/actions/logoutAction";
 
-const Nav = () => {
+const Nav = (props) => {
   const dispatch = useDispatch()
   const logoutUser = () => {
     localStorage.removeItem('user')
@@ -258,7 +258,8 @@ const Nav = () => {
           </div>
 
           {/* desktop links */}
-          <div className="hidden lg:block">
+          {props.variation === 'freelancer'
+          ? <div className="hidden lg:block">
             <ul className="flex space-x-5">
               <li className="cursor-pointer text-light font-medium">
                 <Link to="/freelancer">
@@ -274,6 +275,26 @@ const Nav = () => {
               <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
             </ul>
           </div>
+          : <div className="hidden lg:block">
+          <ul className="flex space-x-5">
+            <li className="cursor-pointer text-light font-medium">
+              <Link to="/client/job-post">
+              Post job
+              </Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link to="/job-list">
+                My Jobs
+              </Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link to="/active-jobs">
+                Active jobs
+              </Link>
+            </li>
+            <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
+          </ul>
+        </div>}
 
           {/* desktop icons */}
           <ul className="space-x-4 hidden lg:flex">
