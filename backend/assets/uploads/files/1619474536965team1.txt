@@ -1,0 +1,32 @@
+Team 1: 
+Upwork:
+
+users: client + freelancer
+
+1- registration -> done
+2- freelancer can list jobs -> done
+3- client can post job -> done
+4- freelancer can see his profile + "edit" --> in progress
+5- client can see job post details --> done
+
+done --> 17/4/2021
+
+--------------------------------------------------------------------
+
+1- freelancer apply on job -> (cover letter) --> back + front
+        1- job details
+        2- cover letter + "upload"
+        3- budget (hourely + fixed)
+3- client can list all his jobs --> back + front
+4- client list all freelancers who applied on my job --> back + front
+5- freelancer list of all submitted proposals --> back + front
+
+    --> to be done next meeting 
+--------------------------------------------------
+6- client hire for freelancer
+7- client list all of hired freelancers
+8- freelancer accept on the contract 
+9- client end of contract --> rate + feedback
+
+-----------------------------------------------------
+4- freelancer search job

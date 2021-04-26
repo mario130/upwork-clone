@@ -38,10 +38,9 @@ const proposalSchema = mongoose.Schema({
     default: Date.now,
   },
 
-  // imgPath: {
-  //   type: String,
-  //   required: true,
-  // },
+   imgPath: {
+    type: String,
+   },
 });
 
 module.exports = proposalSchema;

@@ -34,9 +34,11 @@ const Jobs = () => {
         headers:{'Authorization':`Bearer ${token}`}
       }
     ).then(data => {
-      const filteredJobs = data.data.jobs.filter(job => job.status === "active")
-      console.log(filteredJobs);
-      setAllJobs(filteredJobs);
+      console.log(data);
+      if (data.data !== ""){
+        const filteredJobs = data.data.jobs.filter(job => job.status === "active")
+        setAllJobs(filteredJobs);
+      }
     })
   },[counterJobEnded, token])
 

@@ -1,10 +1,14 @@
 const nodemailer = require("nodemailer");
 
-module.exports.sendMail = async (req, resp, next) => {
+// pass only email
+module.exports.sendMail = async (email) => {
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
+      // host: "smtp.gmail.com",
+      service: 'gmail',
+      // port: 587,
+      // ignoreTLS: false,
+      // secure: false,
       auth: {
         user: "upwork.clone.test@gmail.com",
         pass: "upwork.clone.test424",
@@ -13,7 +17,7 @@ module.exports.sendMail = async (req, resp, next) => {
 
     const mailOptions = {
       from: "upwork.clone.test@gmail.com",
-      to: req.body.email,
+      to: email,
       subject: "Upwork Will Hire You",
       html: "<h3>Congrats.</h3> <h3> upwork will hire you in job <br> please!! check your profile  </h3> <h3> Youth ITI <br> LOL </h3> ",
     };
@@ -21,15 +25,18 @@ module.exports.sendMail = async (req, resp, next) => {
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
-        return next(error);
+        // return next(error);
+        return (error);
       } else {
         console.log("Email sent: " + info.response);
         console.log("Message sent: %s", info.messageId);
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        resp.status(200).send("done sending email to " + req.body.email);
+        // resp.status(200).send("done sending email to " + req.body.email);
+       return("done sending email to " + email);
       }
     });
   } catch(err){
-    return next(err);
+    // return next(err);
+    return (err);
   }
 };

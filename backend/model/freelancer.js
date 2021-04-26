@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const proposalSchema = require("./proposal");
 const ProfileSchema = require("./freelanceProfile");
+const notificationSchema = require("./notification");
 
 const freelancerSchema = mongoose.Schema({
   userId: {
@@ -9,6 +10,7 @@ const freelancerSchema = mongoose.Schema({
     ref: "User",
   },
   submittedProposals: [proposalSchema],
+  notifications: [notificationSchema],
   profile: {
     category: {
       type: String,

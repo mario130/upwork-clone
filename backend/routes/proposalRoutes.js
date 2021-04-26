@@ -21,12 +21,12 @@ const fileFilter = (req,file,cb) => {
 }
 const upload = multer({storage:storage, limits:{
     fileSize: 1024 * 1024 * 10
-},fileFilter:fileFilter});
+}});
 
 
 router.get('/getFreelancerProposals',jwtHelper.verifyJwtToken,proposalControl.getFreelancerProposoal);
 router.get('/getJobProposals/:jobId',jwtHelper.verifyJwtToken,proposalControl.getJobProposals);
-// router.post('/add/:jobId',upload.single('imgPath'),jwtHelper.verifyJwtToken, proposalControl.addProposal);
-router.post('/add/:jobId',jwtHelper.verifyJwtToken, proposalControl.addProposal);
+router.post('/add/:jobId',upload.single('imgPath'),jwtHelper.verifyJwtToken, proposalControl.addProposal);
+/* router.post('/add/:jobId',jwtHelper.verifyJwtToken, proposalControl.addProposal); */
 
 module.exports = router;
