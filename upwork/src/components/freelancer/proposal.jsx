@@ -37,6 +37,13 @@ const Proposal = () => {
       // alert( formik.values.coverLetter );
       // alert( formik.values.imgPath !== "" ? formik.values.imgPath : "" );
       try {
+        let formData = new FormData()
+        formData.append("imgPath",formik.values.imgPath);
+        formData.append("bid",formik.values.bid)
+        formData.append("duration",formik.values.duration)
+        formData.append("coverLetter",formik.values.coverLetter)
+
+        
         await axios({
           method: "post",
           url: `${localBackend}/proposal/add/${job._id}`,
@@ -44,12 +51,7 @@ const Proposal = () => {
             "Content-Type": "multipart/form-data",
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
-          data: {
-            bid: formik.values.bid,
-            duration: formik.values.duration,
-            coverLetter: formik.values.coverLetter,
-            imgPath: formik.values.imgPath,
-          },
+          data: formData,
         }).then((res) => {
           console.log(res);
           console.log(res.data);
@@ -371,7 +373,7 @@ const Proposal = () => {
                 id="imgPath"
                 /* onChange={formik.handleChange} */
                 onChange={(event) => {
-                  formik.setFieldValue("imgPath", event.currentTarget.files[0]);
+                  formik.setFieldValue("imgPath", event.target.files[0]);
                 }}
                 /* value={formik.values.imgPath} */
               ></input>
