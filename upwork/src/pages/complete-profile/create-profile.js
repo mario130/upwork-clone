@@ -45,8 +45,11 @@ const CreateProfile = (props) => {
             </ProtectedFreelancer>
             <ProtectedFreelancer
               path="/freelancer/create-profile/step6"
-              component={ProfileStep9}
-            />
+        
+            >
+              <ProfileStep9 goToNextStep={goToNextStep} />
+
+            </ProtectedFreelancer>
             <ProtectedFreelancer
               path="/freelancer/create-profile/step7"
               component={ProfileStep10}

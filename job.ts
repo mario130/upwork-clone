@@ -68,3 +68,8 @@ interface Contract {
 
 //
 //notification (back ,front)
+// getcontracts
+// createdDate
+// freelancer >> full name, email
+// job>> category,title
+// status >> ["open"]
