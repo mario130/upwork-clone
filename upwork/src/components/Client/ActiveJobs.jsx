@@ -5,28 +5,58 @@ import Spinner from "../shared/spinner";
 import Navbar from "./Jobs-navbar";
 import { localBackend } from "../../services/basedUrl";
 
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
 const Jobs = () => {
   const [isModalOpen, setModalOpen] = useState(false)
-  const [allJobs] = useState([
-    {
-      category: 'Full Stack Development',
-      title: "Project number 1",
-      freelancer: {
-        name: "John Doe",
-        email: "john@doe.com"
-      },
-      hireDate: new Date(),
-    },
-    {
-      category: 'Back End Development',
-      title: "Project number 2",
-      freelancer: {
-        name: "John Doe",
-        email: "john@doe.com"
-      },
-      hireDate: new Date(),
-    },
+  const [allJobs, setAllJobs] = useState([
+    // {
+    //   category: 'Full Stack Development',
+    //   title: "Project number 1",
+    //   freelancer: {
+    //     name: "John Doe",
+    //     email: "john@doe.com"
+    //   },
+    //   hireDate: new Date(),
+    // },
   ])
+  
+  const [feedback, setFeedback] = useState('')
+  const [stars, setStars] = useState(0)
+  let [counterJobEnded, setCounter] = useState(0)
+  
+  const token = localStorage.getItem("token");
+  useEffect(()=>{
+    axios.get(
+      `${localBackend}/jobs/getAll`,{
+        headers:{'Authorization':`Bearer ${token}`}
+      }
+    ).then(data => {
+      const filteredJobs = data.data.jobs.filter(job => job.status === "active")
+      console.log(filteredJobs);
+      setAllJobs(filteredJobs);
+    })
+  },[counterJobEnded, token])
+
+  const endContract = (jobId)=>{
+    axios.post(
+      `${localBackend}/contract/end/${jobId}`,{
+        feedback: feedback,
+        rate: stars
+      },{
+        headers:{'Authorization':`Bearer ${token}`}
+      }
+    ).then(res=>{
+      console.log(res);
+      setModalOpen(false)
+    }).catch(err=>{
+      console.log(err);
+    }).finally(()=>{
+      setCounter(counterJobEnded++) // increase counter to refresh jobs list
+    })
+  }
 
   return (
     <>
@@ -36,7 +66,19 @@ const Jobs = () => {
             All Jobs
           </h1>
 
-          {/* Modal window */}
+          
+
+          <div className="bg-white mb-6 md:rounded-lg md:mx-12 lg:container lg:mx-auto lg:max-w-5xl border border-gray-200">
+            <div className="">
+              <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">
+                Active Jobs ({allJobs.length})
+              </h2>
+
+              {allJobs.map((job) => (
+
+                <div className="p-4 md:px-6 border-b border-gray-200">
+                {/* MODAL */}
+                {/* Modal window */}
           <div class={`${isModalOpen === false ? "hidden" : ""} fixed z-10 inset-0 overflow-y-auto`} aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
               <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
@@ -57,13 +99,26 @@ const Jobs = () => {
                         <p class="px-2 text-sm text-gray-500 mb-4">
                           Are you sure you want to End the contract? This action cannot be undone.
                         </p>
-                        <textarea name="feedback" id="feedback" className="w-full px-2 py-1 focus:outline-none rounded-md focus:ring-complementary border-2 border-gray-400 focus:border-complementary" placeholder="Please give some feedback!" cols="30"></textarea>
+                        
+                        <textarea value={feedback} onChange={(ev)=>setFeedback(ev.target.value)} name="feedback" id="feedback" className="w-full px-2 py-1 focus:outline-none rounded-md focus:ring-complementary border-2 border-gray-400 focus:border-complementary" placeholder="Please give some feedback!" cols="30"></textarea>
+
+                        {/* STAR RATING */}
+                        <Box component="fieldset" mb={1} borderColor="transparent">
+                        <Rating
+                            name="simple-controlled"
+                            value={stars}
+                            onChange={(event, newValue) => {
+                              setStars(newValue);
+                            }}
+                          />
+                        </Box>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                  <button onClick={()=>setModalOpen(false)} type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm">
+                  {/* <button onClick={()=>setModalOpen(false)} type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm"> */}
+                  <button onClick={()=>endContract(job._id)} type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm">
                     End contract
                   </button>
                   <button onClick={()=>setModalOpen(false)} type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
@@ -73,15 +128,8 @@ const Jobs = () => {
               </div>
             </div>
           </div>
-
-          <div className="bg-white mb-6 md:rounded-lg md:mx-12 lg:container lg:mx-auto lg:max-w-5xl border border-gray-200">
-            <div className="">
-              <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">
-                Active Jobs ({allJobs.length})
-              </h2>
-
-              {allJobs.map((job) => (
-                  <div className="p-4 md:px-6 border-b border-gray-200">
+                
+                
                     <div className="md:flex py-2 justify-between cursor-pointer items-center">
                       <div className="md:max-w-xs">
                         <h2 className="text-primary font-bold">{job.title}</h2>
@@ -89,13 +137,15 @@ const Jobs = () => {
                           {job.category} applicants
                         </h5>
                         <h5 className="text-gray-500">
-                          {job.hireDate.toString()}
+                          {/* {job.hireDate.toString()} */}
+                          ADD HIRE DATE
                         </h5>
                       </div>
                       <div className="flex-1 md:text-center">
                         <h4 className="font-bold text-primary">Freelancer info:</h4>
-                        <p>{job.freelancer.name}</p>
-                        <p className="text-gray-500">{job.freelancer.email}</p>
+                        {/* <p>{job.freelancer.name}</p> */}
+                        <p>ADD FREELANCER NAME</p>
+                        {/* <p className="text-gray-500">{job.freelancer.email}</p> */}
                       </div>
                         <button onClick={()=>setModalOpen(true)} className="mt-4 ml-auto md:mt-0 bg-primary text-white px-3 py-2 rounded-full flex items-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                           End contract
