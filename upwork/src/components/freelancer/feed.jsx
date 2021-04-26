@@ -269,6 +269,16 @@ const Main = () => {
 
               <p className="text-sm font-medium mb-4">{job.description}</p>
 
+              <div className="flex flex-wrap text-sm mb-4">
+                {job?.skills.map((skill) => (
+                  <div className="">
+                    <span onClick={()=>filterBySkill(skill)} className="px-2 py-1 mb-2 block bg-gray-100 rounded-full mr-2 font-semibold text-gray-800 cursor-pointer">
+                      {skill}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
               {/* past payments */}
               <div className="flex space-x-7 items-center">
                 <div className="flex items-center">

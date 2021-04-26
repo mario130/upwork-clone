@@ -1,9 +1,29 @@
-import React, { useState } from "react";
-import Sidbar from "../../components/complete-profile/sidbar";
 import TagHeader from "../../components/complete-profile/tagHeader";
 import BackNextBtns from "../../components/complete-profile/back-nextBtns";
-
-const ProfileStep8 = () => {
+import Input from "../../components/UI/Form/Input/Input";
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import Btn from "../../components/UI/Form/Btn/Btn";
+const ProfileStep8 = (props) => {
+  const formik = useFormik({
+    initialValues: {
+      education: {
+        school: "",
+        areaOfStudy: "",
+      },
+    },
+    validationSchema: Yup.object({
+      education: Yup.object({
+        school: Yup.string().required("Required"),
+        areaOfStudy: Yup.string().required("Required"),
+      }),
+    }),
+    onSubmit: (values) => {
+      props.goToNextStep("step6");
+      console.log(values);
+    },
+  });
   return (
     <div>
       <TagHeader tag="Education" value="5" />
@@ -14,37 +34,74 @@ const ProfileStep8 = () => {
           Add the schools you attended, areas of study, and degrees earned.
         </h1>
         <hr />
-        <label htmlFor="school" className="text-xs my-2">
-          School
-        </label>
-        <input
-          type="text"
-          className="border-gray-300 border w-full m-2 mb-10 py-2 pl-10 bg-white text-gray-700 text-sm placeholder-gray-500 shadow-sm  focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-          name="school"
-          placeholder="Ex:Assiut University"
-        />
-
-        <label htmlFor="areaOfStudy" className="text-xs my-2">
-          Area Of Study (Optional)
-        </label>
-        <input
-          type="text"
-          className="border-gray-300 border w-full m-2 mb-10 py-2 pl-10 bg-white text-gray-700 text-sm placeholder-gray-500 shadow-sm  focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-          name="areaOfStudy"
-          placeholder="Ex:Computer Science"
-        />
-
-        <label htmlFor="degree" className="text-xs my-2">
-          Degree (Optional)
-        </label>
-        <input
-          type="text"
-          className="border-gray-300 border w-full m-2 mb-10 py-2 pl-10 bg-white text-gray-700 text-sm placeholder-gray-500 shadow-sm  focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-          name="degree"
-          placeholder="Ex:Assiut university"
-        />
-
-        <BackNextBtns />
+        <form onSubmit={formik.handleSubmit}>
+          <Input
+            className={
+              formik.errors.education &&
+              formik.errors.education.school
+                ? "border-danger focus:ring-danger pl-4"
+                : "pl-4"
+            }
+            id="school"
+            type="text"
+            label="School"
+            name="education.school"
+            placeholder="School"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.education.school}
+            errorMsg={
+              formik.errors.education &&
+              formik.touched.education &&
+              formik.errors.education.school&&
+              formik.touched.education.school 
+                ? formik.errors.education.school
+                : null
+            }
+          />
+          <label htmlFor="areaOfStudy" className="text-xs my-2">
+            Degree (Optional)
+          </label>
+          <Input
+            className={
+              formik.errors.education &&
+              formik.errors.education.areaOfStudy
+                ? "border-danger focus:ring-danger pl-4"
+                : "pl-4"
+            }
+            type="text"
+            name="education.areaOfStudy"
+            placeholder="Area Of Study"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.education.areaOfStudy}
+            errorMsg={
+              formik.errors.education &&
+              formik.touched.education &&
+              formik.errors.education.areaOfStudy&&
+              formik.touched.education.areaOfStudy 
+                ? formik.errors.education.areaOfStudy
+                : null
+            }
+          />
+          <div className="my-5">
+            <Btn
+              type="button"
+              className="text-primary mr-3 border-hair border px-10 py-2 "
+            >
+              back
+            </Btn>
+            <Btn
+              type="submit"
+              className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
+              disabled={
+                !formik.isValid
+              }
+            >
+              Next
+            </Btn>
+          </div>{" "}
+        </form>
       </div>
     </div>
   );

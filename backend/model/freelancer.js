@@ -32,17 +32,17 @@ const freelancerSchema = mongoose.Schema({
       default:
         "What is Upwork? Upwork is a huge virtual international market place where a large number of clients and freelancers are available to hire and to be hired. It is a ...",
     },
-    // expertise: {
-    //   type: { String },
-    //   required: "At least one skill is required",
-    //   validate: {
-    //     validator: function () {
-    //       return this.expertise.length > 0;
-    //     },
-    //     message: "minimum 1 skill should be added",
-    //   },
-    //   default: ["skill1"],
-    // },
+    skills: {
+      type: [String] ,
+      required: "At least one skill is required",
+      validate: {
+        validator: function () {
+          return this.expertise.length > 0;
+        },
+        message: "minimum 1 skill should be added",
+      },
+      default: ["skill1"],
+    },
     expertiseLevel: {
       type: String,
       required: "Expertise level field can't be empty",
