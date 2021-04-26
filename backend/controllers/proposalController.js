@@ -64,8 +64,6 @@ module.exports.addProposal = async (req, resp, next) => {
         }
       });
     }
-    pushNotification(req._id, "You have Submit Proposal");
-    sendMail("mohammed.mfoad@gmail.com");
     job.proposals.push(proposal);
     job.save((err, data) => {
       if (!err) resp.status(200).json("successfully submit proposal");

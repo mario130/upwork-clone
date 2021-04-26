@@ -5,10 +5,13 @@ module.exports.sendMail = async (email) => {
   try {
     const transporter = nodemailer.createTransport({
       // host: "smtp.gmail.com",
-      service: 'gmail',
+      // service: 'gmail',
       // port: 587,
       // ignoreTLS: false,
       // secure: false,
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
         user: "upwork.clone.test@gmail.com",
         pass: "upwork.clone.test424",
