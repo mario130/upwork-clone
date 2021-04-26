@@ -261,8 +261,8 @@ const Nav = () => {
 
           {/* desktop icons */}
           <ul className="space-x-4 hidden lg:flex">
-            {navLists.map((list) => (
-              <li>{list.icon ? list.icon : null}</li>
+            {navLists.map((list,i) => (
+              <li key={i}>{list.icon ? list.icon : null}</li>
             ))}
           </ul>
 
@@ -322,7 +322,7 @@ const Nav = () => {
             {/* lists */}
             <div className="px-3">
               {navLists.map((list, i) => (
-                <ListItem list={list} i={i} />
+                <ListItem list={list} key={i} />
               ))}
             </div>
           </div>

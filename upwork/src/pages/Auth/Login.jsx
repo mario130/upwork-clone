@@ -181,8 +181,8 @@ class Login extends Component {
                   this.state.password &&
                   !errors.email &&
                   !errors.password
-                    ? ""
-                    : "true"
+                    ? false
+                    : true
                 }
                 className="w-full  bg-primary hover:bg-dark focus:ring-green-500  text-white  py-2 px-4 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg "
               >

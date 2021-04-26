@@ -6,10 +6,7 @@ const Select = (props) => {
        className=" text-gray-600 appearance-none  inline-block py-3 pl-3 pr-8 rounded leading-tight w-full border border-gray-300 focus:outline-none"
        onChange={props.onChange}
        >
-          {props.options.map((option,index) => (
-              <option key={index} >{option}</option>
-
-          ))}
+         {props.children}
     
       </select>
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
