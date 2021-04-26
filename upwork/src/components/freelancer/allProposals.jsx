@@ -53,15 +53,18 @@ const Jobs = () => {
                   {proposal.accepted == false ?
                     <div className="p-4 md:px-6 border-b border-gray-200 " key={i}>
                       <div className="py-2 cursor-pointer">
-                        <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap">
+                        <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap gap-4">
                           <div>
-                            <h5 className="text-black my-2">Initiated : {moment(proposal.createdDate).format('MMMM Do YYYY')}</h5>
-                            <h5 className="text-black  text-xs">{moment(proposal.createdDate).startOf().fromNow()}</h5>
+                            <h5 className="text-black mt-2">Initiated : {moment(proposal.createdDate).format('MMMM Do YYYY')}</h5>
+                            <h5 className="text-black  mb-2 text-xs">{moment(proposal.createdDate).startOf().fromNow()}</h5>
                           </div>
-                          <div><h2 className="text-primary font-bold md:text-base">{proposal.coverLetter}</h2></div>
                           <div>
-                            <h5 className="text-black my-2">Projrct Title</h5>
-                            <h5 className="text-black my-2">{proposal.duration}</h5>
+                            <h2 className="text-primary mt-2 font-bold md:text-base">{proposal.coverLetter}</h2>
+                            <h5 className="text-black mb-2">{proposal.jobId.title}</h5>
+                          </div>
+                          <div>
+                            <h5 className="text-black mt-2">{proposal.jobId.category}</h5>
+                            <h5 className="text-black mb-2">{proposal.duration}</h5>
                           </div>
 
                         </div>
@@ -84,14 +87,17 @@ const Jobs = () => {
                   {proposal.accepted == true ?
                     <div className="p-4 md:px-6 border-b border-gray-200" key={i}>
                       <div className="py-2 cursor-pointer">
-                        <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap">
+                        <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap gap-4">
                           <div>
                             <h5 className="text-black my-2">Initiated : {moment(proposal.createdDate).format('MMMM Do YYYY')}</h5>
                             <h5 className="text-black  text-xs">{moment(proposal.createdDate).startOf().fromNow()}</h5>
                           </div>
-                          <div><h2 className="text-primary font-bold md:text-base">{proposal.coverLetter}</h2></div>
                           <div>
-                            <h5 className="text-black my-2">Projrct Title</h5>
+                            <h2 className="text-primary font-bold md:text-base">{proposal.coverLetter}</h2>
+                            <h5 className="text-black my-2">{proposal.jobId.title}</h5>
+                          </div>
+                          <div>
+                            <h5 className="text-black my-2">{proposal.jobId.category}</h5>
                             <h5 className="text-black my-2">{proposal.duration}</h5>
                           </div>
 
