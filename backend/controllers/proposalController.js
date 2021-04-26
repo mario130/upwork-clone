@@ -14,7 +14,6 @@ module.exports.getFreelancerProposoal = (req, resp, next) => {
   });
 };
 module.exports.getJobProposals = (req, resp, next) => {
-  console.log(mongoose.Types.ObjectId(req.params.jobId));
   Job.findById(mongoose.Types.ObjectId(req.params.jobId))
   .populate({ 
       path: 'proposals.freelancerId',

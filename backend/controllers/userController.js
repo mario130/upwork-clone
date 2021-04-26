@@ -18,7 +18,6 @@ module.exports.register = (req, resp, next) => {
       if (user.userType === "freelancer") {
         const freelancer = new Freelancer();
         freelancer.userId = doc._id;
-        console.log(freelancer)
         freelancer.save((err, data) => {
           if (err) console.log(err);
         });

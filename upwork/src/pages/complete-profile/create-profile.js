@@ -26,9 +26,11 @@ const CreateProfile = (props) => {
               <ProfileStep3 goToNextStep={goToNextStep} />
             </ProtectedFreelancer>
             <ProtectedFreelancer
-              path="/freelancer/create-profile/step2"
-              component={ProfileStep5}
-            />
+              path="/freelancer/create-profile/step2" 
+            >
+              <ProfileStep5 goToNextStep={goToNextStep} />
+              
+            </ProtectedFreelancer>
             <ProtectedFreelancer
               path="/freelancer/create-profile/step3"
               component={ProfileStep6}

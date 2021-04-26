@@ -55,7 +55,8 @@ const jobSchema = mongoose.Schema({
     type:String,
     required:true,
     default:"listed"
-  }
+  },
+  contractId: { type: mongoose.Schema.Types.ObjectId, ref: "Contract" },
 });
 
 module.exports = mongoose.model("Job", jobSchema);
