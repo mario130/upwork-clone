@@ -40,7 +40,7 @@ module.exports.addProposal = async (req, resp, next) => {
       bid: req.body.bid,
       coverLetter: req.body.coverLetter,
       duration: req.body.duration,
-      // imgPath: req.body.imgPath,
+      imgPath: req.file.imgPath,
       freelancerId: req._id,
       accepted: false,
       jobId: req.params.jobId,

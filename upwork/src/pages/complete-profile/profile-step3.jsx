@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
-
+import Btn from "../../components/UI/Form/Btn/Btn";
 const ProfileStep3 = (props) => {
 const user = useSelector(state => state.user)
   return (
@@ -25,13 +25,12 @@ const user = useSelector(state => state.user)
         <h1 className="text-sm my-6">
           To get started, all you need to do is fill out a profile
         </h1>
-
-        <button className="border border-gray-300 md:w-1/5 md:float-right w-1/2 justify-center bg-primary mx-4 text-white font-bold py-2 mt-4 mb-10 rounded-md hover:bg-dark"
-        // to="/freelancer/create-profile/step2"
-        onClick={()=>props.goToNextStep("step2")}
-        >
-          Continue
-        </button>
+        <Btn
+              className="float-right bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
+              handleClicking ={()=>props.goToNextStep("step2")}
+            >
+              Next
+            </Btn>
       </div>
     </>
   );
