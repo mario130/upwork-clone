@@ -3,22 +3,27 @@ const Proposal = require("../model/proposal");
 const mongoose = require("mongoose");
 const Freelancer = require("../model/freelancer");
 module.exports.getFreelancerProposoal = (req, resp, next) => {
-  Freelancer.findOne({ userId: req._id }, (err, data) => {
-    if (!err) {
-      if(data){
-        resp.status(200).send(data.submittedProposals);
-      }else {
-        return next(err)
-      }
-    } else return next(err);
-  });
+  Freelancer.findOne({ userId: req._id })
+    .populate({
+      path:"submittedProposals.jobId",
+      select:"title category"
+    })
+    .exec((err, data) => {
+      if (!err) {
+        if (data) {
+          resp.status(200).send(data.submittedProposals);
+        } else {
+          return next(err);
+        }
+      } else return next(err);
+    });
 };
 module.exports.getJobProposals = (req, resp, next) => {
   Job.findById(mongoose.Types.ObjectId(req.params.jobId))
-  .populate({ 
-      path: 'proposals.freelancerId',
-      model:"User",
-   })
+    .populate({
+      path: "proposals.freelancerId",
+      model: "User",
+    })
     .exec((err, data) => {
       if (!err) {
         resp.status(200).send(data);
@@ -35,7 +40,8 @@ module.exports.addProposal = async (req, resp, next) => {
       duration: req.body.duration,
       // imgPath: req.body.imgPath,
       freelancerId: req._id,
-      accepted: false
+      accepted: false,
+      jobId: req.params.jobId,
     };
 
     const alreadySumitted = job.proposals.find((proposal) => {

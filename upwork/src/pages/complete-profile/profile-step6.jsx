@@ -18,17 +18,17 @@ const ProfileStep6 = (props) => {
     "Angular",
     "MongoDB",
   ]);
-  const [otherSkills] = useState([
-    "MySql",
-    "NodeJS",
-    "Bootstrap",
-    "CSS3",
-    "HTML5",
-    "Tailwindcss",
-    "Express",
-    "React",
-    "Angular",
-  ]);
+  // const [otherSkills] = useState([
+  //   "MySql",
+  //   "NodeJS",
+  //   "Bootstrap",
+  //   "CSS3",
+  //   "HTML5",
+  //   "Tailwindcss",
+  //   "Express",
+  //   "React",
+  //   "Angular",
+  // ]);
   const formik = useFormik({
     initialValues: {
       skills: [],

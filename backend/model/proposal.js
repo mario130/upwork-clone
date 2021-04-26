@@ -23,11 +23,21 @@ const proposalSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  accepted:{
-    type:Boolean,
-    required:true,
-    default:false
-  }
+  accepted: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  jobId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Job",
+    // required: true,
+  },
+  createdDate: {
+    type: Date,
+    default: Date.now,
+  },
+
   // imgPath: {
   //   type: String,
   //   required: true,
