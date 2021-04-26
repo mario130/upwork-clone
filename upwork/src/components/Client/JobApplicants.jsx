@@ -5,45 +5,6 @@ import Navbar from './Jobs-navbar';
 import {localBackend} from '../../services/basedUrl';
 
 const Applicants = () => {
-  /* const [job] = useState({
-    title: "API Developer Needed To Fix/Rebuild API",
-    type: "Hourly",
-    questions: [
-      "Are you good with APIs?",
-      "How experienced are you in this industry?"
-    ]
-  })
-
-  const [applicants] = useState([
-    {
-      name: "Mario Y.",
-      imageUrl: "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png",
-      title: "Full Stack Developer MERN",
-      hourlyRate: 20,
-      hoursWorked: 1100,
-      earned: "200k",
-      location: "Egypt",
-      coverLetter: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore assumenda eaque atque repellat, molestiae debitis quasi eligendi repudiandae incidunt optio.",
-      answers: [
-        "Sure",
-        "Nearly 7 years"
-      ]
-    },
-    {
-      name: "Ahmed M.",
-      imageUrl: "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png",
-      title: "Full Stack Developer MERN",
-      hourlyRate: 84,
-      hoursWorked: 1200,
-      earned: "201k",
-      location: "Egypt",
-      coverLetter: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore assumenda eaque atque repellat, molestiae debitis quasi eligendi repudiandae incidunt optio.",
-      answers: [
-        "No",
-        "Nooooo"
-      ]
-    },
-  ]) */
 
   const [allApplicants,setAllapplicants]=useState([]);
   const token = localStorage.getItem("token");
