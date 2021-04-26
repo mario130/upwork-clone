@@ -27,11 +27,10 @@ const proposalSchema = mongoose.Schema({
     type:Boolean,
     required:true,
     default:false
+  },
+  imgPath: {
+    type: String,
   }
-  // imgPath: {
-  //   type: String,
-  //   required: true,
-  // },
 });
 
 module.exports = proposalSchema;
