@@ -32,9 +32,11 @@ const ProfileStep8 = (props) => {
   });
   const { school , areaOfStudy} = useSelector((state) => state.userProfile.education)
   useEffect(()=>{
-    formik.setFieldValue("education.school",school)
-    formik.setFieldValue("education.areaOfStudy",areaOfStudy)
-  
+    // formik.setFieldValue("education.school",school)
+    // formik.setFieldValue("education.areaOfStudy",areaOfStudy)
+  formik.setValues({education:{
+school,areaOfStudy
+  }})
 },[school,areaOfStudy])
   return (
     <div>

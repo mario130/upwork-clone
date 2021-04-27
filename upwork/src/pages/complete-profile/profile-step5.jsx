@@ -124,6 +124,7 @@ const ProfileStep5 = (props) => {
     }
   }, [formik.values.category, subCategories]);
   return (
+    
     <div>
       <TagHeader tag="Category" value="2" />
 
