@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../shared/spinner";
 import { Link } from "react-router-dom";
-import {localBackend} from '../../services/basedUrl';
+import { localBackend } from '../../services/basedUrl';
+import moment from 'moment';
 
 const Job = (props) => {
   const [job, setJob] = useState(null);
@@ -30,7 +31,7 @@ const Job = (props) => {
                 {job?.category}
               </button>
               <br />
-              <span className="text-gray-500">Posted 14 minutes ago</span>
+              <span className="text-gray-500">{moment(job.createdDate).startOf().fromNow()}</span>
 
               {/* implement if possible: redirect to add a specialized profile */}
               {/* <div className="mt-3 flex">
