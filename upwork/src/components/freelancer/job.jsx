@@ -16,9 +16,9 @@ const Job = (props) => {
         console.log(data);
         localStorage.setItem("job", JSON.stringify(data));
         setJob(data.data);
-        if(data.data.proposals){
-          data.data.proposals.map(prop=>
-            prop.freelancerId == localStorage.getItem("userId")? setCheck(true): setCheck(false)
+        if (data.data.proposals) {
+          data.data.proposals.map(prop =>
+            prop.freelancerId == localStorage.getItem("userId") ? setCheck(true) : setCheck(false)
           )
         }
       });
@@ -138,8 +138,8 @@ const Job = (props) => {
             <div className="p-6 grayBottomBorder text-sm">
               <h4 className="mb-6 font-bold text-lg">Skills and Expertise</h4>
               <div className="flex flex-wrap">
-                {job?.skills.map((skill) => (
-                  <div className="">
+                {job?.skills.map((skill, i) => (
+                  <div className="" key={i}>
                     <span className="px-2 py-1 bg-gray-100 rounded-full mr-2 font-semibold text-gray-800">
                       {skill}
                     </span>
@@ -196,9 +196,9 @@ const Job = (props) => {
               <div className="space-y-2 p-3" >
                 <Link to={`/proposal/${props.id}`}>
                   <button className="w-full p-2 rounded-lg font-bold text-sm bg-primary text-white"
-                  disabled={
-                    checkSubmited
-                  }
+                    disabled={
+                      checkSubmited
+                    }
                   >
                     Submit a proposal
                   </button>
@@ -303,9 +303,9 @@ const Job = (props) => {
           <div className="sticky bottom-0 p-6 flex bg-white border-t grayBottomBorder space-x-2 lg:hidden">
             <Link to={`/proposal/${props.id}`}>
               <button className="w-1/2 p-2 rounded-lg font-bold text-sm bg-primary text-white"
-               disabled={
-                checkSubmited
-              }
+                disabled={
+                  checkSubmited
+                }
               >
                 Submit a proposal
               </button>

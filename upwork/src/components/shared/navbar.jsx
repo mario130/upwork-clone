@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ListItem from "./listItem";
-import {useDispatch} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logout } from "../../store/actions/logoutAction";
 import axios from 'axios';
 import { localBackend } from './../../services/basedUrl';
@@ -13,7 +13,7 @@ const Nav = (props) => {
     localStorage.removeItem('token')
     return dispatch(logout())
   }
-  const isFreelancer = localStorage.getItem("userType")=="freelancer";
+  const isFreelancer = localStorage.getItem("userType") == "freelancer";
   const [isOpen, setIsOpen] = useState(false);
   const [navLists] = useState([
     {
@@ -153,32 +153,32 @@ const Nav = (props) => {
   ]);
 
   const [isNotificationsOpen, setNotifications] = useState(false)
-  const openNotifications = ()=> {
+  const openNotifications = () => {
     setNotifications(!isNotificationsOpen)
     if (!isNotificationsOpen) {
       loadData()
     }
   }
-  const [notifications,setNotificationsData] = useState([]);
+  const [notifications, setNotificationsData] = useState([]);
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("user");
 
   async function loadData() {
     await axios
       .get(
-        `${localBackend}/profile/get-all-notifications/${email}`,{
-          headers:{'Authorization':`Bearer ${token}`},
-        }
+        `${localBackend}/profile/get-all-notifications/${email}`, {
+        headers: { 'Authorization': `Bearer ${token}` },
+      }
       )
       .then((data) => {
         console.log(data.data.notifications);
         setNotificationsData(data.data.notifications);
-      }).catch((err) =>{
+      }).catch((err) => {
         console.log(err)
       })
   }
 
-  
+
   return (
     <div className="lg:p-2 border-b border-gray-200 bg-complementary z-50 text-white">
       <div className="container mx-auto max-w-5xl">
@@ -273,87 +273,87 @@ const Nav = (props) => {
 
           {/* desktop links */}
           {props.variation === 'freelancer'
-          ? <div className="hidden lg:block">
-            <ul className="flex space-x-5">
-              <li className="cursor-pointer text-light font-medium">
-                <Link to="/freelancer">
-                Find Work
+            ? <div className="hidden lg:block">
+              <ul className="flex space-x-5">
+                <li className="cursor-pointer text-light font-medium">
+                  <Link to="/freelancer">
+                    Find Work
                 </Link>
-              </li>
-              <li className="cursor-pointer">
-                <Link to="/proposals">
-                  My Jobs
+                </li>
+                <li className="cursor-pointer">
+                  <Link to="/proposals">
+                    My Jobs
                 </Link>
-              </li>
-              <li className="cursor-pointer">Messages</li>
-              <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
-            </ul>
-          </div>
-          : <div className="hidden lg:block">
-          <ul className="flex space-x-5">
-            <li className="cursor-pointer text-light font-medium">
-              <Link to="/client/job-post">
-              Post job
+                </li>
+                <li className="cursor-pointer">Messages</li>
+                <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
+              </ul>
+            </div>
+            : <div className="hidden lg:block">
+              <ul className="flex space-x-5">
+                <li className="cursor-pointer text-light font-medium">
+                  <Link to="/client/job-post">
+                    Post job
               </Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link to="/job-list">
-                My Jobs
+                </li>
+                <li className="cursor-pointer">
+                  <Link to="/job-list">
+                    My Jobs
               </Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link to="/active-jobs">
-                Active jobs
+                </li>
+                <li className="cursor-pointer">
+                  <Link to="/active-jobs">
+                    Active jobs
               </Link>
-            </li>
-            <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
-          </ul>
-        </div>}
+                </li>
+                <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
+              </ul>
+            </div>}
 
           {/* desktop icons */}
-          {isFreelancer&&
-          <ul className="space-x-4 hidden lg:flex">
-            {/* {navLists.map((list) => (
+          {isFreelancer &&
+            <ul className="space-x-4 hidden lg:flex">
+              {/* {navLists.map((list) => (
               <li>{list.icon ? list.icon : null}</li>
             ))} */}
-            <button onClick={openNotifications} className="flex text-sm rounded-full focus:outline-none">
-              <li className="relative">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                  />
-                </svg>
-                <span className="absolute top-0 right-0 bg-red-400 w-2 h-2 rounded-full"></span>
-              </li>
-            </button>
-            <div class="ml-3 relative">
-              <div>
-              </div>
-              <div class={`origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${isNotificationsOpen ? "" : "hidden"}`} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                {notifications.map(noti => (
-                  <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
-                  href={noti.jobLink}
+              <button onClick={openNotifications} className="flex text-sm rounded-full focus:outline-none">
+                <li className="relative">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    <b>{noti.message}</b>
-                    <br/>
-                  <small className="text-light"><b>{noti.date}</b></small>
-                  </a>
-                ))}
-                {notifications.length == 0 && <b className="block px-4 py-2 text-sm text-gray-700">not receiving notifications</b>}
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                    />
+                  </svg>
+                  <span className="absolute top-0 right-0 bg-red-400 w-2 h-2 rounded-full"></span>
+                </li>
+              </button>
+              <div className="ml-3 relative">
+                <div>
+                </div>
+                <div className={`origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${isNotificationsOpen ? "" : "hidden"}`} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
+                  {notifications.map(noti => (
+                    <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      href={noti.jobLink}
+                    >
+                      <b>{noti.message}</b>
+                      <br />
+                      <small className="text-light"><b>{noti.date}</b></small>
+                    </a>
+                  ))}
+                  {notifications.length == 0 && <b className="block px-4 py-2 text-sm text-gray-700">not receiving notifications</b>}
+                </div>
               </div>
-            </div>
 
-          </ul>
-}
+            </ul>
+          }
 
           <div className="hidden lg:block">
             <img

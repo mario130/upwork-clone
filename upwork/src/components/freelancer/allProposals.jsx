@@ -52,7 +52,7 @@ const Jobs = () => {
               {proposals.map((proposal, i) => (
                 <>
                   {proposal.accepted == false ?
-                    <div className="p-4 md:px-6 border-b border-gray-200 " key={i}>
+                    <div className="p-4 md:px-6 border-b border-gray-200 " key={proposal._id}>
                       <div className="py-2 cursor-pointer">
                         <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap gap-4">
                           <div>
@@ -86,7 +86,7 @@ const Jobs = () => {
               {proposals.map((proposal, i) => (
                 <>
                   {proposal.accepted == true ?
-                    <div className="p-4 md:px-6 border-b border-gray-200" key={i}>
+                    <div className="p-4 md:px-6 border-b border-gray-200" key={proposal._id}>
                       <div className="py-2 cursor-pointer">
                         <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap gap-4">
                           <div>
