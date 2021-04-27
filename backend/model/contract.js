@@ -20,6 +20,10 @@ const contractSchema = mongoose.Schema({
       type:String,
       required:true,
       default:"open"
+  },
+  HiredDate:{
+    type:Date,
+    default:Date.now
   }
 
 });
