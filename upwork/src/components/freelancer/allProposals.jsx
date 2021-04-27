@@ -50,9 +50,9 @@ const Jobs = () => {
           {activeProposalsLen >= 0 ?
             <>
               {proposals.map((proposal, i) => (
-                <>
+                <div key={proposal._id}>
                   {proposal.accepted == false ?
-                    <div className="p-4 md:px-6 border-b border-gray-200 " key={proposal._id}>
+                    <div className="p-4 md:px-6 border-b border-gray-200 " >
                       <div className="py-2 cursor-pointer">
                         <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap gap-4">
                           <div>
@@ -71,7 +71,7 @@ const Jobs = () => {
                         </div>
                       </div>
                     </div> : null}
-                </>
+                </div>
               ))}
             </> : null}
         </div>
@@ -84,9 +84,9 @@ const Jobs = () => {
           {submittedProposalsLen >= 0 ?
             <>
               {proposals.map((proposal, i) => (
-                <>
+                <div key={proposal._id}>
                   {proposal.accepted == true ?
-                    <div className="p-4 md:px-6 border-b border-gray-200" key={proposal._id}>
+                    <div className="p-4 md:px-6 border-b border-gray-200">
                       <div className="py-2 cursor-pointer">
                         <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap gap-4">
                           <div>
@@ -105,7 +105,7 @@ const Jobs = () => {
                         </div>
                       </div>
                     </div> : null}
-                </>
+                </div>
               ))}
             </> : null}
         </div>

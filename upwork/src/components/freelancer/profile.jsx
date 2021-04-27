@@ -164,8 +164,8 @@ const Profile = () => {
           </h2>
           <ul>
             {/* <li className="px-6 py-1 my-1 font-bold text-darkText text-sm">Front End Development</li> */}
-            {freelancer.profiles.map((profile) => (
-              <li className="px-6 py-1 my-1 font-bold text-darkText text-sm border-l-4 border-transparent">
+            {freelancer.profiles.map((profile, i) => (
+              <li className="px-6 py-1 my-1 font-bold text-darkText text-sm border-l-4 border-transparent" key={i}>
                 {profile}
               </li>
             ))}
@@ -255,8 +255,8 @@ const Profile = () => {
 
             <div className="text-sm mb-4">
               <ul className="space-y-1">
-                {freelancer.languages.map((lang) => (
-                  <li>
+                {freelancer.languages.map((lang, i) => (
+                  <li key={i}>
                     <span className="font-bold">{lang.language}:</span>{" "}
                     <span className="text-gray-500">{lang.level}</span>
                   </li>
@@ -284,8 +284,8 @@ const Profile = () => {
               </div>
               <div className="flex items-start mb-4 text-sm">
                 <div>
-                  {freelancer.education.map((edu) => (
-                    <div>
+                  {freelancer.education.map((edu, i) => (
+                    <div key={i}>
                       <h2 className="font-extrabold">{edu.title}</h2>
                       <p>{edu.speciality}</p>
                       <p className="text-gray-500">{edu.duration}</p>
@@ -361,8 +361,8 @@ const Profile = () => {
               className="px-4 py-1 w-full border border-gray-200 rounded-lg bg-white text-sm"
             >
               <option value="all">All Work</option>
-              {freelancer.profiles.map((profile) => (
-                <option value={profile}>{profile}</option>
+              {freelancer.profiles.map((profile, i) => (
+                <option key={i} value={profile}>{profile}</option>
               ))}
             </select>
           </div>
@@ -431,8 +431,8 @@ const Profile = () => {
               </li>
             </ul>
 
-            {freelancer.pastJobs.map((job) => (
-              <div className="p-4 lg:p-6 border-b border-gray-200">
+            {freelancer.pastJobs.map((job, i) => (
+              <div className="p-4 lg:p-6 border-b border-gray-200" key={i}>
                 <h4 className="text-primary text-sm font-bold">{job.title}</h4>
 
                 {/* STARS */}
@@ -511,8 +511,8 @@ const Profile = () => {
 
             {/* LOOP ON PORTFOLIO */}
             <div className="flex mb-4 mt-2 flex-wrap box-border">
-              {freelancer.portfolio.map((proj) => (
-                <div className="w-1/2 px-2 py-2">
+              {freelancer.portfolio.map((proj, i) => (
+                <div className="w-1/2 px-2 py-2" key={i}>
                   <img src={proj.imageUrl} alt="" />
                   <h5 className="text-primary font-bold mt-1">{proj.title}</h5>
                 </div>
@@ -534,8 +534,8 @@ const Profile = () => {
               </svg>
             </div>
             <div className="space-x-2">
-              {freelancer.skills.map((skill) => (
-                <span className="px-2 py-1 text-darkText bg-gray-100 rounded-full text-sm">
+              {freelancer.skills.map((skill, i) => (
+                <span className="px-2 py-1 text-darkText bg-gray-100 rounded-full text-sm" key={i}>
                   {skill}
                 </span>
               ))}
@@ -594,8 +594,8 @@ const Profile = () => {
 
           <div className="text-sm mb-4">
             <ul className="space-y-1">
-              {freelancer.languages.map((lang) => (
-                <li>
+              {freelancer.languages.map((lang, i) => (
+                <li key={i}>
                   <span className="font-bold">{lang.language}:</span>{" "}
                   <span className="text-gray-500">{lang.level}</span>
                 </li>
@@ -623,8 +623,8 @@ const Profile = () => {
             </div>
             <div className="flex items-start mb-4 text-sm">
               <div>
-                {freelancer.education.map((edu) => (
-                  <div>
+                {freelancer.education.map((edu, i) => (
+                  <div key={i}>
                     <h2 className="font-extrabold">{edu.title}</h2>
                     <p>{edu.speciality}</p>
                     <p className="text-gray-500">{edu.duration}</p>
@@ -685,8 +685,8 @@ const Profile = () => {
           </div>
 
           <div className="p-4 lg:p-6 text-sm">
-            {freelancer.employmentHistory.map((job) => (
-              <div className="mb-3">
+            {freelancer.employmentHistory.map((job, i) => (
+              <div className="mb-3" key={i}>
                 <div className="flex justify-between">
                   <h4 className="font-bold">{job.title}</h4>
                   <div className="flex">
