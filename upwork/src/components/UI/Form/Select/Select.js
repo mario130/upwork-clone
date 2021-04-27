@@ -3,8 +3,9 @@ const Select = (props) => {
     <div className="relative w-full border border-gray-300 rounded-lg ">
       <select 
       name={props.name}
-       className=" text-gray-600 appearance-none  inline-block py-3 pl-3 pr-8 rounded leading-tight w-full border border-gray-300 focus:outline-none"
+       className={ props.className + " text-gray-600 appearance-none  inline-block py-3 pl-3 pr-8 rounded leading-tight w-full border border-gray-300 focus:outline-none"}
        onChange={props.onChange}
+       onBlur={props.onBlur}
        >
          {props.children}
     

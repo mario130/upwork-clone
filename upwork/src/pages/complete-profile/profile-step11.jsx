@@ -1,43 +1,106 @@
-import React, { useState } from 'react';
-import Sidbar from '../../components/complete-profile/sidbar'
-import TagHeader from '../../components/complete-profile/tagHeader'
-import BackNextBtns from '../../components/complete-profile/back-nextBtns'
+import React, { useState } from "react";
+import TagHeader from "../../components/complete-profile/tagHeader";
+import Btn from "../../components/UI/Form/Btn/Btn";
+import Input from "../../components/UI/Form/Input/Input";
+import { useFormik } from "formik";
+import * as Yup from 'yup'
+const ProfileStep11 = (props) => {
+    const formik = useFormik({
+        initialValues: {
+          profilePic: "",
+          phone:""
+        },
+        validationSchema: Yup.object({
+        
+            phone:Yup.string().matches(/^01[0-2,5]\d{8}$/,"Invalid phone")
+        }),
+        onSubmit: (values) => {
+          props.goToNextStep("step9");
+          console.log(values);
+        },
+      });
+    
+  return (
+    <>
+      <TagHeader tag="Profile Photo & Phone No." value="8" />
+      <hr />
+      <div className="bg-white px-5 py-5 md:py-4">
+          <form onSubmit={formik.handleSubmit}>
+        <div className="w-full">
+          <h1 className="text-xs mb-10 mt-2">
+            Please upload a professional portrait that clearly shows your face.
+          </h1>
+          <img
+            className="rounded-full w-1/3 mx-auto"
+            src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+            alt=""
+          />
+          <br />
+          <br />
+          <div className="flex w-full  items-center justify-center bg-grey-lighter mb-4">
+            <label className="w-64 flex flex-col items-center px-4 py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-primary hover:text-white">
+              <svg
+                className="w-8 h-8"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+              </svg>
+              <span className="mt-2 text-base leading-normal">upload your picture</span>
+              <input type="file" className="hidden" />
+            </label>
+          </div>
+        </div>
 
+        <hr />
 
-const ProfileStep11 = () => {
-    return (
+        <div className="w-full">
+          <h1 className="text-sm font-bold my-4 ">Add your phone number.</h1>
+          <Input
+            className={
+              formik.errors.phone && formik.touched.phone
+                ? "border-danger focus:ring-danger pl-4"
+                : "pl-4"
+            }
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.phone}
+            errorMsg={
+              formik.errors.phone && formik.touched.phone
+                ? formik.errors.phone
+                : null
+            }
+          />
+          <h1 className="text-sm my-4">
+            Your phone number will not be shared with clients.
+          </h1>
+        </div>
 
-        <>
-                    <TagHeader tag='Profile Photo & Phone No.' value='8' />
-                    <hr />
-                    <div className='bg-white px-5 py-5 md:py-4'>
-                        <div className='w-full'>
-                            <h1 className='text-xs mb-10 mt-2'>Please upload a professional portrait that clearly shows your face.</h1>
-                            <img className='rounded-full w-1/3 mx-auto' src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="" />
-                            <br /><br />
-                            <div className='w-1/3 mx-auto'>
-                                <input type="file" name="profileImg" className='py-5' accept="image/jpeg, image/png" />
-                            </div>
-                        </div>
+        <hr />
 
-                        <hr />
-
-                        <div className='w-full'>
-                            <h1 className='text-sm font-bold my-4 '>Add your phone number.</h1>
-                            <label htmlFor="phone" className='text-xs mb-1 font-bold block mt-6'>Phone</label>
-                            <input type="text" className='border-gray-300 border w-full mx-1 my-2 py-2 pl-10 bg-white text-gray-700 text-sm placeholder-gray-500 shadow-sm  focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent' name="phone" placeholder="Mobile Number" />
-                            <h1 className='text-sm my-4'>Your phone number will not be shared with clients.</h1>
-
-                        </div>
-
-
-                        <hr />
-
-                        <BackNextBtns />
-                    </div>
-                </>
-          
-    )
-}
+        <div className="my-5">
+          <Btn
+            type="button"
+            className="text-primary mr-3 border-hair border px-10 py-2 "
+          >
+            back
+          </Btn>
+          <Btn
+            type="submit"
+            className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
+            disabled={!formik.isValid}
+          >
+            Next
+          </Btn>
+        </div>{" "}
+        </form>
+      </div>
+    </>
+  );
+};
 
 export default ProfileStep11;

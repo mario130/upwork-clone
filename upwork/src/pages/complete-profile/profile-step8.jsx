@@ -38,7 +38,9 @@ const ProfileStep8 = (props) => {
           <Input
             className={
               formik.errors.education &&
-              formik.errors.education.school
+              formik.touched.education &&
+              formik.errors.education.school&&
+              formik.touched.education.school 
                 ? "border-danger focus:ring-danger pl-4"
                 : "pl-4"
             }
@@ -65,7 +67,9 @@ const ProfileStep8 = (props) => {
           <Input
             className={
               formik.errors.education &&
-              formik.errors.education.areaOfStudy
+              formik.touched.education &&
+              formik.errors.education.areaOfStudy&&
+              formik.touched.education.areaOfStudy 
                 ? "border-danger focus:ring-danger pl-4"
                 : "pl-4"
             }

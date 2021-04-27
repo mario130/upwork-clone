@@ -28,7 +28,7 @@ const Proposal = () => {
       bid: Yup.string().required("bid is required"),
       duration: Yup.string().required("duration is required"),
       coverLetter: Yup.string().required("duration is required"),
-      imgPath: Yup.mixed().required("file is required")
+      imgPath: Yup.mixed()
     }),
     onSubmit: async () => {
       console.log(job._id);

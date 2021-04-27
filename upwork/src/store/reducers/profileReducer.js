@@ -16,9 +16,9 @@ const initialState = {
     duration:"",
     location: {
         country: "",
-        streetAddress:"",
+        street:"",
         city: "",
-        postCode: "",
+        postalCode: "",
       },
       feedbacks:[]
 }

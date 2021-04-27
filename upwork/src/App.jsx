@@ -16,19 +16,19 @@ import Signup from "./pages/Auth/SignUp";
 import Login from "./pages/Auth/Login";
 import SignupDetails from "./pages/Auth/SignupDetails";
 import ClientHomePage from "./pages/Client/ClientHomePage/ClientHomePage";
-import ProfileStep1 from "./pages/complete-profile/profile-step1";
-import ProfileStep2 from "./pages/complete-profile/profile-step2";
-import ProfileStep3 from "./pages/complete-profile/profile-step3";
-import ProfileStep4 from "./pages/complete-profile/profile-step4";
-import ProfileStep5 from "./pages/complete-profile/profile-step5";
+// import ProfileStep1 from "./pages/complete-profile/profile-step1";
+// import ProfileStep2 from "./pages/complete-profile/profile-step2";
+// import ProfileStep3 from "./pages/complete-profile/profile-step3";
+// import ProfileStep4 from "./pages/complete-profile/profile-step4";
+// import ProfileStep5 from "./pages/complete-profile/profile-step5";
 import PostJob from "./pages/Client/PostJob";
-import ProfileStep6 from "./pages/complete-profile/profile-step6";
-import ProfileStep7 from "./pages/complete-profile/profile-step7";
-import ProfileStep8 from "./pages/complete-profile/profile-step8";
-import ProfileStep9 from "./pages/complete-profile/profile-step9";
-import ProfileStep10 from "./pages/complete-profile/profile-step10";
-import ProfileStep11 from "./pages/complete-profile/profile-step11";
-import ProfileStep12 from "./pages/complete-profile/profile-step12";
+// import ProfileStep6 from "./pages/complete-profile/profile-step6";
+// import ProfileStep7 from "./pages/complete-profile/profile-step7";
+// import ProfileStep8 from "./pages/complete-profile/profile-step8";
+// import ProfileStep9 from "./pages/complete-profile/profile-step9";
+// import ProfileStep10 from "./pages/complete-profile/profile-step10";
+// import ProfileStep11 from "./pages/complete-profile/profile-step11";
+// import ProfileStep12 from "./pages/complete-profile/profile-step12";
 import SuccessPage from "./components/Client/Job/SuccessPage";
 import ProtectedFreelancer from './components/shared/ProtectedFreelancer'
 import ProtectedClient from "./components/shared/ProtectedClient";
@@ -62,7 +62,7 @@ function App() {
           <ProtectedClient path="/job-list" component={Jobs} />
           <ProtectedClient path="/active-jobs" component={ActiveJobs} />
           <ProtectedFreelancer path="/freelancer/create-profile/:step" exact component={CreateProfile} />
-          <Route path="/ProfileStep1" component={ProfileStep1} />
+          {/* <Route path="/ProfileStep1" component={ProfileStep1} />
           <Route path="/ProfileStep2" component={ProfileStep2} />
           <Route path="/ProfileStep3" component={ProfileStep3} />
           <Route path="/ProfileStep4" component={ProfileStep4} />
@@ -73,7 +73,7 @@ function App() {
           <Route path="/ProfileStep9" component={ProfileStep9} />
           <Route path="/ProfileStep10" component={ProfileStep10} />
           <Route path="/ProfileStep11" component={ProfileStep11} />
-          <Route path="/ProfileStep12" component={ProfileStep12} />
+          <Route path="/ProfileStep12" component={ProfileStep12} /> */}
 
         </Switch>
       </div>

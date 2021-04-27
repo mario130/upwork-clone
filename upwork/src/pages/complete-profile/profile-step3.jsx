@@ -26,7 +26,7 @@ const user = useSelector(state => state.user)
           To get started, all you need to do is fill out a profile
         </h1>
         <Btn
-              className="float-right bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
+              className="mb-5 float-right bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
               handleClicking ={()=>props.goToNextStep("step2")}
             >
               Next

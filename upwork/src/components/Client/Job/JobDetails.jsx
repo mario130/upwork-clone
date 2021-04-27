@@ -147,9 +147,7 @@ const JobDetails = (props) => {
               <Btn
                 type="submit"
                 className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
-                // disabled={
-                //   formik.touched.projectType && formik.errors.projectType
-                // }
+        
                 disabled={
                   formik.values.projectType === "" ||
                   formik.values.duration === "" ||

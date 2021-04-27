@@ -31,37 +31,25 @@ const CreateProfile = (props) => {
             <ProtectedFreelancer path="/freelancer/create-profile/step3">
               <ProfileStep6 goToNextStep={goToNextStep} />
             </ProtectedFreelancer>
-            <ProtectedFreelancer
-              path="/freelancer/create-profile/step4"
-            >
+            <ProtectedFreelancer path="/freelancer/create-profile/step4">
               <ProfileStep7 goToNextStep={goToNextStep} />
-
             </ProtectedFreelancer>
-            <ProtectedFreelancer
-              path="/freelancer/create-profile/step5"
-            >
+            <ProtectedFreelancer path="/freelancer/create-profile/step5">
               <ProfileStep8 goToNextStep={goToNextStep} />
-
             </ProtectedFreelancer>
-            <ProtectedFreelancer
-              path="/freelancer/create-profile/step6"
-        
-            >
+            <ProtectedFreelancer path="/freelancer/create-profile/step6">
               <ProfileStep9 goToNextStep={goToNextStep} />
-
             </ProtectedFreelancer>
-            <ProtectedFreelancer
-              path="/freelancer/create-profile/step7"
-              component={ProfileStep10}
-            />
-            <ProtectedFreelancer
-              path="/freelancer/create-profile/step8"
-              component={ProfileStep11}
-            />
-            <ProtectedFreelancer
-              path="/freelancer/create-profile/step9"
-              component={ProfileStep12}
-            />
+            <ProtectedFreelancer path="/freelancer/create-profile/step7">
+              <ProfileStep10 goToNextStep={goToNextStep} />
+            </ProtectedFreelancer>
+
+            <ProtectedFreelancer path="/freelancer/create-profile/step8">
+              <ProfileStep11 goToNextStep={goToNextStep} />
+            </ProtectedFreelancer>
+            <ProtectedFreelancer path="/freelancer/create-profile/step9">
+              <ProfileStep12 goToNextStep={goToNextStep} />
+            </ProtectedFreelancer>
           </Switch>
         </div>
       </div>

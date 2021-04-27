@@ -56,6 +56,10 @@ const jobSchema = mongoose.Schema({
     required:true,
     default:"listed"
   },
+  jobDate:{
+    type:Date,
+    default:Date.now
+  },
   contractId: { type: mongoose.Schema.Types.ObjectId, ref: "Contract" },
 });
 
