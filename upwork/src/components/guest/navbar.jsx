@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileNavOpen, setMobileNav] = useState(false);
@@ -56,10 +56,10 @@ const Navbar = () => {
             <div className="hidden lg:block mx-16 text-gray-800">
               <ul className="flex space-x-10">
                 <li>
-                  <span className="cursor-pointer">Find Talent</span>
+                  <Link to="/login"><span className="cursor-pointer">Find Talent</span></Link>
                 </li>
                 <li>
-                  <span className="cursor-pointer">Find Work</span>
+                  <Link to="/login"><span className="cursor-pointer">Find Work</span></Link>
                 </li>
                 <li>
                   <span className="cursor-pointer">Why Upwork</span>

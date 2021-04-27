@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => (
   <>
@@ -22,12 +23,16 @@ const Hero = () => (
           </p>
 
           <div className="flex space-x-4 md:max-w-xs">
-            <button className="bg-primary text-white font-bold flex-1 border border-gray-300 rounded-md py-2">
-              Find Talent
+            <Link to={`/login`}>
+              <button className="bg-primary text-white font-bold flex-1 border border-gray-300 rounded-md py-2 px-4">
+                Find Talent
             </button>
-            <button className="bg-white text-primary font-bold flex-1 border border-gray-300 rounded-md py-2">
-              Find Work
+            </Link>
+            <Link to={`/login`}>
+              <button className="bg-white text-primary font-bold flex-1 border border-gray-300 rounded-md py-2 px-4">
+                Find Work
             </button>
+            </Link>
           </div>
 
           {/* brands */}
