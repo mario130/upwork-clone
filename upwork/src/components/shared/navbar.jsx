@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ListItem from "./listItem";
 import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import { logout } from "../../store/actions/logoutAction";
+import axios from 'axios';
+import { localBackend } from './../../services/basedUrl';
 
 const Nav = (props) => {
   const dispatch = useDispatch()
@@ -152,19 +154,57 @@ const Nav = (props) => {
   const [isNotificationsOpen, setNotifications] = useState(false)
   const openNotifications = ()=> {
     setNotifications(!isNotificationsOpen)
+    if (!isNotificationsOpen) {
+      loadData()
+    }
   }
+  const [notifications,setNotificationsData] = useState([]);
+  const token = localStorage.getItem("token");
+  const email = localStorage.getItem("user");
 
-  const [notifications] = useState([
-    {
-      title: 'You\'ve been accepted in Angular project',
-      linkToContract: '/contract/123456'
-    },
-    {
-      title: 'You\'ve been accepted in API project',
-      linkToContract: '/contract/123456'
-    },
-  ])
+  async function loadData() {
+    await axios
+      .get(
+        `${localBackend}/profile/get-all-notifications/${email}`,{
+          headers:{'Authorization':`Bearer ${token}`},
+        }
+      )
+      // await axios({
+      //   method: "get",
+      //   url: `${localBackend}profile/get-all-notifications`,
+      //   headers: {
+      //     // "Content-Type": "multipart/form-data",
+      //     Authorization: "Bearer " + localStorage.getItem("token"),
+      //   },
+      //   data: formData,
+      // })
+      .then((data) => {
+        // console.log(data);
+        console.log(data.data.notifications);
+        setNotificationsData(data.data.notifications);
+      }).catch((err) =>{
+        console.log(err)
+      })
+  }
+  // loadData(() => {
+  //   axios
+  //     .get(
+  //       `${localBackend}/user/checkEmail/`,{
+  //         headers:{'Authorization':`Bearer ${token}`},
+  //         data: formData,
+  //       }
+  //     )
+  //     .then((data) => {
+  //       console.log(data);
+  //       setNotificationsData(data.data);
+  //     }).catch((err) =>{
+  //       console.log(err)
+  //     })
+  // }, []);
 
+  
+
+  
   return (
     <div className="lg:p-2 border-b border-gray-200 bg-complementary z-50 text-white">
       <div className="container mx-auto max-w-5xl">
@@ -325,7 +365,7 @@ const Nav = (props) => {
               </div>
               <div class={`origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${isNotificationsOpen ? "" : "hidden"}`} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 {notifications.map(noti => (
-                  <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href={noti.linkToContract}>{noti.title}</a>
+                  <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href={noti.linkToContract}>{noti.message}</a>
                 ))}
               </div>
             </div>

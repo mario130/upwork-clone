@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Freelancer = require("../model/freelancer");
 const User = require("../model/user");
 
@@ -80,5 +81,33 @@ module.exports.addFeedback = (req, res, next) => {
         return next(err);
       }
     } else return next(err);
+  });
+};
+
+
+module.exports.getAllNotifications = (req, resp, next) => {
+  console.log(req.params.email)
+  User.findOne({ email: req.params.email }, async(err, data) => {
+    if (!err){
+      if (data == null) {
+        resp.status(400).json(err)
+      } else {
+        if (data.userType == "freelancer") {
+          const freelancerNotifications = await Freelancer.findOne({
+            userId: mongoose.Types.ObjectId(data._id),
+          }).select("notifications");
+          console.log(freelancerNotifications);
+          if (freelancerNotifications) {
+            resp.status(200).json(freelancerNotifications)
+          }else{
+            resp.status(200).json("you haven't notifications")
+          }
+        }
+        else{
+          resp.status(200).json("Client: haven't notifications")
+        }
+      }
+    }
+    else return next(err);
   });
 };
