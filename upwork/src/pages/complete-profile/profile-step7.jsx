@@ -10,26 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 const ProfileStep7 = (props) => {
   const dispatch = useDispatch()
 
-  const [expertiseLevel] = useState([
-    {
-      level: "Entery Level",
-      describeLevel: "I am relatively new to this field",
-    },
-    {
-      level: "Intermediate",
-      describeLevel: "I have substantial experience in this field",
-    },
-    {
-      level: "Expert",
-      describeLevel: "I have comprehensive and deep expertise in this field",
-    },
-  ]);
   const formik = useFormik({
     initialValues: {
-      experienceLevel: "",
+      expertiseLevel: "",
     },
     validationSchema: Yup.object({
-      experienceLevel: Yup.string().required(),
+      expertiseLevel: Yup.string().required(),
     }),
     onSubmit: (values) => {
       dispatch(createProfile(values))
@@ -37,11 +23,11 @@ const ProfileStep7 = (props) => {
       props.goToNextStep("step5");
     },
   });
-  const { experienceLevel} = useSelector((state) => state.userProfile)
+  const { expertiseLevel} = useSelector((state) => state.userProfile)
 
   useEffect(()=>{
-    formik.setValues({experienceLevel})
-  },[experienceLevel])
+    formik.setValues({expertiseLevel})
+  },[expertiseLevel])
   return (
     <>
       <TagHeader tag="Expertise level" value="4" />
@@ -55,31 +41,31 @@ const ProfileStep7 = (props) => {
         <div className="grid sm:grid-cols-3 gap-2">
                 <RadioBox
                   id="enteryLevel"
-                  name="experienceLevel"
+                  name="expertiseLevel"
                   value="Entery Level"
                   text="I am relatively new to this field"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  checked={formik.values.experienceLevel === "Entery Level"}
+                  checked={formik.values.expertiseLevel === "Entery Level"}
                 ></RadioBox>
                 <RadioBox
-                  name="experienceLevel"
+                  name="expertiseLevel"
                   id="Intermediate"
                   value="Intermediate"
                   text="I have substantial experience in this field"
                  
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  checked={formik.values.experienceLevel === "Intermediate"}
+                  checked={formik.values.expertiseLevel === "Intermediate"}
                 ></RadioBox>
                 <RadioBox
                   id="Expert"
-                  name="experienceLevel"
+                  name="expertiseLevel"
                   value="Expert"
                   text="I have comprehensive and deep expertise in this field"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  checked={formik.values.experienceLevel === "Expert"}
+                  checked={formik.values.expertiseLevel === "Expert"}
                 ></RadioBox>
               </div>
         <hr />
@@ -95,8 +81,8 @@ const ProfileStep7 = (props) => {
               type="submit"
               className="bg-primary text-white disabled:opacity-50 px-10 py-2 disabled:cursor-not-allowed"
               disabled={
-                !formik.values.experienceLevel ||
-                  formik.errors.experienceLevel
+                !formik.values.expertiseLevel ||
+                  formik.errors.expertiseLevel
               }
             >
               Next

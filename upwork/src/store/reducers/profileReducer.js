@@ -10,10 +10,8 @@ const initialState = {
         school:"",
         areaOfStudy:""
     },
-    languages:[],
     hourlyRate:0,
     profilePhoto:"",
-    duration:"",
     location: {
         country: "",
         street:"",
