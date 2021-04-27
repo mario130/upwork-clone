@@ -10,13 +10,20 @@ import ProfileStep6 from "./profile-step6";
 import ProfileStep7 from "./profile-step7";
 import ProfileStep8 from "./profile-step8";
 import ProfileStep9 from "./profile-step9";
+import Nav from '../../components/shared/navbar';
+import Footer from "../../components/shared/footer";
 
 const CreateProfile = (props) => {
   const goToNextStep = (step) => {
     props.history.push(`/freelancer/create-profile/${step}`);
   };
+const backStep = (step) => {
+  props.history.push(`/freelancer/create-profile/${step}`);
 
+}
   return (
+    <>
+    <Nav variation="freelancer" />
     <div className="w-full bg-bodyGray md:py-6">
       <div className="md:gap-4 md:grid md:grid-cols-12">
         <Sidbar />
@@ -26,34 +33,36 @@ const CreateProfile = (props) => {
               <ProfileStep3 goToNextStep={goToNextStep} />
             </ProtectedFreelancer>
             <ProtectedFreelancer path="/freelancer/create-profile/step2">
-              <ProfileStep5 goToNextStep={goToNextStep} />
+              <ProfileStep5 goToNextStep={goToNextStep} backStep={backStep} />
             </ProtectedFreelancer>
             <ProtectedFreelancer path="/freelancer/create-profile/step3">
-              <ProfileStep6 goToNextStep={goToNextStep} />
+              <ProfileStep6 goToNextStep={goToNextStep}backStep={backStep} />
             </ProtectedFreelancer>
             <ProtectedFreelancer path="/freelancer/create-profile/step4">
-              <ProfileStep7 goToNextStep={goToNextStep} />
+              <ProfileStep7 goToNextStep={goToNextStep} backStep={backStep} />
             </ProtectedFreelancer>
             <ProtectedFreelancer path="/freelancer/create-profile/step5">
-              <ProfileStep8 goToNextStep={goToNextStep} />
+              <ProfileStep8 goToNextStep={goToNextStep} backStep={backStep} />
             </ProtectedFreelancer>
             <ProtectedFreelancer path="/freelancer/create-profile/step6">
-              <ProfileStep9 goToNextStep={goToNextStep} />
+              <ProfileStep9 goToNextStep={goToNextStep} backStep={backStep} />
             </ProtectedFreelancer>
             <ProtectedFreelancer path="/freelancer/create-profile/step7">
-              <ProfileStep10 goToNextStep={goToNextStep} />
+              <ProfileStep10 goToNextStep={goToNextStep} backStep={backStep} />
             </ProtectedFreelancer>
 
             <ProtectedFreelancer path="/freelancer/create-profile/step8">
-              <ProfileStep11 goToNextStep={goToNextStep} />
+              <ProfileStep11 goToNextStep={goToNextStep} backStep={backStep} />
             </ProtectedFreelancer>
             <ProtectedFreelancer path="/freelancer/create-profile/step9">
-              <ProfileStep12 goToNextStep={goToNextStep} />
+              <ProfileStep12 goToNextStep={goToNextStep} backStep={backStep} />
             </ProtectedFreelancer>
           </Switch>
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

@@ -167,6 +167,7 @@ const ProfileStep12 = (props) => {
           <div className="my-5">
             <Btn
               type="button"
+              handleClicking={()=>props.backStep("step8")}
               className="text-primary mr-3 border-hair border px-10 py-2 "
             >
               back
