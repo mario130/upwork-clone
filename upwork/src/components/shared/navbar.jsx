@@ -169,40 +169,13 @@ const Nav = (props) => {
           headers:{'Authorization':`Bearer ${token}`},
         }
       )
-      // await axios({
-      //   method: "get",
-      //   url: `${localBackend}profile/get-all-notifications`,
-      //   headers: {
-      //     // "Content-Type": "multipart/form-data",
-      //     Authorization: "Bearer " + localStorage.getItem("token"),
-      //   },
-      //   data: formData,
-      // })
       .then((data) => {
-        // console.log(data);
         console.log(data.data.notifications);
         setNotificationsData(data.data.notifications);
       }).catch((err) =>{
         console.log(err)
       })
   }
-  // loadData(() => {
-  //   axios
-  //     .get(
-  //       `${localBackend}/user/checkEmail/`,{
-  //         headers:{'Authorization':`Bearer ${token}`},
-  //         data: formData,
-  //       }
-  //     )
-  //     .then((data) => {
-  //       console.log(data);
-  //       setNotificationsData(data.data);
-  //     }).catch((err) =>{
-  //       console.log(err)
-  //     })
-  // }, []);
-
-  
 
   
   return (
@@ -365,7 +338,9 @@ const Nav = (props) => {
               </div>
               <div class={`origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${isNotificationsOpen ? "" : "hidden"}`} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 {notifications.map(noti => (
-                  <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href={noti.linkToContract}>{noti.message}</a>
+                  <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                  // href={noti.linkToContract}
+                  >{noti.message}</a>
                 ))}
               </div>
             </div>

@@ -6,6 +6,7 @@ import { localBackend } from '../../services/basedUrl';
 import moment from 'moment';
 
 const Job = (props) => {
+  const [checkSubmited, setCheck] = useState(false);
   const [job, setJob] = useState(null);
   useEffect(() => {
     axios
@@ -14,6 +15,11 @@ const Job = (props) => {
         console.log(data);
         localStorage.setItem("job", JSON.stringify(data));
         setJob(data.data);
+        if(data.data.proposals){
+          data.data.proposals.map(prop=>
+            prop.freelancerId == localStorage.getItem("userId")? setCheck(true): setCheck(false)
+          )
+        }
       });
   }, []);
   return (
@@ -186,9 +192,13 @@ const Job = (props) => {
 
           <div className="text-sm grayBottomBorder lg:col-start-6 col-span-2">
             <div className="p-4 hidden lg:block grayBottomBorder">
-              <div className="space-y-2 p-3">
+              <div className="space-y-2 p-3" >
                 <Link to={`/proposal/${props.id}`}>
-                  <button className="w-full p-2 rounded-lg font-bold text-sm bg-primary text-white">
+                  <button className="w-full p-2 rounded-lg font-bold text-sm bg-primary text-white"
+                  disabled={
+                    checkSubmited
+                  }
+                  >
                     Submit a proposal
                   </button>
                 </Link>
@@ -291,7 +301,11 @@ const Job = (props) => {
 
           <div className="sticky bottom-0 p-6 flex bg-white border-t grayBottomBorder space-x-2 lg:hidden">
             <Link to={`/proposal/${props.id}`}>
-              <button className="w-1/2 p-2 rounded-lg font-bold text-sm bg-primary text-white">
+              <button className="w-1/2 p-2 rounded-lg font-bold text-sm bg-primary text-white"
+               disabled={
+                checkSubmited
+              }
+              >
                 Submit a proposal
               </button>
             </Link>

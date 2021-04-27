@@ -75,6 +75,7 @@ class Login extends Component {
       payload = response.data;
       localStorage.setItem("user", this.state.email);
       localStorage.setItem("token", payload.token);
+      localStorage.setItem("userId", payload._id);
       localStorage.setItem("userType", payload.userType);
       localStorage.setItem("userName", payload.userName);
       localStorage.setItem("firstName", payload.firstName);

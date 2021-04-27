@@ -46,7 +46,7 @@ module.exports.authenticate = (req, resp, next) => {
     // check if there is an error from passport middleware
     if (err) return resp.status(400).json(err);
     // registered user
-    else if (user) return resp.status(200).json({ token: user.generateJwt(),userType:user.userType, userName:user.userName,firstName:user.firstName });
+    else if (user) return resp.status(200).json({ token: user.generateJwt(),userType:user.userType, userName:user.userName,firstName:user.firstName, _id:user._id });
     // Unknown user or wrong password
     else return resp.status(404).json(info);
   })(req, resp);
