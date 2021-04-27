@@ -11,7 +11,6 @@ import Jobs from './pages/Client/JobList';
 import ActiveJobs from './pages/Client/ActiveJobs';
 import AllProposals from './pages/freelancer/allProposals';
 import Contract from './pages/shared/contract';
-import Nav from "./components/shared/dev-navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Signup from "./pages/Auth/SignUp";
 import Login from "./pages/Auth/Login";

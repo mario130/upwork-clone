@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import AppleBtn from "../../components/Auth/AppleBtn";
 import GoogleBtn from "../../components/Auth/GoogleBtn";
 import Btn from "../../components/UI/Form/Btn/Btn";

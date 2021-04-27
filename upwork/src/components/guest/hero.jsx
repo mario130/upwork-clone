@@ -86,8 +86,8 @@ const Hero = () => (
           <path
             d="M2 2L22 18L42 2"
             stroke="#6FDA44"
-            stroke-width="4"
-            stroke-linecap="round"
+            strokeWidth="4"
+            strokeLinecap="round"
           ></path>
         </svg>
       </div>

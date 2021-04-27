@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ListItem from "./listItem";
 import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -200,9 +200,9 @@ const Nav = (props) => {
               aria-hidden="true"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="4"
                 d="M4 6h18M4 13h18M4 20h18"
               />
             </svg>

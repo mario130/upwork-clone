@@ -57,7 +57,7 @@ const PostJob = () => {
     <div id="jobPost" className="bg-bodyGray">
       <Nav />
       <Navbar activeLink="post-job" />
-      <div className="container  mx-auto px-16 py-12 ">
+      <div className="container max-w-5xl mx-auto px-16 py-12 ">
         <div className="grid md:grid-cols-5 md:gap-4">
           <div className="md:col-span-1">
             <ul className="flex md:flex-col ">

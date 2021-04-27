@@ -1,8 +1,9 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { localBackend } from '../../services/basedUrl';
 import moment from 'moment';
-import Spinner from '../shared/spinner';
 
 const Jobs = () => {
   const [proposals, setProposals] = useState([]);
