@@ -6,7 +6,11 @@ import * as Yup from "yup";
 import Select from "../../components/UI/Form/Select/Select";
 import ErrorMsg from "../../components/UI/ErrorMsg/ErrorMsg";
 import Btn from "../../components/UI/Form/Btn/Btn";
+import { useDispatch, useSelector } from "react-redux";
+import { createProfile } from "../../store/actions/create-profile";
 const ProfileStep5 = (props) => {
+  const dispatch = useDispatch()
+
   const formik = useFormik({
     initialValues: {
       category: "",
@@ -17,10 +21,17 @@ const ProfileStep5 = (props) => {
       subcategory: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
+      dispatch(createProfile(values))
+
       props.goToNextStep("step3");
+
     },
   });
-  const [category] = useState([
+  const { category , subcategory} = useSelector((state) => state.userProfile)
+  useEffect(()=>{
+  formik.setValues({subcategory, category})
+},[subcategory,category])
+  const [allCategories] = useState([
     { value: "Accounting", name: "Accounting" },
     { value: "Admin Support", name: "Admin Support" },
     { value: "Customer Service", name: "Customer Service" },
@@ -124,9 +135,9 @@ const ProfileStep5 = (props) => {
         <h1 className="text-sm my-2">What is the main service you offer?</h1>
         <form onSubmit={formik.handleSubmit}>
           <div className="my-4">
-            <Select name="category" onChange={formik.handleChange}>
+            <Select name="category" onChange={formik.handleChange} onBlur={formik.handleBlur } value={formik.values.category}>
               <option value="">please select ...</option>
-              {category.map((ele, i) => (
+              {allCategories.map((ele, i) => (
                 <option key={i} value={ele.value}>
                   {ele.name}
                 </option>
@@ -141,7 +152,7 @@ const ProfileStep5 = (props) => {
             />
           </div>
           <div className="my-4">
-            <Select name="subcategory" onChange={formik.handleChange}>
+            <Select name="subcategory" onChange={formik.handleChange}  onBlur={formik.handleBlur } value={formik.values.subcategory}>
               <option value="">please select ...</option>
               {Object.keys(selectedSubCategory).length &&
                 selectedSubCategory.topics.map((ele, i) => (

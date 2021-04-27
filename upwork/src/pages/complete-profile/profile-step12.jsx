@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidbar from "../../components/complete-profile/sidbar";
 import TagHeader from "../../components/complete-profile/tagHeader";
 import BackNextBtns from "../../components/complete-profile/back-nextBtns";
@@ -8,9 +8,12 @@ import * as Yup from "yup";
 import Input from "../../components/UI/Form/Input/Input";
 import Btn from "../../components/UI/Form/Btn/Btn";
 import ErrorMsg from "../../components/UI/ErrorMsg/ErrorMsg";
+import { useDispatch, useSelector } from "react-redux";
+import { createProfile } from "../../store/actions/create-profile";
 const countries = require("../../store/data/countries.json");
-
 const ProfileStep12 = (props) => {
+  const dispatch = useDispatch()
+
   const [allCountries] = useState(countries);
   const formik = useFormik({
     initialValues: {
@@ -30,10 +33,20 @@ const ProfileStep12 = (props) => {
       }),
     }),
     onSubmit: (values) => {
+      dispatch(createProfile(values))
+
       props.goToNextStep("step9");
       console.log(values);
     },
   });
+  const { country , street,city,postalCode} = useSelector((state) => state.userProfile.location)
+  useEffect(()=>{
+   
+
+  formik.setValues({location:{
+    country , street,city,postalCode
+  }})
+},[country , street,city,postalCode])
   return (
     <>
       <TagHeader tag="Location" value="9" />

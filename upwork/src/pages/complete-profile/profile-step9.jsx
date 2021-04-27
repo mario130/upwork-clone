@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidbar from "../../components/complete-profile/sidbar";
 import TagHeader from "../../components/complete-profile/tagHeader";
 import BackNextBtns from "../../components/complete-profile/back-nextBtns";
@@ -6,7 +6,11 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import Btn from "../../components/UI/Form/Btn/Btn";
 import Input from "../../components/UI/Form/Input/Input";
+import { createProfile } from "../../store/actions/create-profile";
+import { useDispatch, useSelector } from "react-redux";
 const ProfileStep9 = (props) => {
+  const dispatch = useDispatch()
+
   const formik = useFormik({
     initialValues: {
       hourlyRate: 0,
@@ -15,11 +19,15 @@ const ProfileStep9 = (props) => {
       hourlyRate: Yup.number().min(5,"minimum 5 $").max(10000).required("Required"),
     }),
     onSubmit: (values) => {
+      dispatch(createProfile(values))
+
       props.goToNextStep("step7");
-      console.log(values);
     },
   });
-
+  const { hourlyRate} = useSelector((state) => state.userProfile)
+  useEffect(()=>{
+  formik.setValues({hourlyRate})
+},[hourlyRate])
   return (
     <>
       <TagHeader tag="Hourly rate" value="6" />

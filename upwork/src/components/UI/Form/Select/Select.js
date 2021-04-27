@@ -6,6 +6,7 @@ const Select = (props) => {
        className={ props.className + " text-gray-600 appearance-none  inline-block py-3 pl-3 pr-8 rounded leading-tight w-full border border-gray-300 focus:outline-none"}
        onChange={props.onChange}
        onBlur={props.onBlur}
+       value={props.value}
        >
          {props.children}
     

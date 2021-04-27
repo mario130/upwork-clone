@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TagHeader from "../../components/complete-profile/tagHeader";
 import BackNextBtns from "../../components/complete-profile/back-nextBtns";
 import RadioBox from "../../components/UI/Form/RadioBox/RadioBox";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 import Btn from "../../components/UI/Form/Btn/Btn";
+import { createProfile } from "../../store/actions/create-profile";
+import { useDispatch, useSelector } from "react-redux";
 const ProfileStep7 = (props) => {
+  const dispatch = useDispatch()
+
   const [expertiseLevel] = useState([
     {
       level: "Entery Level",
@@ -28,9 +32,16 @@ const ProfileStep7 = (props) => {
       experienceLevel: Yup.string().required(),
     }),
     onSubmit: (values) => {
+      dispatch(createProfile(values))
+
       props.goToNextStep("step5");
     },
   });
+  const { experienceLevel} = useSelector((state) => state.userProfile)
+
+  useEffect(()=>{
+    formik.setValues({experienceLevel})
+  },[experienceLevel])
   return (
     <>
       <TagHeader tag="Expertise level" value="4" />

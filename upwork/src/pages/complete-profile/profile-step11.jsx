@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TagHeader from "../../components/complete-profile/tagHeader";
 import Btn from "../../components/UI/Form/Btn/Btn";
 import Input from "../../components/UI/Form/Input/Input";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
+import { createProfile } from "../../store/actions/create-profile";
+import { useDispatch, useSelector } from "react-redux";
 const ProfileStep11 = (props) => {
+  const dispatch = useDispatch()
+
     const formik = useFormik({
         initialValues: {
           profilePic: "",
@@ -15,11 +19,14 @@ const ProfileStep11 = (props) => {
             phone:Yup.string().matches(/^01[0-2,5]\d{8}$/,"Invalid phone")
         }),
         onSubmit: (values) => {
+          dispatch(createProfile(values))
           props.goToNextStep("step9");
-          console.log(values);
         },
       });
-    
+      const { phone} = useSelector((state) => state.userProfile)
+      useEffect(()=>{
+      formik.setFieldValue("phone",phone)
+    },[phone])
   return (
     <>
       <TagHeader tag="Profile Photo & Phone No." value="8" />

@@ -1,11 +1,15 @@
 import TagHeader from "../../components/complete-profile/tagHeader";
 import BackNextBtns from "../../components/complete-profile/back-nextBtns";
 import Input from "../../components/UI/Form/Input/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Btn from "../../components/UI/Form/Btn/Btn";
+import { useDispatch, useSelector } from "react-redux";
+import { createProfile } from "../../store/actions/create-profile";
 const ProfileStep8 = (props) => {
+  const dispatch = useDispatch()
+
   const formik = useFormik({
     initialValues: {
       education: {
@@ -20,10 +24,18 @@ const ProfileStep8 = (props) => {
       }),
     }),
     onSubmit: (values) => {
+      dispatch(createProfile(values))
+
       props.goToNextStep("step6");
       console.log(values);
     },
   });
+  const { school , areaOfStudy} = useSelector((state) => state.userProfile.education)
+  useEffect(()=>{
+    formik.setFieldValue("education.school",school)
+    formik.setFieldValue("education.areaOfStudy",areaOfStudy)
+  
+},[school,areaOfStudy])
   return (
     <div>
       <TagHeader tag="Education" value="5" />
@@ -51,7 +63,7 @@ const ProfileStep8 = (props) => {
             placeholder="School"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.education.school}
+            value={formik.values.education && formik.values.education.school}
             errorMsg={
               formik.errors.education &&
               formik.touched.education &&
@@ -78,7 +90,7 @@ const ProfileStep8 = (props) => {
             placeholder="Area Of Study"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.education.areaOfStudy}
+            value={formik.values.education && formik.values.education.areaOfStudy}
             errorMsg={
               formik.errors.education &&
               formik.touched.education &&

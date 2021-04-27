@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TagHeader from "../../components/complete-profile/tagHeader";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Btn from "../../components/UI/Form/Btn/Btn";
 import CheckItem from "../../components/UI/Form/CheckItem/CheckItem";
 import ErrorMsg from "../../components/UI/ErrorMsg/ErrorMsg";
+import { createProfile } from "../../store/actions/create-profile";
+import { useDispatch, useSelector } from "react-redux";
+
 const ProfileStep6 = (props) => {
-  const [skills] = useState([
+  const dispatch = useDispatch()
+
+  const [Allskills] = useState([
     "MySql",
     "NodeJS",
     "Bootstrap",
@@ -40,9 +45,15 @@ const ProfileStep6 = (props) => {
         .required("Required"),
     }),
     onSubmit: (values) => {
+      dispatch(createProfile(values))
+
       props.goToNextStep("step4");
     },
   });
+  const { skills} = useSelector((state) => state.userProfile)
+  useEffect(()=>{
+  formik.setValues({skills})
+},[skills])
   return (
     <div>
       <TagHeader tag="Expertise" value="3" />
@@ -51,7 +62,7 @@ const ProfileStep6 = (props) => {
         <div className="bg-white px-5 md:py-4">
           <h1 className="text-sm font-bold my-4">Select your skills</h1>
           <div className="inline-flex flex-wrap">
-                {skills.map((skill) => (
+                {Allskills.map((skill) => (
                   <CheckItem
                     key={skill}
                     id={skill}

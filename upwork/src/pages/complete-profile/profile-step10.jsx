@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TagHeader from "../../components/complete-profile/tagHeader";
 import BackNextBtns from "../../components/complete-profile/back-nextBtns";
 import { useFormik } from "formik";
@@ -6,8 +6,11 @@ import * as Yup from "yup";
 import Input from "../../components/UI/Form/Input/Input";
 import TextArea from "../../components/UI/Form/TextArea/TextArea";
 import Btn from "../../components/UI/Form/Btn/Btn";
-
+import { createProfile } from "../../store/actions/create-profile";
+import { useDispatch, useSelector } from "react-redux";
 const ProfileStep10 = (props) => {
+  const dispatch = useDispatch()
+
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -20,11 +23,15 @@ const ProfileStep10 = (props) => {
         .required("Required"),
     }),
     onSubmit: (values) => {
+      dispatch(createProfile(values))
+
       props.goToNextStep("step8");
-      console.log(values);
     },
   });
-
+  const { title,overview} = useSelector((state) => state.userProfile)
+  useEffect(()=>{
+  formik.setValues({title,overview})
+},[overview,title])
   return (
     <>
       <TagHeader tag="Title & Overview" value="7" />
