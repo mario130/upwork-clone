@@ -46,7 +46,7 @@ const Jobs = () => {
           <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Active proposals ({activeProposalsLen})</h2>
 
 
-          {activeProposalsLen != 0 ?
+          {activeProposalsLen >= 0 ?
             <>
               {proposals.map((proposal, i) => (
                 <>
@@ -80,7 +80,7 @@ const Jobs = () => {
         <div className="">
           <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Submitted proposals ({submittedProposalsLen})</h2>
 
-          {submittedProposalsLen != 0 ?
+          {submittedProposalsLen >= 0 ?
             <>
               {proposals.map((proposal, i) => (
                 <>
