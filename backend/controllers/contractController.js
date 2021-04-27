@@ -9,6 +9,25 @@ const {
 } = require("../services/notificationServices/notificationService");
 const Contract = require("./../model/contract");
 
+module.exports.activeContracts = (req,resp,next) => {
+  Contract.findOne({clientId:req._id})
+  .populate({
+    path: "freelancerId",
+    model: "User",
+    select:"firstName lastName email"
+  })
+  .populate({
+    path:"jobId",
+    model:"Job",
+    select:"category title"
+  })
+    .exec((err, data) => {
+      if (!err) {
+        resp.status(200).send(data);
+      } else return next(err);
+    });
+}
+
 module.exports.hireFreelancer = async (req, resp, next) => {
   // change job status to active
   const jobId = req.params.jobId;
