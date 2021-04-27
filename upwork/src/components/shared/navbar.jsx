@@ -13,6 +13,8 @@ const Nav = (props) => {
     localStorage.removeItem('token')
     return dispatch(logout())
   }
+  const isFreelancer = localStorage.getItem("userType")=="freelancer";
+  console.log(isFreelancer);
   const [isOpen, setIsOpen] = useState(false);
   const [navLists] = useState([
     {
@@ -310,6 +312,7 @@ const Nav = (props) => {
         </div>}
 
           {/* desktop icons */}
+          {isFreelancer&&
           <ul className="space-x-4 hidden lg:flex">
             {/* {navLists.map((list) => (
               <li>{list.icon ? list.icon : null}</li>
@@ -344,7 +347,9 @@ const Nav = (props) => {
                 ))}
               </div>
             </div>
+
           </ul>
+}
 
           <div className="hidden lg:block">
             <img
