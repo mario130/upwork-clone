@@ -14,7 +14,6 @@ const Nav = (props) => {
     return dispatch(logout())
   }
   const isFreelancer = localStorage.getItem("userType")=="freelancer";
-  console.log(isFreelancer);
   const [isOpen, setIsOpen] = useState(false);
   const [navLists] = useState([
     {
@@ -342,8 +341,12 @@ const Nav = (props) => {
               <div class={`origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${isNotificationsOpen ? "" : "hidden"}`} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 {notifications.map(noti => (
                   <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
-                  // href={noti.linkToContract}
-                  >{noti.message}</a>
+                  href={noti.jobLink}
+                  >
+                    <b>{noti.message}</b>
+                    <br/>
+                  <small className="text-light"><b>{noti.date}</b></small>
+                  </a>
                 ))}
               </div>
             </div>

@@ -10,6 +10,14 @@ const notificationSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: String,
+    required: true,
+  },
+  jobLink: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = notificationSchema;
