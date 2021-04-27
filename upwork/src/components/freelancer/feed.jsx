@@ -183,7 +183,7 @@ const Main = () => {
             </svg>
           </div>
 
-          {jobs.length === 0 ? <div className="text-center my-14">
+          {jobs.length === 0 && loading? <div className="text-center my-14">
             <Spinner />
           </div> : null}
           {/* IF NO JOBS */}
