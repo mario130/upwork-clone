@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import AppleBtn from "../../components/Auth/AppleBtn";
 import GoogleBtn from "../../components/Auth/GoogleBtn";
 import Btn from "../../components/UI/Form/Btn/Btn";
@@ -75,6 +76,7 @@ class Login extends Component {
       payload = response.data;
       localStorage.setItem("user", this.state.email);
       localStorage.setItem("token", payload.token);
+      localStorage.setItem("userId", payload._id);
       localStorage.setItem("userType", payload.userType);
       localStorage.setItem("userName", payload.userName);
       localStorage.setItem("firstName", payload.firstName);

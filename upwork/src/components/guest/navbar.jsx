@@ -26,9 +26,9 @@ const Navbar = () => {
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="4"
                   d="M4 6h18M4 13h18M4 20h18"
                 />
               </svg>
@@ -56,16 +56,16 @@ const Navbar = () => {
             <div className="hidden lg:block mx-16 text-gray-800">
               <ul className="flex space-x-10">
                 <li>
-                  <a>Find Talent</a>
+                  <span className="cursor-pointer">Find Talent</span>
                 </li>
                 <li>
-                  <a>Find Work</a>
+                  <span className="cursor-pointer">Find Work</span>
                 </li>
                 <li>
-                  <a>Why Upwork</a>
+                  <span className="cursor-pointer">Why Upwork</span>
                 </li>
                 <li>
-                  <a>Enterprise</a>
+                  <span className="cursor-pointer">Enterprise</span>
                 </li>
               </ul>
             </div>
@@ -152,16 +152,16 @@ const Navbar = () => {
 
               <ul className="space-y-8 font-bold p-3 mb-4">
                 <li>
-                  <a>Find Talent</a>
+                  <span className="cursor-pointer">Find Talent</span>
                 </li>
                 <li>
-                  <a>Find Work</a>
+                  <span className="cursor-pointer">Find Work</span>
                 </li>
                 <li>
-                  <a>Why Upwork</a>
+                  <span className="cursor-pointer">Why Upwork</span>
                 </li>
                 <li>
-                  <a>Enterprise</a>
+                  <span className="cursor-pointer">Enterprise</span>
                 </li>
               </ul>
             </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -25,7 +26,7 @@ const Jobs = () => {
       }).catch((err) =>{
         setLoading(true);
       })
-  }, []);
+  }, [token]);
 
   return (
     <>

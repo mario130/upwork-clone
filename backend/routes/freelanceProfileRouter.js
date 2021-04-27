@@ -27,5 +27,6 @@ router.get('/freelance-profile',jwtHelper.verifyJwtToken,freelanceProfileControl
 router.put('/profile-update/:id',freelanceProfileControl.updateProfile);
 router.post('/add-feedback/:id',freelanceProfileControl.addFeedback);
 
+router.get('/get-all-notifications/:email',jwtHelper.verifyJwtToken,freelanceProfileControl.getAllNotifications);
 
 module.exports = router;

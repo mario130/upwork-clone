@@ -25,7 +25,7 @@ const Applicants = () => {
           setApplicantSelected(true)
         }
       })
-  }, [applicantSelected]);
+  }, [applicantSelected, jobId, token]);
 
   const acceptApplicant = (proposalId) => {
     axios.post(

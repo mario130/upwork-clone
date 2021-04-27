@@ -30,7 +30,7 @@ const Main = () => {
     setSearchedJobs(result);
   }
 
-  const filterBySkill = (skill)=> {
+  const filterBySkill = (skill) => {
     if (skill === "") {
       setSearchedJobs(jobs)
       setActiveFilterSkill("")
@@ -102,11 +102,11 @@ const Main = () => {
         <h3 className="font-bold text-black px-2 py-1">Filter by skill</h3>
         <ul className="space-y-1">
           <li className="text-gray-600 font-bold ml-2">
-            <span className={`cursor-pointer `} onClick={()=>filterBySkill('')}>Remove filter</span>
+            <span className={`cursor-pointer `} onClick={() => filterBySkill('')}>Remove filter</span>
           </li>
           {skills.map(skill => (
             <li className="text-primary font-bold ml-2">
-              <span className={`cursor-pointer ${activeFilterSkill === skill ? "text-darkGreen" : ""}`} onClick={()=>filterBySkill(skill)}>{skill}</span>
+              <span className={`cursor-pointer ${activeFilterSkill === skill ? "text-darkGreen" : ""}`} onClick={() => filterBySkill(skill)}>{skill}</span>
             </li>
           ))}
         </ul>
@@ -183,18 +183,18 @@ const Main = () => {
             </svg>
           </div>
 
-          {jobs.length === 0 ? <div className="text-center my-14">
+          {jobs.length === 0 && loading? <div className="text-center my-14">
             <Spinner />
           </div> : null}
           {/* IF NO JOBS */}
-          {searchedJobs.length === 0 
-          ? loading ? null 
-          : <div>
-              <div className="text-center my-6 font-bold">
-                No jobs found
+          {searchedJobs.length === 0
+            ? loading ? null
+              : <div>
+                <div className="text-center my-6 font-bold">
+                  No jobs found
               </div>
-            </div>
-          : null}
+              </div>
+            : null}
           {searchedJobs.map((job) => (
             <div className="p-5 border-b border-gray-200">
               {/* title */}
@@ -272,7 +272,7 @@ const Main = () => {
               <div className="flex flex-wrap text-sm mb-4">
                 {job?.skills.map((skill) => (
                   <div className="">
-                    <span onClick={()=>filterBySkill(skill)} className="px-2 py-1 mb-2 block bg-gray-100 rounded-full mr-2 font-semibold text-gray-800 cursor-pointer">
+                    <span onClick={() => filterBySkill(skill)} className="px-2 py-1 mb-2 block bg-gray-100 rounded-full mr-2 font-semibold text-gray-800 cursor-pointer">
                       {skill}
                     </span>
                   </div>
@@ -374,7 +374,7 @@ const Main = () => {
           </div>
         </div>
         <div>
-          <h3 className="mt-6 font-bold text-lg mb-2">Proposals</h3>
+          <Link to="/proposals"><h3 className="mt-6 font-bold text-lg mb-2">Proposals</h3> </Link>
           <ul className="space-y-2">
             <Link to="/proposals">
               <li className="text-primary font-bold">1 active candidacy</li>

@@ -62,7 +62,7 @@ module.exports.hireFreelancer = async (req, resp, next) => {
                         }
                         pushNotification(
                           proposal.freelancerId,
-                          "You are Hired in " + job.title
+                          job
                         );
                         console.log(proposal.freelancerId);
                         const user = await User.findOne({

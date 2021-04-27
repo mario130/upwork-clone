@@ -11,7 +11,6 @@ import Jobs from './pages/Client/JobList';
 import ActiveJobs from './pages/Client/ActiveJobs';
 import AllProposals from './pages/freelancer/allProposals';
 import Contract from './pages/shared/contract';
-import Nav from "./components/shared/dev-navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Signup from "./pages/Auth/SignUp";
 import Login from "./pages/Auth/Login";
@@ -31,29 +30,29 @@ import ProfileStep10 from "./pages/complete-profile/profile-step10";
 import ProfileStep11 from "./pages/complete-profile/profile-step11";
 import ProfileStep12 from "./pages/complete-profile/profile-step12";
 import SuccessPage from "./components/Client/Job/SuccessPage";
-import  ProtectedFreelancer from './components/shared/ProtectedFreelancer'
+import ProtectedFreelancer from './components/shared/ProtectedFreelancer'
 import ProtectedClient from "./components/shared/ProtectedClient";
 import CreateProfile from "./pages/complete-profile/create-profile";
 function App() {
- 
+
 
   return (
     <BrowserRouter>
       <div className="font-nuni">
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           <Route path="/" exact component={GuestHomepage} />
           <Route path="/signup/details" exact component={SignupDetails} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" component={Login} />
-          
+
           <ProtectedFreelancer path="/freelancer" exact component={FreelancerHomepage} />
           <ProtectedFreelancer path="/job/:id" component={Job} />
           <ProtectedFreelancer path="/freelancer-profile" component={FreelancerProfile} />
           <ProtectedClient path="/client/home" component={ClientHomePage} />
           <ProtectedFreelancer path="/proposal/:id" component={Proposal} />
           <ProtectedFreelancer path="/proposals" component={AllProposals} />
-        
+
           <ProtectedClient path="/client/job-post" component={PostJob} />
           <ProtectedClient path="/client/succes-post" component={SuccessPage} />
 
@@ -62,7 +61,7 @@ function App() {
           <ProtectedClient path="/applicants/:jobId" component={Applicants} />
           <ProtectedClient path="/job-list" component={Jobs} />
           <ProtectedClient path="/active-jobs" component={ActiveJobs} />
-          <ProtectedFreelancer path="/freelancer/create-profile/:step" exact component = {CreateProfile}/>
+          <ProtectedFreelancer path="/freelancer/create-profile/:step" exact component={CreateProfile} />
           <Route path="/ProfileStep1" component={ProfileStep1} />
           <Route path="/ProfileStep2" component={ProfileStep2} />
           <Route path="/ProfileStep3" component={ProfileStep3} />

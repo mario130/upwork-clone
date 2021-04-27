@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navbar = (props) => (
   <div className="py-2 bg-white text-darkText">
@@ -8,10 +9,10 @@ const Navbar = (props) => (
         <li className="cursor-pointer" className={`${props.activeLink === "jobs" ? "text-primary" : ""}`}>My Jobs</li>
       </Link>
       <Link to="/active-jobs">
-      <li className="cursor-pointer" className={`${props.activeLink === "active-jobs" ? "text-primary" : ""}`}>Active contracts</li>
+        <li className="cursor-pointer" className={`${props.activeLink === "active-jobs" ? "text-primary" : ""}`}>Active contracts</li>
       </Link>
       <Link to="/client/job-post">
-        <li className="cursor-pointer">Post a Job</li>
+        <li className="cursor-pointer" className={`${props.activeLink === "post-job" ? "text-primary" : ""}`}>Post a Job</li>
       </Link>
     </ul>
   </div>
