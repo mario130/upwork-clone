@@ -396,9 +396,6 @@ const Main = () => {
             <Link to="/proposals">
               <li className="text-primary font-bold">4 submitted proposals</li>
             </Link>
-            <Link to="/proposals">
-              <li className="text-primary font-bold">120 available connects</li>
-            </Link>
           </ul>
         </div>
       </div>

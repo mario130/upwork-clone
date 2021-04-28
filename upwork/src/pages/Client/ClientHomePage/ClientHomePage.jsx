@@ -9,19 +9,21 @@ import Nav from "../../../components/shared/navbar";
 import Btn from "../../../components/UI/Form/Btn/Btn";
 import "./ClientHomePage.css"
 const ClientHomePage = () => {
+  const userName = localStorage.getItem('userName')
+  
   return (
     <>
     <Nav/>
     <div id="home" className="bg-bodyGray">
-      <div className="pt-4 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl ">
+      <div className="px-4 lg:px-6 pt-4 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl ">
         <div className="flex justify-between flex-wrap mb-12">
           <p className="font-extrabold text-2xl md:mb-0 mb-5">
-            Ahmed Mahmoud
+            {userName}
             <span className="ml-8 text-primary inline-block ">
               <svg
                 width="30"
                 height="30"
-                className="text-primary inline-block"
+                className="text-primary inline-block pb-1"
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fas"
@@ -37,8 +39,8 @@ const ClientHomePage = () => {
               </svg>
             </span>
           </p>
-          <div className="btns sm:w-auto w-full flex flex-wrap">
-            <Btn className="bg-white hover:bg-gray-100 focus:ring-gray-300 text-primary  px-8 border border-gray-500 sm:w-auto w-full sm:mb-0 mb-2">
+          <div className="btns sm:w-auto w-full flex flex-wrap items-center">
+            <Btn className="bg-white hover:bg-gray-100 focus:ring-gray-300 text-primary  px-8 border border-gray-200 sm:w-auto w-full sm:mb-0 mb-2">
               Browse Project Catalog
             </Btn>
             <Link to="/client/job-post" className="py-2 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2  rounded-lg bg-primary hover:bg-green-800 focus:ring-green-500  text-white px-8 sm:ml-3 sm:w-auto w-full">
@@ -62,7 +64,7 @@ const ClientHomePage = () => {
             <aside className=" mb-5">
             <ClientCarousel/>
             </aside>
-            <aside>
+            <aside className="mb-4">
               <Templates/>
             </aside>
             </div>
