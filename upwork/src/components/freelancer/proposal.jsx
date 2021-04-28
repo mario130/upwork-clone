@@ -90,7 +90,7 @@ const Proposal = () => {
       ) : null}
 
       {/* Proposal settings */}
-      <div className="bg-white mb-2 md:mb-6 border border-gray-200 md:rounded-lg">
+      {/* <div className="bg-white mb-2 md:mb-6 border border-gray-200 md:rounded-lg">
         <h5 className="px-4 md:px-6 py-3 md:py-5 font-bold text-xl border-b border-gray-200">
           Proposal settings
         </h5>
@@ -105,7 +105,7 @@ const Proposal = () => {
             <span className="font-bold">999 connects</span> remaining.
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Job details */}
       <div className="bg-white mb-2 md:mb-6 border border-gray-200 md:rounded-lg">
@@ -383,7 +383,7 @@ const Proposal = () => {
           <div className="mt-4 px-3 md:px-5 pt-6 pb-3 border-t border-gray-200">
             <div className="flex md:w-96">
               <Link to={`/job/${job._id}`}>
-                <button className="flex-1 md:order-2 mx-1 py-2 rounded-lg font-bold text-primary">
+                <button className="flex-1 px-4 md:order-2 mx-1 py-2 rounded-lg font-bold text-primary">
                   Cancel
                 </button>
               </Link>

@@ -235,10 +235,6 @@ const Job = (props) => {
                   </svg>
                   Flag as inappropriate
                 </div>
-                {/* <p className="mt-3">
-                Required Connects to submit a proposal: {job.requiredConnects}
-              </p>
-              <p className="mt-3">Available connects: 42</p> */}
               </div>
             </div>
             <h4 className="px-6 pt-4  font-bold mb-2 text-lg">
@@ -301,15 +297,17 @@ const Job = (props) => {
           </div>
 
           <div className="sticky bottom-0 p-6 flex bg-white border-t grayBottomBorder space-x-2 lg:hidden">
-            <Link to={`/proposal/${props.id}`}>
-              <button className="w-1/2 p-2 rounded-lg font-bold text-sm bg-primary text-white"
-                disabled={
-                  checkSubmited
-                }
-              >
-                Submit a proposal
-              </button>
-            </Link>
+            <div className="w-1/2">
+              <Link to={`/proposal/${props.id}`}>
+                <button className="w-full h-full p-2 rounded-lg font-bold text-sm bg-primary text-white"
+                  disabled={
+                    checkSubmited
+                  }
+                >
+                  Submit a proposal
+                </button>
+              </Link>
+            </div>
             <button className="w-1/2 p-2 rounded-lg font-bold text-sm text-primary border flex justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

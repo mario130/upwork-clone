@@ -45,19 +45,19 @@ const Jobs = () => {
 
               {allJobs.jobs && allJobs.jobs.map((job, i) => (
                 <div className="p-4 md:px-6 border-b border-gray-200" key={i}>
-                  <div className="flex py-2 justify-between cursor-pointer items-center">
-                    <div>
-                      <h2 className="text-primary font-bold">{job.title}</h2>
-                      <h5 className="text-gray-500">{job.proposals.length} applicants</h5>
-                    </div>
-                    <Link to={`/applicants/${job._id}`}>
+                  <Link to={`/applicants/${job._id}`}>
+                    <div className="flex py-2 justify-between cursor-pointer items-center">
+                      <div>
+                        <h2 className="text-primary font-bold">{job.title}</h2>
+                        <h5 className="text-gray-500">{job.proposals.length} applicants</h5>
+                      </div>
                       <button className="bg-primary text-white px-3 py-1 rounded-full flex items-center">View job
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </button>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </div>
               ))}
             </div>

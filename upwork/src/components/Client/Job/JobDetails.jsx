@@ -52,12 +52,12 @@ const JobDetails = (props) => {
                 <RadioBox
                   id="onTimeProject"
                   name="projectType"
-                  value="on time project"
+                  value="one time project"
                   text="find the right skills forshort time need"
                   svg={<FontAwesomeIcon icon={faUser} className="w-6 h-6" />}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  checked={formik.values.projectType === "on time project"}
+                  checked={formik.values.projectType === "one time project"}
                 ></RadioBox>
                 <RadioBox
                   name="projectType"
