@@ -56,12 +56,12 @@ const Jobs = () => {
                       <div className="py-2 cursor-pointer">
                         <div className="text-sm grid grid-cols-1 md:grid-cols-3 flex-wrap gap-4">
                           <div>
-                            <h5 className="text-black mt-2">Initiated : {moment(proposal.createdDate).format('MMMM Do YYYY')}</h5>
+                            <h5 className="text-black mt-2">Accepted: {moment(proposal.createdDate).format('MMMM Do YYYY')}</h5>
                             <h5 className="text-black  mb-2 text-xs">{moment(proposal.createdDate).startOf().fromNow()}</h5>
                           </div>
                           <div>
-                            <h2 className="text-primary mt-2 font-bold md:text-base">{proposal.coverLetter}</h2>
-                            <h5 className="text-black mb-2">{proposal.jobId.title}</h5>
+                            <h2 className="text-primary mt-2 font-bold md:text-base" title={proposal.jobId.title}>{proposal.jobId.title.slice(0, 20)}...</h2>
+                            <h5 className="text-black mb-2" title={proposal.coverLetter}>{proposal.coverLetter.slice(0, 20)}...</h5>
                           </div>
                           <div>
                             <h5 className="text-black mt-2">{proposal.jobId.category}</h5>

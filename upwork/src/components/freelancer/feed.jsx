@@ -321,11 +321,11 @@ const Main = () => {
             </div>
           ))}
 
-          {searchedJobs.length !== 0 ? <div className="text-center bg-white p-4">
+          {/* {searchedJobs.length !== 0 ? <div className="text-center bg-white p-4">
             <button className="px-6 py-2 border rounded-full text-primary font-bold">
               Load more
             </button>
-          </div> : null}
+          </div> : null} */}
         </div>
       </div>
 

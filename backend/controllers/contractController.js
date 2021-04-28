@@ -10,7 +10,7 @@ const {
 const Contract = require("./../model/contract");
 
 module.exports.activeContracts = (req,resp,next) => {
-  Contract.findOne({clientId:req._id})
+  Contract.find({clientId:req._id})
   .populate({
     path: "freelancerId",
     model: "User",

@@ -360,7 +360,7 @@ const Nav = (props) => {
               <div className="ml-3 relative">
                 <div>
                 </div>
-                <div className={`origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${isNotificationsOpen ? "" : "hidden"}`} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
+                <div className={`origin-top-right absolute right-0 mt-10 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50 shadow-categ ${isNotificationsOpen ? "" : "hidden"}`} role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
                   {notifications.map(noti => (
                     <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       href={noti.jobLink}

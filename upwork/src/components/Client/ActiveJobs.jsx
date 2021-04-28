@@ -8,6 +8,7 @@ import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import moment from 'moment';
 
 const Jobs = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -25,17 +26,15 @@ const Jobs = () => {
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get(`${localBackend}/jobs/getAll`, {
+      .get(`${localBackend}/contract/getActiveContract`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((data) => {
-        setLoading(false);
         console.log(data);
-        if (data.data !== "") {
-          const filteredJobs = data.data.jobs.filter(
-            (job) => job.status === "active"
-          );
-          setAllJobs(filteredJobs);
+        const activeJobs = data.data.filter(job=>job.status === 'open')
+        setLoading(false);
+        if (activeJobs !== []) {
+          setAllJobs(activeJobs);
         }
       });
   }, [token]);
@@ -103,7 +102,7 @@ const Jobs = () => {
                   Active Jobs ({allJobs.length})
                 </h2>
 
-                {allJobs.map((job, idx) => (
+                {allJobs.length > 0 && allJobs.map((job, idx) => (
                   <div className="p-4 md:px-6 border-b border-gray-200">
                     {/* MODAL */}
                     {/* Modal window */}
@@ -191,7 +190,7 @@ const Jobs = () => {
                           <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             {/* <button onClick={()=>setModalOpen(false)} type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm"> */}
                             <button
-                              onClick={() => endContract(job._id, idx)}
+                              onClick={() => endContract(job.jobId._id, idx)}
                               type="button"
                               class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm"
                             >
@@ -212,10 +211,11 @@ const Jobs = () => {
                     <div className="md:flex py-2 justify-between cursor-pointer items-center">
                       <div className="md:max-w-xs">
                         <h2 className="text-primary font-bold">{job.title}</h2>
-                        <h5>{job.category} applicants</h5>
+                        <h5 title={job.jobId.title}>{job.jobId.title.slice(0, 20)}...</h5>
                         <h5 className="text-gray-500">
                           {/* {job.hireDate.toString()} */}
-                          ADD HIRE DATE
+                          {/* {job.HiredDate} */}
+                          {moment(job.HiredDate).startOf().fromNow()}
                         </h5>
                       </div>
                       <div className="flex-1 md:text-center">
@@ -223,7 +223,9 @@ const Jobs = () => {
                           Freelancer info:
                         </h4>
                         {/* <p>{job.freelancer.name}</p> */}
-                        <p>ADD FREELANCER NAME</p>
+                        <p>
+                          {job.freelancerId.firstName} {job.freelancerId.lastName}
+                        </p>
                         {/* <p className="text-gray-500">{job.freelancer.email}</p> */}
                       </div>
                       <button
