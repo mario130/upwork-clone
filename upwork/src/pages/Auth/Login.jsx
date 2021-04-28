@@ -80,9 +80,7 @@ class Login extends Component {
       localStorage.setItem("userType", payload.userType);
       localStorage.setItem("userName", payload.userName);
       localStorage.setItem("firstName", payload.firstName);
-
-      
-
+      localStorage.setItem("fullName", payload.firstName +' '+payload.lastName);
 
       this.props.loginUser(this.state.email, payload.token, payload.userType,payload.userName,payload.firstName);
       if( payload.userType === "client"){

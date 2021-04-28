@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ListItem from "./listItem";
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Nav = (props) => {
     localStorage.removeItem('token')
     return dispatch(logout())
   }
-  const isFreelancer = localStorage.getItem("userType") == "freelancer";
+  const isFreelancer = localStorage.getItem("userType") === "freelancer";
   const [isOpen, setIsOpen] = useState(false);
   const [navLists] = useState([
     {
@@ -153,30 +153,30 @@ const Nav = (props) => {
   ]);
 
   const [isNotificationsOpen, setNotifications] = useState(false)
-  const openNotifications = () => {
-    setNotifications(!isNotificationsOpen)
-    if (!isNotificationsOpen) {
-      loadData()
-    }
-  }
   const [notifications, setNotificationsData] = useState([]);
+  const [fullName, setFullName] = useState('');
+
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("user");
+  const fullNameFromLocalStorage = localStorage.getItem("fullName");
 
-  async function loadData() {
-    await axios
-      .get(
-        `${localBackend}/profile/get-all-notifications/${email}`, {
-        headers: { 'Authorization': `Bearer ${token}` },
-      }
-      )
-      .then((data) => {
-        console.log(data.data.notifications);
-        setNotificationsData(data.data.notifications);
-      }).catch((err) => {
-        console.log(err)
-      })
-  }
+  useEffect(()=>{
+    if (isFreelancer) {
+      axios
+        .get(
+          `${localBackend}/profile/get-all-notifications/${email}`, {
+          headers: { 'Authorization': `Bearer ${token}` },
+        }
+        )
+        .then((data) => {
+          console.log(data.data.notifications);
+          setNotificationsData(data.data.notifications);
+        }).catch((err) => {
+          console.log(err)
+        })
+    }
+    setFullName(fullNameFromLocalStorage)
+  }, [email, token, isFreelancer, fullNameFromLocalStorage])
 
 
   return (
@@ -313,10 +313,7 @@ const Nav = (props) => {
           {/* desktop icons */}
           {isFreelancer &&
             <ul className="space-x-4 hidden lg:flex">
-              {/* {navLists.map((list) => (
-              <li>{list.icon ? list.icon : null}</li>
-            ))} */}
-              <button onClick={openNotifications} className="flex text-sm rounded-full focus:outline-none">
+              <button onClick={()=>setNotifications(!isNotificationsOpen)} className="flex text-sm rounded-full focus:outline-none">
                 <li className="relative">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -332,7 +329,9 @@ const Nav = (props) => {
                       d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                     />
                   </svg>
-                  <span className="absolute top-0 right-0 bg-red-400 w-2 h-2 rounded-full"></span>
+                  {notifications.length > 0 
+                  ? <span className="absolute top-0 right-0 bg-red-400 w-2 h-2 rounded-full"></span>
+                  : null}
                 </li>
               </button>
               <div className="ml-3 relative">
@@ -348,7 +347,7 @@ const Nav = (props) => {
                       <small className="text-light"><b>{noti.date}</b></small>
                     </a>
                   ))}
-                  {notifications.length == 0 && <b className="block px-4 py-2 text-sm text-gray-700">not receiving notifications</b>}
+                  {notifications.length === 0 && <b className="block px-4 py-2 text-sm text-gray-700">No new notifications.</b>}
                 </div>
               </div>
 
@@ -403,7 +402,7 @@ const Nav = (props) => {
                     className="mr-2"
                     alt=""
                   />
-                  <h4 className="text-sm">John Doe</h4>
+                  <h4 className="text-sm">{fullName}</h4>
                 </div>
               </div>
             </div>

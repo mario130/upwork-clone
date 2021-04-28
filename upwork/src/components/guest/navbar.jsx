@@ -116,7 +116,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/login">
+                <Link to="/signup">
                   <p>Sign Up</p>
                 </Link>
               </li>
@@ -152,10 +152,10 @@ const Navbar = () => {
 
               <ul className="space-y-8 font-bold p-3 mb-4">
                 <li>
-                  <span className="cursor-pointer">Find Talent</span>
+                  <Link to="/login"><span className="cursor-pointer">Find Talent</span></Link>
                 </li>
                 <li>
-                  <span className="cursor-pointer">Find Work</span>
+                  <Link to="/login"><span className="cursor-pointer">Find Work</span></Link>
                 </li>
                 <li>
                   <span className="cursor-pointer">Why Upwork</span>
@@ -167,9 +167,11 @@ const Navbar = () => {
             </div>
 
             <div className="mx-3">
-              <button className="w-full bg-primary text-white font-bold rounded-lg my-4 py-2">
-                Sign Up
-              </button>
+              <Link to="/signup">
+                <button className="w-full bg-primary text-white font-bold rounded-lg my-4 py-2">
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
         ) : null}

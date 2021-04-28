@@ -43,44 +43,52 @@ const Main = () => {
     setActiveFilterSkill(skill)
   }
 
+  const mobileFilter = (ev) => {
+    filterBySkill(ev.target.value)
+  }
+
   return (
     <main className="bg-bodyGray h-full container mx-auto  max-w-5xl sm:px-10 lg:grid lg:grid-cols-10 lg:mt-5">
       <div className="lg:hidden mb-4 sm:mb-8">
         <ul className="bg-white rounded-lg sm:mt-4">
-          <li className="p-4 border-b border-gray-200 flex justify-between">
-            <button className="font-bold text-gray-800">My Proposals</button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </li>
-          <li className="p-4 border-b border-gray-200 flex justify-between">
-            <button className="font-bold text-gray-800">My Profile</button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </li>
+          <Link to="/proposals">
+            <li className="p-4 border-b border-gray-200 flex justify-between">
+                <button className="font-bold text-gray-800">My Proposals</button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </li>
+          </Link>
+          <Link to="/freelancer-profile">
+            <li className="p-4 border-b border-gray-200 flex justify-between">
+              <button className="font-bold text-gray-800">My Profile</button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </li>
+          </Link>
         </ul>
       </div>
 
@@ -146,22 +154,28 @@ const Main = () => {
         <div className="bg-white border border-gray-200 rounded-t-md mb-4">
           {/* job feed */}
           <ul className="lg:hidden flex mt-3 ml-3 p-2 space-x-10 border-b border-gray-200">
-            <li className="font-bold text-sm text-primary">My Feed</li>
-            <li className="font-bold text-sm text-gray-800">Best Matches</li>
-            <li className="font-bold text-sm text-gray-800">Recommended</li>
+            <li className="cursor-pointer font-bold text-sm text-primary">My Feed</li>
+            <li className="cursor-pointer font-bold text-sm text-gray-800">Best Matches</li>
+            <li className="cursor-pointer font-bold text-sm text-gray-800">Recommended</li>
           </ul>
 
           <div className="lg:hidden p-5 border-b border-gray-200">
-            <h5 className="mb-3 font-bold text-sm">View:</h5>
+            <h5 className="mb-3 font-bold text-sm">Filter:</h5>
             <select
               name="view"
               id="view"
               className="w-full bg-white border p-2 rounded-lg"
+              onChange={(ev)=>mobileFilter(ev)}
             >
-              <option value="default">My Feed</option>
-              <option value="search-1">Search 1</option>
-              <option value="search-2">Search 2</option>
-              <option value="search-3">Search 3</option>
+              <option value="">No filter</option>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="Javascript">Javascript</option>
+              <option value="React">React</option>
+              <option value="Angular">Angular</option>
+              <option value="NodeJS">NodeJS</option>
+              <option value="Express">Express</option>
+              <option value="MongoDB">MongoDB</option>
             </select>
           </div>
 
