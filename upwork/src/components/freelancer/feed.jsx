@@ -96,14 +96,14 @@ const Main = () => {
       <div className="hidden lg:block lg:col-start-1 lg:col-span-2">
         <h3 className="font-bold text-2xl mb-12">Find Work</h3>
         <ul className="space-y-1 mb-8">
-          <li className="font-bold text-black px-2 py-1 border-l-4 border-primary">
+          <li className="font-bold text-black px-2 py-1 border-l-4 border-primary cursor-default">
             My Feed
           </li>
-          <li className="font-bold text-gray-700 px-2 py-1">Best Matches</li>
-          <li className="font-bold text-gray-700 px-2 py-1">Recommended</li>
-          <li className="font-bold text-gray-700 px-2 py-1">Custom search 1</li>
-          <li className="font-bold text-gray-700 px-2 py-1">Custom search 2</li>
-          <li className="font-bold text-gray-700 px-2 py-1">Custom search 3</li>
+          <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Best Matches</li>
+          <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Recommended</li>
+          <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Custom search 1</li>
+          <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Custom search 2</li>
+          <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Custom search 3</li>
         </ul>
 
         {/* SKILLS */}
@@ -388,7 +388,7 @@ const Main = () => {
           </div>
         </div>
         <div>
-          <Link to="/proposals"><h3 className="mt-6 font-bold text-lg mb-2">Proposals</h3> </Link>
+          {/* <Link to="/proposals"><h3 className="mt-6 font-bold text-lg mb-2">Proposals</h3> </Link>
           <ul className="space-y-2">
             <Link to="/proposals">
               <li className="text-primary font-bold">1 active candidacy</li>
@@ -396,7 +396,13 @@ const Main = () => {
             <Link to="/proposals">
               <li className="text-primary font-bold">4 submitted proposals</li>
             </Link>
-          </ul>
+          </ul> */}
+          <Link to="/proposals" className="flex text-primary mt-6 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <p className="text-sm font-bold">Proposals</p>
+          </Link>
         </div>
       </div>
     </main>
