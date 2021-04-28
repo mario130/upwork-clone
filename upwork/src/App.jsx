@@ -33,6 +33,7 @@ import SuccessPage from "./components/Client/Job/SuccessPage";
 import ProtectedFreelancer from './components/shared/ProtectedFreelancer'
 import ProtectedClient from "./components/shared/ProtectedClient";
 import CreateProfile from "./pages/complete-profile/create-profile";
+import ErrorComponent from './pages/Error/Error';
 function App() {
 
 
@@ -74,7 +75,7 @@ function App() {
           <Route path="/ProfileStep10" component={ProfileStep10} />
           <Route path="/ProfileStep11" component={ProfileStep11} />
           <Route path="/ProfileStep12" component={ProfileStep12} /> */}
-
+          <Route path="*" component={ErrorComponent} />
         </Switch>
       </div>
     </BrowserRouter>

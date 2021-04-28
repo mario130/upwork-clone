@@ -1,0 +1,56 @@
+.all-error-page {
+    font-family: "Gotham SSm",Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    height: 100vh;
+    background-color: #f2f2f2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    position: relative;
+  }
+  
+  .all-error-page .error-component {
+    position: absolute;
+  }
+  
+  .all-error-page .error-component .error-msg h1 {
+    color: #656565;
+    font-size: 1.8em;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .all-error-page .error-component .error-msg h1 {
+      font-size: 1.5em;
+    }
+  }
+  
+  .all-error-page .error-component .error-msg p {
+    color: #656565;
+    font-weight: 500;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  
+  .all-error-page .error-component .error-msg span {
+    color: #37a000 !important;
+  }
+  
+  .all-error-page .error-component .error-msg span.return-home:hover {
+    text-decoration: underline !important;
+    border-bottom-color: #37a000 !important;
+  }
+  
+  .all-error-page .error-component .error-msg a:hover {
+    border-bottom-color: #37a000 !important;
+  }
+  .image{
+    background: url("./../img/error.png") no-repeat center;
+    background-size:contain;
+    height:200px;
+  }
