@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import moment from 'moment';
 import Spinner from '../shared/spinner';
+import {localBackend} from '../../services/basedUrl.js'
 
 const Posts = () => {
   const [isLoading,setIsLoading] = useState(false)
@@ -28,7 +29,7 @@ const Posts = () => {
     useEffect(()=>{
       setIsLoading(true)
       axios.get(
-        'http://localhost:4001/contract/getActiveContract',
+        `${localBackend}/contract/getActiveContract`,
         {headers: { Authorization: `Bearer ${token}` },}
       ).then(data => {
         setIsLoading(false)
