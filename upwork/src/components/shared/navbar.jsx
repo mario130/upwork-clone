@@ -308,7 +308,11 @@ const Nav = (props) => {
                     My Jobs
                 </Link>
                 </li>
-                <li className="cursor-pointer">Messages</li>
+                <li className="cursor-pointer">
+                  <Link to="/freelancer-profile">
+                    My Profile
+                  </Link>
+                </li>
                 <li className="cursor-pointer" onClick={logoutUser}>Logout</li>
               </ul>
             </div>

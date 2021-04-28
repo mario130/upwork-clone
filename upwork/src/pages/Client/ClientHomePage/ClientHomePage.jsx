@@ -51,11 +51,11 @@ const ClientHomePage = () => {
         <div className="flex flex-wrap">
           <div className="mb-5 md:pr-4 md:w-8/12 w-full">
             <div className=" mb-5">
-            <Drafts/>
-            </div>
-            <div className=" mb-5">
             <Posts/>
             </div>
+            {/* <div className=" mb-5">
+            <Drafts/>
+            </div> */}
             <div>
               <HowItWorks/>
             </div>

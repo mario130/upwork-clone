@@ -96,14 +96,14 @@ const Main = () => {
       <div className="hidden lg:block lg:col-start-1 lg:col-span-2">
         <h3 className="font-bold text-2xl mb-12">Find Work</h3>
         <ul className="space-y-1 mb-8">
-          <li className="font-bold text-black px-2 py-1 border-l-4 border-primary cursor-default">
+          {/* <li className="font-bold text-black px-2 py-1 border-l-4 border-primary cursor-default">
             My Feed
           </li>
           <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Best Matches</li>
           <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Recommended</li>
           <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Custom search 1</li>
           <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Custom search 2</li>
-          <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Custom search 3</li>
+          <li className="font-bold text-gray-700 px-2 py-1 cursor-default">Custom search 3</li> */}
         </ul>
 
         {/* SKILLS */}
