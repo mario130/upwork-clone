@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { localBackend } from "../../services/basedUrl";
 
 const Profile = () => {
   const [freelancer] = useState({
@@ -87,6 +89,23 @@ const Profile = () => {
       },
     ],
   });
+  const [profile, setProfile] = useState([]);
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+
+    axios
+      .get(
+        `${localBackend}/profile/freelance-profile`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      }
+      )
+      .then((data) => {
+        console.log(data);
+        setProfile(data.data);
+        console.log(profile)
+      })
+  }, [token]);
 
   return (
     <div className="bg-gray-100 mt-4 md:mx-12 lg:container lg:mx-auto lg:max-w-5xl lg:grid lg:grid-cols-3">
@@ -102,7 +121,7 @@ const Profile = () => {
         </div>
         <div className="flex-1">
           <h2 className="font-bold text-xl flex items-center">
-            John D.
+            {profile.user && profile.user[0].userName}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-blue-400 ml-2"

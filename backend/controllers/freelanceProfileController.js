@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
 const Freelancer = require("../model/freelancer");
+const FreelanceProfile = require("../model/freelanceProfile");
 const User = require("../model/user");
 
 module.exports.addProfile = (req, resp, next) => {
   let freelanceProfile = new FreelanceProfile();
   freelanceProfile.userId = req._id;
-  freelanceProfile.categoryType = req.body.categoryType;
-  freelanceProfile.categoryInfo = req.body.categoryInfo;
+  freelanceProfile.category = req.body.category;
+  freelanceProfile.subcategory = req.body.subcategory;
   freelanceProfile.expertise = req.body.expertise;
   freelanceProfile.expertiseLevel = req.body.expertiseLevel;
   freelanceProfile.education = req.body.education;
-  freelanceProfile.employment = req.body.employment;
   freelanceProfile.languages = req.body.languages;
   freelanceProfile.hourlyRate = req.body.hourlyRate;
   freelanceProfile.title = req.body.title;
@@ -46,6 +46,24 @@ module.exports.getData = (req, resp, next) => {
     }
   });
 };
+
+/* module.exports.getData = (req,resp,next) => {
+  FreelanceProfile.findOne({ userId: req._id })
+    .populate({
+      path:"userId",
+      model: "User",
+      select:"email firstName lastName userName country"
+    })
+    .exec((err, data) => {
+      if (!err) {
+        if (data) {
+          resp.status(200).send(data);
+        } else {
+          return next(err);
+        }
+      } else return next(err);
+    });
+} */
 
 module.exports.updateProfile = (req, resp, next) => {
   let freelanceProfile = req.body;

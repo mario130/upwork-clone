@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
 
 const freelanceProfileSchema = mongoose.Schema({
-  // userId:{
-  //     type: String,
-  //     required: "User ID field can\'t be empty",
-  //     unique:true,
+  userId:{
+    type: mongoose.Schema.Types.ObjectId,
+    required: "User ID field can\'t be empty",
+    unique:true,
+    ref: "User",
 
-  //     validate: async function(){
-  //         let User=mongoose.model('Freelancer');
-  //         return await User.findOne({_id:this.userId})
-  //     }
-  // },
+    validate: async function(){
+      let User=mongoose.model('User');
+      return await User.findOne({_id:this.userId})
+    }
+  },
   category: {
     type: String,
     required: "Category type field can't be empty",
@@ -33,17 +34,17 @@ const freelanceProfileSchema = mongoose.Schema({
     default:
       "What is Upwork? Upwork is a huge virtual international market place where a large number of clients and freelancers are available to hire and to be hired. It is a ...",
   },
-//   expertise: {
-//     type: { String },
-//     required: "At least one skill is required",
-//     // validate: {
-//     //   validator: function () {
-//     //     return this.expertise.length > 0;
-//     //   },
-//     //   message: "minimum 1 skill should be added",
-//     // },
-//     default: ["skill1"],
-//   },
+  expertise: {
+     type: [ String ],
+     required: "At least one skill is required",
+      validate: {
+        validator: function () {
+          return this.expertise.length > 0;
+        },
+        message: "minimum 1 skill should be added",
+      },
+     default: ["skill1"],
+   },
   expertiseLevel: {
     type: String,
     required: "Expertise level field can't be empty",
@@ -119,4 +120,4 @@ const freelanceProfileSchema = mongoose.Schema({
   }]
 });
 
-module.exports =  freelanceProfileSchema;
+module.exports = mongoose.model("FreelancerProfile", freelanceProfileSchema);
