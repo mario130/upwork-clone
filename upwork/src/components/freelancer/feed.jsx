@@ -313,10 +313,10 @@ const Main = () => {
                   <p className="font-bold text-gray-500">Payment verified</p>
                 </div>
 
-                <div className="font-light text-gray-500 text-sm">
+                {/* <div className="font-light text-gray-500 text-sm">
                   <span className="font-bold text-black">${job.client?.spent ? job.client.spent : 400}+</span>{" "}
                   spent
-                </div>
+                </div> */}
               </div>
             </div>
           ))}
