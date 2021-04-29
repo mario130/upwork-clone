@@ -25,7 +25,7 @@ const Main = () => {
 
   const handelSearch = (event) => {
     const result = jobs.filter((job) => {
-      return job.description.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
+      return job.title.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
     })
     setSearchedJobs(result);
   }
