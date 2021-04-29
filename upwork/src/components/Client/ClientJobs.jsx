@@ -21,8 +21,9 @@ const Jobs = () => {
       .then((data) => {
         setLoading(false);
         console.log(data);
-        setAlljobs(data.data);
-        console.log(allJobs)
+        const activeJobs = data.data.jobs.filter(job => job.status !== 'closed')
+        console.log(activeJobs)
+        setAlljobs(activeJobs);
       }).catch((err) => {
         setLoading(true);
       })
@@ -40,10 +41,10 @@ const Jobs = () => {
             <div className="">
               {allJobs.length === 0
                 ? <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Jobs ({allJobs.length})</h2>
-                : <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Jobs ({allJobs.jobs && allJobs.jobs.length})</h2>}
+                : <h2 className="p-4 md:px-6 border-b border-gray-200 text-complementary text-xl font-bold">Jobs ({allJobs && allJobs.length})</h2>}
 
 
-              {allJobs.jobs && allJobs.jobs.map((job, i) => (
+              {allJobs && allJobs.map((job, i) => (
                 <div className="p-4 md:px-6 border-b border-gray-200" key={i}>
                   <Link to={`/applicants/${job._id}`}>
                     <div className="flex py-2 justify-between cursor-pointer items-center">
