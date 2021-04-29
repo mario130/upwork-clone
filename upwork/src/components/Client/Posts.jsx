@@ -43,7 +43,7 @@ const Posts = () => {
 
         <ul className="list-group">
             <li className="list-item-header ">
-                <p className="font-bold text-2xl">My Jobs</p>
+                <p className="font-bold text-2xl">My active jobs</p>
                 <Link to="/job-list" className="text-primary text-lg">
                   all Jobs
                 </Link>
