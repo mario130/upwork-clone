@@ -22,7 +22,7 @@ module.exports.sendMail = async (email) => {
       from: "upwork.clone.test@gmail.com",
       to: email,
       subject: "Upwork Will Hire You",
-      html: "<h3>Congrats.</h3> <h3> upwork will hire you in job <br> please!! check your profile  </h3> <h3> Youth ITI <br> LOL </h3> ",
+      html: "<h3>Congrats.</h3> <h3> You were accepted in a job <br> please!! check your account for more info </h3>",
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
