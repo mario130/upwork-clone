@@ -264,7 +264,7 @@ class SignupDetails extends Component {
                 <small className="text-danger pl-1">{errors.password}</small>
               )}
               <div className="my-4">
-                <Select name="country" onChange={this.handleChange}>
+                <Select name="country" className="bg-white border-none rounded-lg" onChange={this.handleChange}>
                   {Object.keys(this.state.countries).map((key) => {
                     return <option>
 {this.state.countries[key]}
